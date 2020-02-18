@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # elementexample
 
 > A Vue.js project
@@ -28,3 +29,7 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# elementExample
+毕业设计
+>>>>>>> 8eef15ce5c1f8816bb1b2a939f351686fc769315
