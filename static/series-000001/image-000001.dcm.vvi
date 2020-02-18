@@ -1,0 +1,11 @@
+<VVOpenWizard Version="1.8"
+              Spacing="1 1 1"
+              Origin="0 0 0"
+              ScalarType="3"
+              WholeExtent="0 144 0 628 1 361"
+              NumberOfScalarComponents="1"
+              IndependentComponents="1"
+              FileOrientation="10 2 0"
+              BigEndianFlag="0"
+              FilePattern="image-%06i.dcm"
+              FileDimensionality="2"/>
