@@ -4,10 +4,13 @@
       <el-button
         style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
       >激活</el-button>
-      <el-button
+       <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
+     <el-button
         style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
         @click="disableButton"
       >禁用</el-button>
+    </el-tooltip>
+
       <div class="enterURL">
         <input
           type="text"
