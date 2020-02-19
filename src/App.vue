@@ -33,7 +33,7 @@
         <el-menu-item index="5-2"><router-link style="color:white; text-decoration:none;" to="/registe">个人中心</router-link></el-menu-item>
       </el-submenu>
     </el-menu>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 <script>

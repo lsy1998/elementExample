@@ -1,17 +1,62 @@
 <template>
-  <div class="hello">
-    <div class="container">
-      <el-button
-        style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
-      >激活</el-button>
-       <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
-     <el-button
-        style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
-        @click="disableButton"
-      >禁用</el-button>
-    </el-tooltip>
-
-      <div class="enterURL">
+    <div class="container" >
+      <el-row>
+      <el-col :span="3">
+      <div style="height:700px;display:inline-block; background-color:white;">
+ <el-collapse style="width:90%;margin:0 0 0 20px;height:100%;">
+  <el-collapse-item   title="注释" name="1">
+    <button>角度Angle</button>
+    <button>箭头注释ArrowAnnotate</button>
+    <button>双向的Bidirectional</button>
+    <button>圆圈CircleRoi</button>
+    <button>柯布角Cobb Angle</button>
+    <button>椭圆感兴趣区EllipticalRoi</button>
+    <button>橡皮擦Eraser</button>
+    <button>自由泳FreehandRoi</button>
+    <button>手摇雕刻家FreehandRoiSculptor</button>
+    <button>文本标记TextMarker</button>
+    <button>长度Length</button>
+    <button>探查Probe</button>
+    <button>矩形感兴趣区RectangleRoi</button>
+  </el-collapse-item>
+  <el-collapse-item   title="分割" name="2">
+    <button>刷子工具BrushTool</button>
+    <button>球形刷子工具SphericalBrushTool</button>
+    <button>徒手裁剪FreehandScissors</button>
+    <button>矩形裁剪RectangleScissors</button>
+    <button>圆形裁剪CircleScissors</button>
+    <button>矫正裁剪CorrectionScissors</button>
+  </el-collapse-item>
+  <el-collapse-item   title="阻力" name="3">
+    <button>十字准线Crosshairs</button>
+    <button>放大镜Magnify</button>
+    <button>平底锅Pan</button>
+    <button>旋转Rotate</button>
+    <button>堆叠滚动StackScroll</button>
+    <button>WWWC</button>
+    <button>WWWCRegion</button>
+    <button>缩放Rotate</button>
+    <button>拖拉指针Drag Probe</button>
+  </el-collapse-item>
+  <el-collapse-item   title="多点触控/夹持（仅限触控）" name="4">
+    <button>多点触控PanMultiTouch</button>
+    <button>变焦夹点ZoomTouchPinch</button>
+    <button>旋转触碰RotateTouch</button>
+    <button>StackScroll多点触摸</button>
+  </el-collapse-item>
+  <el-collapse-item   title="鼠标滚轮" name="5">
+   <button>堆栈滚动鼠标滚轮StackScrollMouseWheel</button>
+   <button>变焦滚轮ZoomMouseWheel</button>
+  </el-collapse-item>
+  <el-collapse-item   title="双重抽头" name="6">
+   <button>双击适应窗口DoubleTapFitToWindow</button>
+  </el-collapse-item>
+  <el-collapse-item   title="覆盖" name="7">
+    <button>ScaleOverlay缩放覆盖</button>
+    <button>Overlay覆盖</button>
+  </el-collapse-item>
+</el-collapse>
+ <div class="enterURL">
         <input
           type="text"
           id="wadoURL"
@@ -22,18 +67,33 @@
         <button type="button" id="downloadAndView">加载Dicom</button>
       </div>
       <div id="loadProgress" style="position:relative;left:-15%">Dicom加载:</div>
+      </div>
+      </el-col>
+       <!-- <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
+         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton():activeButton()" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
+    </el-tooltip>
+ <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
+         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton():activeButton()" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
+    </el-tooltip>
+     <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
+         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton():activeButton()" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
+    </el-tooltip> -->
+    <el-col :span="21">
+    <div style="display:inline-block;width:100%;height:900px;">
       <div
-        style="width:512px; height:512px; position:relative; color:white; display:inline-block; border-style:solid; border-color:black;"
+        style="width:100%; height:900px; position:relative; color:white; display:inline-block; border-style:solid; border-color:black;"
         οncοntextmenu="return false"
         class="disable-selection noIbar"
         unselectable="on"
         onselectstart="return false;"
         οnmοusedοwn="return false;"
       >
-        <div id="dicomImage" style="width:512px;height:512px;top:0px;left:0px; position:absolute"></div>
+        <div id="dicomImage" style="width:100%;height:900px;top:0px;left:0px; position:absolute"></div>
       </div>
     </div>
-  </div>
+    </el-col>
+    </el-row>
+    </div>
 </template>
 
 <script>
@@ -64,7 +124,8 @@ export default {
   name: 'demo',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      StackScrollMouseWheel: 'activeButton'
     }
   },
   methods: {
@@ -82,7 +143,7 @@ export default {
             '.dcm'
         )
       }
-      console.log(imageIds)
+      // console.log(imageIds)
       const toolName = 'StackScrollMouseWheel'
       const stack = {
         currentImageIdIndex: 0,
@@ -105,12 +166,24 @@ export default {
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 })
     },
     disableButton () {
-      alert('hhh')
+      const _this = this
+      alert('disable')
       const element = document.getElementById('dicomImage')
       console.log(element)
       cornerstoneTools[`setToolDisabled`]('StackScrollMouseWheel', {
         mouseButtonMask: 1
       })
+      _this._data.StackScrollMouseWheel = 'activeButton'
+    },
+    activeButton () {
+      const _this = this
+      alert('active')
+      const element = document.getElementById('dicomImage')
+      console.log(element)
+      cornerstoneTools[`setToolActive`]('StackScrollMouseWheel', {
+        mouseButtonMask: 1
+      })
+      _this._data.StackScrollMouseWheel = 'disableButton'
     }
   },
   mounted () {
