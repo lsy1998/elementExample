@@ -25,7 +25,7 @@
       </el-submenu>
       <el-menu-item index="3" disabled>消息中心</el-menu-item>
       <el-menu-item index="4">
-        <a href="https://www.ele.me" target="_blank">订单管理</a>
+        <a href="https://www.ele.me" target="_blank">候选</a>
       </el-menu-item>
       <el-submenu index="5" style="margin:0 0 0 1390px">
         <template slot="title"> <el-avatar shape="square" :size="30" :src="squareUrl"></el-avatar></template>

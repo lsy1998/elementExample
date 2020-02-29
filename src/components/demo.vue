@@ -5,55 +5,55 @@
       <div style="height:700px;display:inline-block; background-color:white;">
  <el-collapse style="width:90%;margin:0 0 0 20px;height:100%;">
   <el-collapse-item   title="注释" name="1">
-    <button>角度Angle</button>
-    <button>箭头注释ArrowAnnotate</button>
-    <button>双向的Bidirectional</button>
-    <button>圆圈CircleRoi</button>
-    <button>柯布角Cobb Angle</button>
-    <button>椭圆感兴趣区EllipticalRoi</button>
-    <button>橡皮擦Eraser</button>
-    <button>自由泳FreehandRoi</button>
-    <button>手摇雕刻家FreehandRoiSculptor</button>
-    <button>文本标记TextMarker</button>
-    <button>长度Length</button>
-    <button>探查Probe</button>
-    <button>矩形感兴趣区RectangleRoi</button>
+    <el-button @click="activeButton('Angle')" >角度</el-button>
+    <el-button @click="activeButton('ArrowAnnotate')" >箭头注释</el-button>
+    <el-button @click="activeButton('Bidirectional')">双向的</el-button>
+    <el-button @click="activeButton('CircleScissors')">圆圈</el-button>
+    <el-button @click="activeButton('CobbAngle')">柯布角</el-button>
+    <el-button @click="activeButton('EllipticalRoi')">椭圆感兴趣区</el-button>
+    <el-button @click="activeButton('Eraser')">橡皮擦</el-button>
+    <el-button @click="activeButton('FreehandRoi')">自由泳</el-button>
+    <el-button @click="activeButton('FreehandScissors')">手摇雕刻家</el-button>
+    <el-button @click="activeButton('TextMarker')">文本标记</el-button>
+    <el-button @click="activeButton('Length')">长度</el-button>
+    <el-button @click="activeButton('Probe')">探查</el-button>
+    <el-button @click="activeButton('RectangleRoi')">矩形感兴趣区</el-button>
   </el-collapse-item>
   <el-collapse-item   title="分割" name="2">
-    <button>刷子工具BrushTool</button>
-    <button>球形刷子工具SphericalBrushTool</button>
-    <button>徒手裁剪FreehandScissors</button>
-    <button>矩形裁剪RectangleScissors</button>
-    <button>圆形裁剪CircleScissors</button>
-    <button>矫正裁剪CorrectionScissors</button>
+    <el-button @click="activeButton('Brush')">刷子工具</el-button>
+    <el-button @click="activeButton('SphericalBrushTool')">球形刷子工具</el-button>
+    <el-button @click="activeButton('FreehandScissors')">徒手裁剪</el-button>
+    <el-button @click="activeButton('RectangleScissors')">矩形裁剪</el-button>
+    <el-button @click="activeButton('CircleScissors')">圆形裁剪</el-button>
+    <el-button @click="activeButton('CorrectionScissors')">矫正裁剪</el-button>
   </el-collapse-item>
   <el-collapse-item   title="阻力" name="3">
-    <button>十字准线Crosshairs</button>
-    <button>放大镜Magnify</button>
-    <button>平底锅Pan</button>
-    <button>旋转Rotate</button>
-    <button>堆叠滚动StackScroll</button>
-    <button>WWWC</button>
-    <button>WWWCRegion</button>
-    <button>缩放Rotate</button>
-    <button>拖拉指针Drag Probe</button>
+    <el-button @click="activeButton('Crosshairs')">十字准线</el-button>
+    <el-button @click="activeButton('Magnify')">放大镜</el-button>
+    <el-button @click="activeButton('Pan')">平底锅</el-button>
+    <el-button @click="activeButton('Rotate')">旋转</el-button>
+    <el-button @click="activeButton('StackScrollMouseWheel')">堆叠滚动</el-button>
+    <el-button @click="activeButton('WWWC')">WWWC</el-button>
+    <el-button @click="activeButton('WWWCRegion')">WWWCRegion</el-button>
+    <el-button @click="activeButton('Rotate')">缩放</el-button>
+    <el-button @click="activeButton('DragProbe')">拖拉指针</el-button>
   </el-collapse-item>
   <el-collapse-item   title="多点触控/夹持（仅限触控）" name="4">
-    <button>多点触控PanMultiTouch</button>
-    <button>变焦夹点ZoomTouchPinch</button>
-    <button>旋转触碰RotateTouch</button>
-    <button>StackScroll多点触摸</button>
+    <el-button @click="activeButton('PanMultiTouch')">多点触控</el-button>
+    <el-button @click="activeButton('ZoomTouchPinch')">变焦夹点</el-button>
+    <el-button @click="activeButton('RotateTouch')">旋转触碰</el-button>
+    <el-button @click="activeButton('StackScroll')">多点触摸</el-button>
   </el-collapse-item>
   <el-collapse-item   title="鼠标滚轮" name="5">
-   <button>堆栈滚动鼠标滚轮StackScrollMouseWheel</button>
-   <button>变焦滚轮ZoomMouseWheel</button>
+   <el-button @click="activeButton('StackScrollMouseWheel')">堆栈滚动鼠标滚轮</el-button>
+   <el-button @click="activeButton('ZoomMouseWheel')">变焦滚轮</el-button>
   </el-collapse-item>
   <el-collapse-item   title="双重抽头" name="6">
-   <button>双击适应窗口DoubleTapFitToWindow</button>
+   <el-button @click="activeButton('DoubleTapFitToWindow')">双击适应窗口</el-button>
   </el-collapse-item>
   <el-collapse-item   title="覆盖" name="7">
-    <button>ScaleOverlay缩放覆盖</button>
-    <button>Overlay覆盖</button>
+    <el-button @click="activeButton('ScaleOverlay')">缩放覆盖</el-button>
+    <el-button @click="activeButton('Overlay')">覆盖</el-button>
   </el-collapse-item>
 </el-collapse>
  <div class="enterURL">
@@ -64,20 +64,14 @@
           placeholder="Enter WADO URL"
           value="http://localhost:8080/static/series-000001/image-000001.dcm"
         />
-        <button type="button" id="downloadAndView">加载Dicom</button>
+        <el-button type="button" id="downloadAndView">加载Dicom</el-button>
       </div>
       <div id="loadProgress" style="position:relative;left:-15%">Dicom加载:</div>
       </div>
       </el-col>
-       <!-- <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
-         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton():activeButton()" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
+       <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
+         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton('StackScrollMouseWheel'):activeButton('StackScrollMouseWheel')" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
     </el-tooltip>
- <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
-         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton():activeButton()" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
-    </el-tooltip>
-     <el-tooltip class="item" effect="dark" content="禁用滚动" placement="top-start">
-         <div  @click="StackScrollMouseWheel=='disableButton'?disableButton():activeButton()" style="background-color:rgb(19, 130, 255);color:white;height:30px;width:30px; line-height:10px"> <i class="el-icon-orange" style="margin:6px;"></i></div>
-    </el-tooltip> -->
     <el-col :span="21">
     <div style="display:inline-block;width:100%;height:900px;">
       <div
@@ -125,7 +119,24 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      StackScrollMouseWheel: 'activeButton'
+      tools: {
+        StackScrollMouseWheel: 'activeButton',
+        ArrowAnnotate: 'activeButton',
+        Angle: 'activeButton',
+        Bidirectional: 'activeButton',
+        CircleScissors: 'activeButton',
+        CobbAngle: 'activeButton',
+        EllipticalRoi: 'activeButton',
+        Eraser: 'activeButton',
+        FreehandRoi: 'activeButton',
+        FreehandScissors: 'activeButton',
+        Length: 'activeButton',
+        TextMarker: 'activeButton',
+        Probe: 'activeButton',
+        RectangleRoi: 'activeButton',
+        Brush: 'activeButton'
+      }
+
     }
   },
   methods: {
@@ -165,26 +176,51 @@ export default {
       cornerstoneTools.addTool(apiTool)
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 })
     },
-    disableButton () {
+    // disableButton (toolName) {
+    //   const _this = this
+    //   for (let tool in _this._data.tools) {
+    //     console.log(tool + '---' + _this._data.tools[tool])
+    //     if (tool === toolName) {
+    //       _this._data.tools[tool] = 'activeButton'
+    //     }
+    //   }
+    //   alert(`disable${toolName}`)
+    //   const element = document.getElementById('dicomImage')
+    //   console.log(element)
+    //   cornerstoneTools[`setToolDisabled`](toolName, {
+    //     mouseButtonMask: 1
+    //   })
+    //   // _this._data.toolName = 'activeButton'
+    // },
+    activeButton (toolName) {
       const _this = this
-      alert('disable')
+      console.log(_this._data.tools.ArrowAnnotate)
+      const tool = cornerstoneTools[`${toolName}Tool`]
+      cornerstoneTools.addTool(tool)
+      cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 })
+      alert(`active${toolName}`)
       const element = document.getElementById('dicomImage')
       console.log(element)
-      cornerstoneTools[`setToolDisabled`]('StackScrollMouseWheel', {
+      cornerstoneTools[`setToolActive`](toolName, {
         mouseButtonMask: 1
       })
-      _this._data.StackScrollMouseWheel = 'activeButton'
-    },
-    activeButton () {
-      const _this = this
-      alert('active')
-      const element = document.getElementById('dicomImage')
-      console.log(element)
-      cornerstoneTools[`setToolActive`]('StackScrollMouseWheel', {
-        mouseButtonMask: 1
-      })
-      _this._data.StackScrollMouseWheel = 'disableButton'
+      for (let tool in _this._data.tools) {
+        console.log(tool + '---' + _this._data.tools[tool])
+        if (tool === toolName) {
+          _this._data.tools[tool] = 'disableButton'
+        }
+      }
     }
+    // activeArrowAnnotate () {
+    //   const element = document.getElementById('dicomImage')
+    //   console.log(element)
+    //   cornerstoneTools[`setToolDisabled`]('StackScrollMouseWheel', {
+    //     mouseButtonMask: 1
+    //   })
+    //   const ArrowAnnotate = cornerstoneTools[`ArrowAnnotateTool`]
+    //   cornerstoneTools.addTool(ArrowAnnotate)
+    //   cornerstoneTools.setToolActive('ArrowAnnotate', { mouseButtonMask: 1 })
+    // }
   },
   mounted () {
     const _this = this
