@@ -1,66 +1,40 @@
+
 <template>
   <div>
-      <el-row>
+<el-row>
       <el-col :span="6">
         <div style="color:white;">bfbcbc</div>
       </el-col>
       <el-col :span="12">
-        <el-row>
-            <el-col :span='6' style="height:200px;">
-                <el-row>
-                    <el-avatar shape="square" :size="100" :src="circleUrl" style="float:left;margin:30px 0 0 50px;"></el-avatar>
-                </el-row>
-                 <el-row style="margin:10px 0 0 0;">
-                     <el-col :span='4' style="color:white">brave</el-col>
-                     <el-col :span='6'>关注</el-col>
-                     <el-col :span='5'>粉丝</el-col>
-                     <el-col :span='9' style="color:white">happy</el-col>
-                 </el-row>
-                  <el-row>
-                     <el-col :span='4' style="color:white">brave</el-col>
-                     <el-col :span='6' style="font-size:12px;color:rgb(0, 154, 97)">2人</el-col>
-                     <el-col :span='5'  style="font-size:12px;color:rgb(0, 154, 97)">12人</el-col>
-                     <el-col :span='9' style="color:white">happy</el-col>
-                 </el-row>
-            </el-col>
-            <el-col :span='6'>
-                <div style="margin:35px 0 0 0;font-size:24px;text-align:left">acczc<i style="margin:0 0 0 10px" class="el-icon-coordinate"></i></div>
-                <div style="margin:12px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">毕业院校：</div>
-                <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">目前从事行业：</div>
-                <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">所在公司/组织名称:</div>
-                <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">个人网站主页:</div>
-            </el-col>
-            <el-col :span='12'>
-                <div id="wordCloudDiv" style="width:100%;margin:30px 0 0 0;color:white;background-color:white;height:170px;color:white;">
-                </div>
-            </el-col>
-        </el-row>
+        <el-carousel height="150px" width="100%">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3 class="small">{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
       </el-col>
       <el-col :span="6">
         <div style="color:white;">bfbcbc</div>
       </el-col>
     </el-row>
-
     <el-row>
-      <el-col :span="6">
+      <el-col :span="4">
         <div style="color:white;">bfbcbc</div>
       </el-col>
-      <el-col :span="12">
-        <el-row>
-            <el-col :span='6' style="height:200px;">
-                <el-row>
-                   <el-button style="margin:50px 0 0 0;width:60%;background-color:rgb(2, 155, 98);color:white;">我的主页</el-button>
-                </el-row>
-                <el-row>
-                   <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子</el-button>
-                </el-row>
-                <el-row>
-                   <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">发布帖子</el-button>
-                </el-row>
-            </el-col>
-            <el-col :span='18'>
-                <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-                     <el-row style="height:100%">
+      <el-col :span="16">
+         <el-row>
+          <el-col :span='4' >
+            <el-button style="margin:50px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">为你推荐</el-button>
+             <el-divider content-position="left">医学图像下载</el-divider>
+             <div style="width:80%;padding:5px 10px 5px 10px;">MRI</div>
+             <div style="width:80%;padding:5px 10px 5px 10px;">CT</div>
+              <el-divider content-position="left">相关教程</el-divider>
+              <el-divider content-position="left">友情链接</el-divider>
+            <div style="height:900px;"></div>
+          </el-col>
+          <el-col :span='16'>
+            <div  style="margin:50px;">
+ <div style="width:100%;height:200px;background-color:white;margin:10px 0 10px 0;">
+   <el-row style="height:100%">
      <el-col :span='18' style="height:100%;">
        <div style="width:100%;margin:20px 0 0 0; height:90%">
          <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
@@ -79,9 +53,9 @@
        <div style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">cxcx</div>
      </el-col>
    </el-row>
-                </div>
-                 <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-                      <el-row style="height:100%">
+ </div>
+ <div style="width:100%;height:200px;background-color:white;margin:10px 0 10px 0;">
+   <el-row style="height:100%">
      <el-col :span='18' style="height:100%;">
        <div style="width:100%;margin:20px 0 0 0; height:90%">
          <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
@@ -100,9 +74,9 @@
        <div style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">cxcx</div>
      </el-col>
    </el-row>
-                 </div>
-                  <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-                       <el-row style="height:100%">
+ </div>
+ <div style="width:100%;height:200px;background-color:white;margin:10px 0 10px 0;">
+   <el-row style="height:100%">
      <el-col :span='18' style="height:100%;">
        <div style="width:100%;margin:20px 0 0 0; height:90%">
          <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
@@ -121,14 +95,16 @@
        <div style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">cxcx</div>
      </el-col>
    </el-row>
-                  </div>
-            </el-col>
-            <!-- <el-col :span='6'>
-                <div style="color:white;background-color:white;height:200px;color:white;">sad</div>
-            </el-col> -->
+ </div>
+            </div>
+          </el-col>
+          <el-col :span='4'>
+           <div style="margin:50px 0 0 0; color:rgb(2, 155, 98);display:inline-block;">活跃用户</div>
+           <div style="margin:50px 0 0 0; color:rgb(2, 155, 98);display:inline-block;float:right;">更多<i class="el-icon-d-arrow-right"></i></div>
+          </el-col>
         </el-row>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="4">
         <div style="color:white;">bfbcbc</div>
       </el-col>
     </el-row>
@@ -136,11 +112,8 @@
 </template>
 
 <script>
-// require('../assets/js/js2wordcloud')
-import Js2WordCloud from 'js2wordcloud'
-import $ from 'jquery'
 export default {
-  name: 'personalPage',
+  name: 'club',
   data () {
     return {
       circleUrl:
@@ -148,23 +121,6 @@ export default {
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
     }
-  },
-  mounted () {
-    var wc = new Js2WordCloud(document.getElementById('wordCloudDiv'))
-    var wd = $('#wordCloudDiv').width()
-    wc.setOption({
-      maxFontSize: 30,
-      minFontSize: 10,
-      backgroundColor: 'rgb(246, 246, 246)',
-      tooltip: {
-        show: true,
-        backgroundColor: 'rgba(2, 155, 98, 0.701961)'
-      },
-      list: [['皮革厂', 20], ['桂林电子', 10], ['科学与技术', 20], ['前端开发', 20], ['江南', 30], ['科技大学', 10], ['计算机', 20], ['web', 30], ['桂林电子', 20], ['科技大学', 30], ['桂林电子', 30]],
-      color: 'rgb(2, 155, 98)'
-    })
-    $('#wordCloudDiv canvas').width(wd)
-    $('#wordCloudDiv canvas').css('border-radius', '5px')
   }
 }
 </script>

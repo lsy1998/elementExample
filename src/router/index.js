@@ -6,6 +6,8 @@ import registe from '@/components/registe'
 import demo from '@/components/demo'
 import newDemo from '@/components/newDemo'
 import createPost from '@/components/createPost'
+import personalPage from '@/components/personalPage'
+import club from '@/components/club'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +41,16 @@ export default new Router({
       path: '/Post',
       name: 'createPost',
       component: createPost
+    },
+    {
+      path: '/personalPage',
+      name: 'personalPage',
+      component: personalPage
+    },
+    {
+      path: '/club',
+      name: 'club',
+      component: club
     }
   ]
 })
