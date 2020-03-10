@@ -1,0 +1,306 @@
+/**
+ * @file icon.css
+ */
+
+@font-face {
+    font-family: "iconfont";
+    src: url("cornerstoneToolFont.eot"); /* IE9 */
+    src: url("cornerstoneToolFont.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("cornerstoneToolFont.woff2") format("woff2"), /* chrome、firefox、opera、Safari, Android, iOS */
+    url("cornerstoneToolFont.woff") format("woff"), /* chrome、firefox */
+    url("cornerstoneToolFont.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    url("cornerstoneToolFont.svg#uxfonteditor") format("svg"); /* iOS 4.1- */
+}
+
+
+.icon {
+    font-family: "iconfont" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-dodo-window:before {
+  content: "\e786";
+}
+
+.icon-dodo-sync:before {
+  content: "\e661";
+}
+
+.icon-dodo-lossless:before {
+  content: "\ebb1";
+}
+
+.icon-dodo-restore:before {
+  content: "\e690";
+}
+
+.icon-dodo-consult:before {
+  content: "\e60e";
+}
+
+.icon-dodo-display:before {
+  content: "\e607";
+}
+
+.icon-dodo-slow:before {
+  content: "\e6e7";
+}
+
+.icon-dodo-zoom2:before {
+  content: "\e780";
+}
+
+.icon-dodo-play:before {
+  content: "\e657";
+}
+
+.icon-dodo-qrcode:before {
+  content: "\e6a3";
+}
+
+.icon-dodo-ruler:before {
+  content: "\e630";
+}
+
+.icon-dodo-pin:before {
+  content: "\e646";
+}
+
+.icon-dodo-ct:before {
+  content: "\e736";
+}
+
+.icon-dodo-fold-d:before {
+  content: "\e627";
+}
+
+.icon-dodo-mag:before {
+  content: "\e604";
+}
+
+.icon-dodo-3d-c:before {
+  content: "\e608";
+}
+
+.icon-dodo-3d-2:before {
+  content: "\e6c2";
+}
+
+.icon-dodo-help:before {
+  content: "\e6d7";
+}
+
+.icon-dodo-new:before {
+  content: "\e614";
+}
+
+.icon-dodo-label-a:before {
+  content: "\e6a2";
+}
+
+.icon-dodo-collapse:before {
+  content: "\e613";
+}
+
+.icon-dodo-filter:before {
+  content: "\e64c";
+}
+
+.icon-dodo-reset-r:before {
+  content: "\e721";
+}
+
+.icon-dodo-layout:before {
+  content: "\e637";
+}
+
+.icon-dodo-less:before {
+  content: "\e632";
+}
+
+.icon-dodo-cobb:before {
+  content: "\e6d0";
+}
+
+.icon-dodo-3d:before {
+  content: "\e655";
+}
+
+.icon-dodo-recover:before {
+  content: "\e763";
+}
+
+.icon-dodo-zoom:before {
+  content: "\e65b";
+}
+
+.icon-dodo-elliptic-anno:before {
+  content: "\e621";
+}
+
+.icon-dodo-rect-anno:before {
+  content: "\e623";
+}
+
+.icon-dodo-angle:before {
+  content: "\e624";
+}
+
+.icon-dodo-pen-draw:before {
+  content: "\e62a";
+}
+
+.icon-dodo-restore2:before {
+  content: "\e659";
+}
+
+.icon-dodo-more:before {
+  content: "\e601";
+}
+
+.icon-dodo-reverse:before {
+  content: "\e629";
+}
+
+.icon-dodo-expand:before {
+  content: "\e61e";
+}
+
+.icon-dodo-down:before {
+  content: "\e74d";
+}
+
+.icon-dodo-rotate180:before {
+  content: "\e65c";
+}
+
+.icon-dodo-reset:before {
+  content: "\e616";
+}
+
+.icon-dodo-chair:before {
+  content: "\e62e";
+}
+
+.icon-dodo-move:before {
+  content: "\e628";
+}
+
+.icon-dodo-page:before {
+  content: "\e86c";
+}
+
+.icon-dodo-label:before {
+  content: "\e67f";
+}
+
+.icon-dodo-film-3d:before {
+  content: "\e602";
+}
+
+.icon-hd-film:before {
+  content: "\e603";
+}
+
+.icon-dodo-snap:before {
+  content: "\e65a";
+}
+
+.icon-dodo-clear:before {
+  content: "\e612";
+}
+
+.icon-dodo-copy:before {
+  content: "\e691";
+}
+
+.icon-dodo-2d:before {
+  content: "\e65d";
+}
+
+.icon-dodo-redo:before {
+  content: "\e753";
+}
+
+.icon-dodo-del:before {
+  content: "\e63f";
+}
+
+.icon-dodo-users:before {
+  content: "\e620";
+}
+
+.icon-dodo-linetool:before {
+  content: "\ec3e";
+}
+
+.icon-dodo-fusion:before {
+  content: "\e718";
+}
+
+.icon-dodo-fast:before {
+  content: "\e638";
+}
+
+.icon-dodo-flip-h:before {
+  content: "\e60b";
+}
+
+.icon-dodo-setting:before {
+  content: "\e717";
+}
+
+.icon-dodo-rotate270:before {
+  content: "\e609";
+}
+
+.icon-dodo-rotate90:before {
+  content: "\e60d";
+}
+
+.icon-dodo-cuboid:before {
+  content: "\e60a";
+}
+
+.icon-dodo-sphere:before {
+  content: "\e60c";
+}
+
+.icon-dodo-reset-size:before {
+  content: "\e60f";
+}
+
+.icon-dodo-reset-anno:before {
+  content: "\e610";
+}
+
+.icon-dodo-del-sel:before {
+  content: "\e611";
+}
+
+.icon-dodo-up:before {
+  content: "\e86d";
+}
+
+.icon-dodo-split:before {
+  content: "\e633";
+}
+
+.icon-dodo-flip-v:before {
+  content: "\e86e";
+}
+
+.icon-dodo-fold-copy:before {
+  content: "\e86f";
+}
+
+
+

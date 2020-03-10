@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import login from '@/components/login'
 import registe from '@/components/registe'
 import demo from '@/components/demo'
+import newDemo from '@/components/newDemo'
+import createPost from '@/components/createPost'
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +29,16 @@ export default new Router({
       path: '/demo',
       name: 'demo',
       component: demo
+    },
+    {
+      path: '/newDemo',
+      name: 'newDemo',
+      component: newDemo
+    },
+    {
+      path: '/Post',
+      name: 'createPost',
+      component: createPost
     }
   ]
 })
