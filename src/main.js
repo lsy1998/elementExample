@@ -15,7 +15,7 @@ import 'mavon-editor/dist/css/index.css'
 // import hammer from 'hammerjs'
 // import cornerstoneMath from 'cornerstone-math'
 
-import './assets/iconfont/iconfont.css'
+// import './assets/iconfont/iconfont.css'
 // require('./assets/fontIcon/icon.css')
 // require('./assets/cornerstoneToolFont/icon.css')
 require('./assets/fonteditor/icon.css')

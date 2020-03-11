@@ -21,10 +21,10 @@
             <router-link style=" text-decoration:none;" to="/newDemo">DEMO1</router-link>
           </el-menu-item>
           <el-menu-item index="9" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/personalPage">personalPage</router-link>
+            <router-link style=" text-decoration:none;" to="/personalPage">PERSONALPAGE</router-link>
           </el-menu-item>
           <el-menu-item index="10" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/club">club</router-link>
+            <router-link style=" text-decoration:none;" to="/club">CLUB</router-link>
           </el-menu-item>
            <el-menu-item index="7" style="border:0;">
             <el-autocomplete

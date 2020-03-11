@@ -2,65 +2,52 @@
   <div class="container">
     <el-row>
       <el-col :span="3">
-        <div style="height:400px;display:inline-block; background-color:white;width:100%;">
-          <el-collapse style="width:90%;margin:0 0 0 20px;height:100%;">
-            <el-collapse-item title="注释" name="1">
-              <el-button class="icon icon-dodo-angle" @click="activeButton('Angle')"></el-button>
-              <el-button class="icon icon-dodo-pin" @click="activeButton('ArrowAnnotate')"></el-button>
-              <!-- <el-button class="icon icon-dodo-snap" @click="activeButton('Bidirectional')">双向的</el-button> -->
-              <!-- <el-button class="icon icon-dodo-snap" @click="activeButton('CircleScissors')">圆圈</el-button> -->
-              <el-button class="icon icon-dodo-cobb" @click="activeButton('CobbAngle')"></el-button>
-              <el-button
-                class="icon icon-dodo-elliptic-anno"
-                @click="activeButton('EllipticalRoi')"
-              ></el-button>
-              <el-button class="icon icon-dodo-redo" @click="activeButton('Eraser')"></el-button>
-              <el-button class="icon icon-dodo-pen-draw" @click="activeButton('FreehandRoi')"></el-button>
-              <!-- <el-button class="icon icon-dodo-snap" @click="activeButton('FreehandScissors')">手摇雕刻家</el-button> -->
-              <!-- <el-button class="icon icon-dodo-snap" @click="activeButton('TextMarker')">文本标记</el-button> -->
-              <el-button class="icon icon-dodo-linetool" @click="activeButton('Length')"></el-button>
-              <!-- <el-button class="icon icon-dodo-snap" @click="activeButton('Probe')">探查</el-button> -->
-              <el-button class="icon icon-dodo-rect-anno" @click="activeButton('RectangleRoi')"></el-button>
-            </el-collapse-item>
-            <el-collapse-item title="分割" name="2">
-              <el-button @click="activeButton('Brush')">刷子工具</el-button>
-              <el-button @click="activeButton('SphericalBrushTool')">球形刷子工具</el-button>
-              <el-button @click="activeButton('FreehandScissors')">徒手裁剪</el-button>
-              <el-button @click="activeButton('RectangleScissors')">矩形裁剪</el-button>
-              <el-button @click="activeButton('CircleScissors')">圆形裁剪</el-button>
-              <el-button @click="activeButton('CorrectionScissors')">矫正裁剪</el-button>
-            </el-collapse-item>
-            <el-collapse-item title="阻力" name="3">
-              <el-button @click="activeButton('Crosshairs')">十字准线</el-button>
-              <el-button @click="activeButton('Magnify')">放大镜</el-button>
-              <el-button @click="activeButton('Pan')">平底锅</el-button>
-              <el-button @click="activeButton('Rotate')">旋转</el-button>
-              <el-button @click="activeButton('StackScrollMouseWheel')">堆叠滚动</el-button>
-              <el-button @click="activeButton('WWWC')">WWWC</el-button>
-              <el-button @click="activeButton('WWWCRegion')">WWWCRegion</el-button>
-              <el-button @click="activeButton('Rotate')">缩放</el-button>
-              <el-button @click="activeButton('DragProbe')">拖拉指针</el-button>
-            </el-collapse-item>
-            <el-collapse-item title="多点触控/夹持（仅限触控）" name="4">
-              <el-button @click="activeButton('PanMultiTouch')">多点触控</el-button>
-              <el-button @click="activeButton('ZoomTouchPinch')">变焦夹点</el-button>
-              <el-button @click="activeButton('RotateTouch')">旋转触碰</el-button>
-              <el-button @click="activeButton('StackScroll')">多点触摸</el-button>
-            </el-collapse-item>
-            <el-collapse-item title="鼠标滚轮" name="5">
-              <el-button @click="activeButton('StackScrollMouseWheel')">堆栈滚动鼠标滚轮</el-button>
-              <el-button @click="activeButton('ZoomMouseWheel')">变焦滚轮</el-button>
-            </el-collapse-item>
-            <el-collapse-item title="双重抽头" name="6">
-              <el-button @click="activeButton('DoubleTapFitToWindow')">双击适应窗口</el-button>
-            </el-collapse-item>
-            <el-collapse-item title="覆盖" name="7">
-              <el-button @click="activeButton('ScaleOverlay')">缩放覆盖</el-button>
-              <el-button @click="activeButton('Overlay')">覆盖</el-button>
-            </el-collapse-item>
-          </el-collapse>
-
+        <div id="sideBar" style="height:400px;display:inline-block; background-color:white;width:100%;background-color:rgb(50, 50, 50);">
+          <div style="background-color:rgb(37, 37, 37);border-top:1px solid rgb(128, 128, 128);">
+            <div style="background-color:rgb(91, 91, 91);width:80px;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200)">基本工具</div>
+          </div>
           <div>
+            <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);">
+            <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Probe')" >
+                <div class="icon icon-dodo-pin" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">探针</label>
+              </div>
+            </el-col>
+
+             <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('CorrectionScissors')" >
+                <div class="icon icon-dodo-fusion" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">修改</label>
+              </div>
+            </el-col>
+ <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('ZoomMouseWheel')" >
+                <div class="icon icon-dodo-zoom" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">缩放</label>
+              </div>
+            </el-col>
+           <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Rotate')" >
+                <div class="icon icon-uniE031" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">旋转</label>
+              </div>
+            </el-col>
+
+            <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Pen')" >
+                <div class="icon icon-dodo-move" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">拖动</label>
+              </div>
+            </el-col>
+
+            <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('StackScrollMouseWheel')" >
+                <div class="icon icon-uniE030" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">滚轮</label>
+              </div>
+            </el-col>
+</el-row>
 <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);">
             <el-col :span="4">
               <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
@@ -70,103 +57,85 @@
             </el-col>
 
             <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('ArrowAnnotate')" >
+                <div class="icon icon-uniE093" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">箭头</label>
               </div>
             </el-col>
 
-           <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+             <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('RectangleRoi')" >
+                <div class="icon icon-dodo-rect-anno" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">矩形</label>
               </div>
             </el-col>
-
-           <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+ <el-col :span="4">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('CircleScissors')" >
+                <div class="icon icon-dodo-elliptic-anno" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">圆形</label>
               </div>
             </el-col>
-
            <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('FreehandRoi')" >
+                <div class="icon icon-dodo-pen-draw" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">圈画</label>
               </div>
             </el-col>
 
             <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Length')" >
+                <div class="icon icon-dodo-linetool" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">长度</label>
               </div>
             </el-col>
 </el-row>
 <el-row style="background-color:rgb(50, 50, 50);border-buttom:1px solid rgb(128, 128, 128);">
-            <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+
+             <el-col :span="6">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Bidirectional')" >
+                <div class="icon icon-plus" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">十字线</label>
               </div>
             </el-col>
-
-            <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+             <el-col :span="6">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('CobbAngle')" >
+                <div class="icon icon-dodo-cobb" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">柯布角</label>
               </div>
             </el-col>
-
-           <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+            <el-col :span="6">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Eraser')" >
+                <div class="icon icon-dodo-redo" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">橡皮擦</label>
               </div>
             </el-col>
-
-           <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
+            <el-col :span="6">
+              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Magnify')" >
                 <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
-              </div>
-            </el-col>
-
-           <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
-              </div>
-            </el-col>
-
-            <el-col :span="4">
-              <div style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+                <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">放大镜</label>
               </div>
             </el-col>
 </el-row>
 <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);">
             <el-col :span="4">
-              <div style="width:90%;height:40px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="reduceSpeed" >
+              <div style="width:90%;height:30px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="reduceSpeed" >
                 <div class="icon icon-uniE069" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
               </div>
             </el-col>
             <el-col :span="4">
-              <div style="width:90%;height:40px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="playDicom" >
+              <div style="width:90%;height:30px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="playDicom" >
                 <div id="play" class="icon icon-uniE072" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
               </div>
             </el-col>
             <el-col :span="4">
-              <div style="width:90%;height:40px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="addSpeed" >
+              <div style="width:90%;height:30px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="addSpeed" >
                 <div class="icon icon-uniE077" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
               </div>
             </el-col>
             <el-col :span="12">
-              <div style="width:90%;height:40px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
-                <div style="color:rgb(192, 192, 192);margin:10px 0 10px 0;display:inline-block;margin:0 0px 0 0">倍速</div>
-                <p style="display:inline-block;color:rgb(50, 50, 50);background-color:rgb(192, 192, 192);width:50%;">{{2-speed}}</p>
+              <div style="width:90%;height:30px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"  @click="activeButton('Angle')" >
+                <div style="color:rgb(192, 192, 192);margin:3px 0 10px 0;display:inline-block;">倍速</div>
+                <p style="display:inline-block;color:rgb(192, 192, 192);background-color:rgb(41, 41, 41);width:50%;margin:3px 0 0 0;height:20px;padding:4px 0 0 0;">{{2-speed}}</p>
               </div>
             </el-col>
 </el-row>
@@ -268,96 +237,27 @@
       </el-col>
 
       <el-col :span="18">
-        <div style="position:relative;width:100%">
+        <div style="position:relative;" id="canvasDiv">
           <div id="resizeKnob" style="position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background:red;cursor:se-resize"></div>
           <div id="dicomImage" style="width:100%;height:900px" oncontextmenu="return false" onmousedown="return false"></div>
         </div>
       </el-col>
 <el-col :span="3">
-        <div style="overflow-y:scroll;height:900px;">
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
+        <div style="overflow-y:scroll;height:900px; background-color:rgb(50, 50, 50);" id="rightSideBar">
+          <div style="background-color:rgb(37, 37, 37);border-bottom:1px solid rgb(128, 128, 128);">
+            <div style="background-color:rgb(91, 91, 91);width:60px;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200);">序列</div>
           </div>
           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
+            <div id="canvas" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
           </div>
           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
+            <div id="canvas" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
           </div>
           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-           <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
-          </div>
-          <div style="margin:10px 0 0 0;">
-            <div>序列1</div>
-            <div id="canvas" style="background-color:blue;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
+            <div id="canvas" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
           </div>
         </div>
       </el-col>
@@ -513,6 +413,10 @@ export default {
   mounted () {
     const _this = this
     _this._data.element = document.getElementById('dicomImage')
+    $('#sideBar').height($(window).height())
+    $('#rightSideBar').height($(window).height())
+     $('#dicomImage').height($(window).height())
+        $('#canvasDiv').height($(window).height())
     var element = _this._data.element
     cornerstone.enable(element)
     // document
@@ -541,7 +445,7 @@ export default {
     for (var i = 1; i < 362; i++) {
       let str = i + ''
       _this._data.imageIds.push(
-        'wadouri:http://localhost:8081/static/series-000001/image-000' +
+        'wadouri:http://localhost:8080/static/series-000001/image-000' +
           str.padStart(3, '0') +
           '.dcm'
       )
@@ -552,9 +456,8 @@ export default {
       currentImageIdIndex: 0,
       imageIds: _this._data.imageIds
     }
-
-    cornerstone.loadImage(_this._data.imageIds[_this._data.crruentDicom]).then(
-      function (image) {
+        cornerstone.loadImage(_this._data.imageIds[_this._data.crruentDicom]).then(
+        function (image) {
         cornerstone.displayImage(element, image)
         cornerstoneTools.addStackStateManager(element, ['stack'])
         cornerstoneTools.addToolState(element, 'stack', stack)
@@ -584,7 +487,8 @@ export default {
     // function getRandomFloat (min, max) {
     //   return Math.random() * (max - min) + min
     // }
-
+var child = document.getElementById('dicomImage').childNodes
+    child[9].style.height = $(window).height()
     document
       .getElementById('resizeKnob')
       .addEventListener('mousedown', function (e) {
@@ -609,6 +513,8 @@ export default {
           document.removeEventListener('mousemove', dragResize)
         })
       })
+    // var child = document.getElementById('dicomImage').childNodes
+    // $('#dicomImage').height($(window).height())
   }
 }
 </script>
