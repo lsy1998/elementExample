@@ -8,6 +8,7 @@ import newDemo from '@/components/newDemo'
 import createPost from '@/components/createPost'
 import personalPage from '@/components/personalPage'
 import club from '@/components/club'
+import index from '@/components/index'
 Vue.use(Router)
 
 export default new Router({
@@ -51,6 +52,11 @@ export default new Router({
       path: '/club',
       name: 'club',
       component: club
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: index
     }
   ]
 })

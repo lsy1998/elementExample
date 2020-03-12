@@ -1,13 +1,12 @@
 <template>
   <div id="app" style="margin:0px; background-color:white;">
-    <el-row>
+    <el-row id="meun">
       <el-col :span="4" style="color:white;">555</el-col>
       <el-col :span="16">
         <el-menu
           :default-active="activeIndex2"
           mode="horizontal"
           @select="handleSelect"
-          background-color="white"
           text-color="black"
           active-text-color="rgb(0, 154, 97)"
         >
@@ -17,7 +16,7 @@
           <el-menu-item index="3" style="border:0;">
             <router-link style=" text-decoration:none;" to="/Post">POST</router-link>
           </el-menu-item>
-          <el-menu-item index="4" style="border:0;">
+          <el-menu-item id="demo1" @click="demo1" index="4" style="border:0;">
             <router-link style=" text-decoration:none;" to="/newDemo">DEMO1</router-link>
           </el-menu-item>
           <el-menu-item index="9" style="border:0;">
@@ -53,9 +52,12 @@
   </div>
 </template>
 <script>
+import $ from 'jquery'
+import router from './router'
 export default {
   data () {
     return {
+      color: '',
       activeIndex: '1',
       activeIndex2: '1',
       circleUrl:
@@ -68,7 +70,23 @@ export default {
   methods: {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
+    },
+    demo1 () {
+      // var _this = this
+      console.log('click')
+      $('#meun').hide()
+      // _this._data.color = '#323232'
+      // $('menu').css('background-color', 'rgb(50, 50, 50)')
+      // if ($('#demo1').click()) {
+      //   console.log('click')
+      // }
     }
+  },
+  mounted () {
+    router.push({ path: '/index' })
+    // if ($('#demo1').click()) {
+    //   console.log('click')
+    // }
   }
 }
 </script>
