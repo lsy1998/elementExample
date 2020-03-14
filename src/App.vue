@@ -39,10 +39,10 @@
             </template>
           </el-menu-item>
            <el-menu-item index="6" style="border:0;float:right;">
-            <el-button style="text-decoration:none;background-color:rgb(2, 155, 98); color:white;" to="/newDemo">免费注册</el-button>
+            <el-button style="text-decoration:none;background-color:rgb(2, 155, 98); color:white;"> <router-link style=" text-decoration:none;" to="/registe">免费注册</router-link></el-button>
           </el-menu-item>
           <el-menu-item index="5" style="border:0;float:right;">
-            <router-link style=" text-decoration:none;" to="/newDemo">立即登录</router-link>
+            <router-link style=" text-decoration:none;" to="/login">立即登录</router-link>
           </el-menu-item>
         </el-menu>
       </el-col>

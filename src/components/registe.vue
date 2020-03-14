@@ -1,6 +1,6 @@
 <template>
-
- <div style="width:1000px;height:530px;margin:100px auto; background-color:rgb(240, 240, 240);">
+<div  @resize="resize" id='registeDiv' style="">
+<div style="width:1000px;height:530px;margin:100px auto; ">
     <div style="width:590px;height:530px;display:inline-block;">
         <img style="display:inline-block;vertical-align:top;margin:0px 0 0 0;height:100%" src="../assets/image/a08ef81d577c4642f5faa9bb3055a4da_2_3_art.png" alt="">
   </div>
@@ -11,9 +11,11 @@
       <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;">注册</el-button>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   name: 'registe',
   data () {
@@ -26,7 +28,15 @@ export default {
     change (e) {
       console.log(this.$refs.hello.html)
       // this.$refs.hello.$forceUpdate()
+    },
+    resize () {
+      $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
     }
+  },
+  mounted () {
+    $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
+    // alert($(window).height() - $('#meun').height())
+    // resize()
   }
 }
 </script>
