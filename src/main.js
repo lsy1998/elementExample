@@ -8,6 +8,7 @@ import router from './router'
 import VueDragResize from 'vue-drag-resize'
 import mavonEditor from 'mavon-editor'
 import $ from 'jquery'
+import axios from 'axios'
 import 'mavon-editor/dist/css/index.css'
 // use
 // import CKEditor from 'ckeditor4-vue'
@@ -24,6 +25,7 @@ require('./assets/fonteditor/icon.css')
 require('./assets/mycss.css')
 require('./assets/animinate.css')
 Vue.use(Element)
+Vue.use(axios)
 Vue.use($)
 Vue.component('vue-drag-resize', VueDragResize)
 Vue.use(mavonEditor)

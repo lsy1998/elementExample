@@ -1,39 +1,51 @@
 <template>
   <div>
-      <el-row>
+    <el-row>
       <el-col :span="6">
         <div style="color:white;">bfbcbc</div>
       </el-col>
       <el-col :span="12">
         <el-row>
-            <el-col :span='6' style="height:200px;">
-                <el-row>
-                    <el-avatar shape="square" :size="100" :src="circleUrl" style="float:left;margin:30px 0 0 50px;"></el-avatar>
-                </el-row>
-                 <el-row style="margin:10px 0 0 0;">
-                     <el-col :span='4' style="color:white">brave</el-col>
-                     <el-col :span='6'>关注</el-col>
-                     <el-col :span='5'>粉丝</el-col>
-                     <el-col :span='9' style="color:white">happy</el-col>
-                 </el-row>
-                  <el-row>
-                     <el-col :span='4' style="color:white">brave</el-col>
-                     <el-col :span='6' style="font-size:12px;color:rgb(0, 154, 97)">2人</el-col>
-                     <el-col :span='5'  style="font-size:12px;color:rgb(0, 154, 97)">12人</el-col>
-                     <el-col :span='9' style="color:white">happy</el-col>
-                 </el-row>
-            </el-col>
-            <el-col :span='6'>
-                <div style="margin:35px 0 0 0;font-size:24px;text-align:left">acczc<i style="margin:0 0 0 10px" class="el-icon-coordinate"></i></div>
-                <div style="margin:12px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">毕业院校：</div>
-                <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">目前从事行业：</div>
-                <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">所在公司/组织名称:</div>
-                <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">个人网站主页:</div>
-            </el-col>
-            <el-col :span='12'>
-                <div id="wordCloudDiv" style="width:100%;margin:30px 0 0 0;color:white;background-color:white;height:170px;color:white;">
-                </div>
-            </el-col>
+          <el-col :span="6" style="height:200px;">
+            <el-row>
+              <el-avatar shape="square" :size="100" :src="circleUrl" style="float:left;margin:30px 0 0 50px;">
+              </el-avatar>
+            </el-row>
+            <el-row style="margin:10px 0 0 0;">
+              <el-col :span="4" style="color:white">brave</el-col>
+              <el-col :span="6">关注</el-col>
+              <el-col :span="5">粉丝</el-col>
+              <el-col :span="9" style="color:white">happy</el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="4" style="color:white">brave</el-col>
+              <el-col :span="6" style="font-size:12px;color:rgb(0, 154, 97)">2人</el-col>
+              <el-col :span="5" style="font-size:12px;color:rgb(0, 154, 97)">12人</el-col>
+              <el-col :span="9" style="color:white">happy</el-col>
+            </el-row>
+          </el-col>
+          <el-col :span="6">
+            <div style="margin:35px 0 0 0;font-size:24px;text-align:left">
+              acczc
+              <i @click="addInfo" style="margin:0 0 0 10px" class="el-icon-coordinate"></i>
+            </div>
+            <div style="margin:12px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
+              毕业院校：
+            </div>
+            <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
+              目前从事行业：
+            </div>
+            <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
+              所在公司/组织名称:
+            </div>
+            <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
+              个人网站主页:
+            </div>
+          </el-col>
+          <el-col :span="12">
+            <div id="wordCloudDiv"
+              style="width:100%;margin:30px 0 0 0;color:white;background-color:white;height:170px;color:white;"></div>
+          </el-col>
         </el-row>
       </el-col>
       <el-col :span="6">
@@ -47,85 +59,140 @@
       </el-col>
       <el-col :span="12">
         <el-row>
-            <el-col :span='6' style="height:200px;">
-                <el-row>
-                   <el-button style="margin:50px 0 0 0;width:60%;background-color:rgb(2, 155, 98);color:white;">我的主页</el-button>
-                </el-row>
-                <el-row>
-                   <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子</el-button>
-                </el-row>
-                <el-row>
-                   <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">发布帖子</el-button>
-                </el-row>
-            </el-col>
-            <el-col :span='18'>
-                <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-                     <el-row style="height:100%">
-     <el-col :span='18' style="height:100%;">
-       <div style="width:100%;margin:20px 0 0 0; height:90%">
-         <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
-         <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p>
-       <div style="height:20%;display:inline-block; width:100%">
-         <div class='el-icon-star-off' style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-           <div style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">x7</div></div>
-         <div class='el-icon-share' style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)"></div>
-         <div style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">2020：2：22</div>
-         <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
-       </div>
-       </div>
-       <div></div>
-     </el-col>
-     <el-col :span='6' style="height:100%;">
-       <div style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">cxcx</div>
-     </el-col>
-   </el-row>
-                </div>
-                 <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-                      <el-row style="height:100%">
-     <el-col :span='18' style="height:100%;">
-       <div style="width:100%;margin:20px 0 0 0; height:90%">
-         <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
-         <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p>
-       <div style="height:20%;display:inline-block; width:100%">
-         <div class='el-icon-star-off' style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-           <div style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">x7</div></div>
-         <div class='el-icon-share' style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)"></div>
-         <div style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">2020：2：22</div>
-         <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
-       </div>
-       </div>
-       <div></div>
-     </el-col>
-     <el-col :span='6' style="height:100%;">
-       <div style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">cxcx</div>
-     </el-col>
-   </el-row>
-                 </div>
-                  <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-                       <el-row style="height:100%">
-     <el-col :span='18' style="height:100%;">
-       <div style="width:100%;margin:20px 0 0 0; height:90%">
-         <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
-         <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p>
-       <div style="height:20%;display:inline-block; width:100%">
-         <div class='el-icon-star-off' style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-           <div style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">x7</div></div>
-         <div class='el-icon-share' style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)"></div>
-         <div style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">2020：2：22</div>
-         <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
-       </div>
-       </div>
-       <div></div>
-     </el-col>
-     <el-col :span='6' style="height:100%;">
-       <div style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">cxcx</div>
-     </el-col>
-   </el-row>
+          <el-col :span="6" style="height:200px;">
+            <el-row>
+              <el-button style="margin:50px 0 0 0;width:60%;background-color:rgb(2, 155, 98);color:white;">我的主页
+              </el-button>
+            </el-row>
+            <el-row>
+              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
+              </el-button>
+            </el-row>
+            <el-row>
+              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">发布帖子
+              </el-button>
+            </el-row>
+          </el-col>
+          <el-col :span="18">
+            <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
+              <el-row style="height:100%">
+                <el-col :span="18" style="height:100%;">
+                  <div style="width:100%;margin:20px 0 0 0; height:90%">
+                    <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">
+                      标题标题标题标题标题标题标题标题标题标题
+                    </h3>
+                    <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
+                      正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+                    </p>
+                    <div style="height:20%;display:inline-block; width:100%">
+                      <div class="el-icon-star-off"
+                        style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
+                        <div
+                          style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
+                          x7
+                        </div>
+                      </div>
+                      <div class="el-icon-share"
+                        style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
+                      </div>
+                      <div
+                        style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
+                        2020：2：22
+                      </div>
+                      <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
+                    </div>
                   </div>
-            </el-col>
-            <!-- <el-col :span='6'>
+                  <div></div>
+                </el-col>
+                <el-col :span="6" style="height:100%;">
+                  <div
+                    style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
+                    cxcx
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
+              <el-row style="height:100%">
+                <el-col :span="18" style="height:100%;">
+                  <div style="width:100%;margin:20px 0 0 0; height:90%">
+                    <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">
+                      标题标题标题标题标题标题标题标题标题标题
+                    </h3>
+                    <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
+                      正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+                    </p>
+                    <div style="height:20%;display:inline-block; width:100%">
+                      <div class="el-icon-star-off"
+                        style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
+                        <div
+                          style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
+                          x7
+                        </div>
+                      </div>
+                      <div class="el-icon-share"
+                        style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
+                      </div>
+                      <div
+                        style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
+                        2020：2：22
+                      </div>
+                      <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
+                    </div>
+                  </div>
+                  <div></div>
+                </el-col>
+                <el-col :span="6" style="height:100%;">
+                  <div
+                    style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
+                    cxcx
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
+              <el-row style="height:100%">
+                <el-col :span="18" style="height:100%;">
+                  <div style="width:100%;margin:20px 0 0 0; height:90%">
+                    <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">
+                      标题标题标题标题标题标题标题标题标题标题
+                    </h3>
+                    <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
+                      正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+                    </p>
+                    <div style="height:20%;display:inline-block; width:100%">
+                      <div class="el-icon-star-off"
+                        style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
+                        <div
+                          style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
+                          x7
+                        </div>
+                      </div>
+                      <div class="el-icon-share"
+                        style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
+                      </div>
+                      <div
+                        style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
+                        2020：2：22
+                      </div>
+                      <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
+                    </div>
+                  </div>
+                  <div></div>
+                </el-col>
+                <el-col :span="6" style="height:100%;">
+                  <div
+                    style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
+                    cxcx
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+          <router-view></router-view>
+          </el-col>
+          <!-- <el-col :span='6'>
                 <div style="color:white;background-color:white;height:200px;color:white;">sad</div>
-            </el-col> -->
+          </el-col>-->
         </el-row>
       </el-col>
       <el-col :span="6">
@@ -139,6 +206,7 @@
 // require('../assets/js/js2wordcloud')
 import Js2WordCloud from 'js2wordcloud'
 import $ from 'jquery'
+import router from '../router'
 export default {
   name: 'personalPage',
   data () {
@@ -147,6 +215,11 @@ export default {
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+    }
+  },
+  methods: {
+    addInfo () {
+      router.push({ path: '/personalPage/addInfo' })
     }
   },
   mounted () {
@@ -160,7 +233,19 @@ export default {
         show: true,
         backgroundColor: 'rgba(2, 155, 98, 0.701961)'
       },
-      list: [['皮革厂', 20], ['桂林电子', 10], ['科学与技术', 20], ['前端开发', 20], ['江南', 30], ['科技大学', 10], ['计算机', 20], ['web', 30], ['桂林电子', 20], ['科技大学', 30], ['桂林电子', 30]],
+      list: [
+        ['皮革厂', 20],
+        ['桂林电子', 10],
+        ['科学与技术', 20],
+        ['前端开发', 20],
+        ['江南', 30],
+        ['科技大学', 10],
+        ['计算机', 20],
+        ['web', 30],
+        ['桂林电子', 20],
+        ['科技大学', 30],
+        ['桂林电子', 30]
+      ],
       color: 'rgb(2, 155, 98)'
     })
     $('#wordCloudDiv canvas').width(wd)
@@ -170,7 +255,5 @@ export default {
 </script>
 
 <style scoped>
-
-@import '../assets/iconfont/iconfont.css'
-
+@import "../assets/iconfont/iconfont.css";
 </style>

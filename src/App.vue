@@ -3,13 +3,8 @@
     <el-row id="meun">
       <el-col :span="4" style="color:white;">555</el-col>
       <el-col :span="16">
-        <el-menu
-          :default-active="activeIndex2"
-          mode="horizontal"
-          @select="handleSelect"
-          text-color="black"
-          active-text-color="rgb(0, 154, 97)"
-        >
+        <el-menu :default-active="activeIndex2" mode="horizontal" @select="handleSelect" text-color="black"
+          active-text-color="rgb(0, 154, 97)">
           <el-menu-item index="1" style="border:0;">
             <router-link style=" text-decoration:none;" to="/demo">DEMO</router-link>
           </el-menu-item>
@@ -25,21 +20,19 @@
           <el-menu-item index="10" style="border:0;">
             <router-link style=" text-decoration:none;" to="/club">CLUB</router-link>
           </el-menu-item>
-           <el-menu-item index="7" style="border:0;">
-            <el-autocomplete
-              v-model="state"
-              :fetch-suggestions="querySearchAsync"
-              placeholder="请输入内容"
-              @select="handleSelect"
-            ></el-autocomplete>
+          <el-menu-item index="7" style="border:0;">
+            <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"
+              @select="handleSelect"></el-autocomplete>
           </el-menu-item>
           <el-menu-item index="8" style="border:0;float:right;">
             <template slot="title">
               <el-avatar shape="square" :size="30" :src="squareUrl"></el-avatar>
             </template>
           </el-menu-item>
-           <el-menu-item index="6" style="border:0;float:right;">
-            <el-button style="text-decoration:none;background-color:rgb(2, 155, 98); color:white;"> <router-link style=" text-decoration:none;" to="/registe">免费注册</router-link></el-button>
+          <el-menu-item index="6" style="border:0;float:right;">
+            <el-button style="text-decoration:none;background-color:rgb(2, 155, 98); color:white;">
+              <router-link style=" text-decoration:none;" to="/registe">免费注册</router-link>
+            </el-button>
           </el-menu-item>
           <el-menu-item index="5" style="border:0;float:right;">
             <router-link style=" text-decoration:none;" to="/login">立即登录</router-link>
