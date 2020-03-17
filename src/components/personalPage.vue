@@ -8,16 +8,16 @@
         <el-row>
           <el-col :span="6" style="height:200px;">
             <el-row>
-              <el-avatar shape="square" :size="100" :src="circleUrl" style="float:left;margin:30px 0 0 50px;">
-              </el-avatar>
+              <input type="file" v-show="showHeadPic" id="headPic">
+              <img :src="squareUrl" alt="" width="50%" height="50%" style="margin:50px 20px 0 0" @click="uploadHeadPic">
             </el-row>
-            <el-row style="margin:10px 0 0 0;">
+            <el-row style="margin:10px 0 0 20px;">
               <el-col :span="4" style="color:white">brave</el-col>
               <el-col :span="6">关注</el-col>
               <el-col :span="5">粉丝</el-col>
               <el-col :span="9" style="color:white">happy</el-col>
             </el-row>
-            <el-row>
+            <el-row style="margin:0px 0 0 20px;">
               <el-col :span="4" style="color:white">brave</el-col>
               <el-col :span="6" style="font-size:12px;color:rgb(0, 154, 97)">2人</el-col>
               <el-col :span="5" style="font-size:12px;color:rgb(0, 154, 97)">12人</el-col>
@@ -74,6 +74,7 @@
             </el-row>
           </el-col>
           <el-col :span="18">
+            <div style="" id="postDiv" v-show="showPostDiv">
             <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
               <el-row style="height:100%">
                 <el-col :span="18" style="height:100%;">
@@ -188,7 +189,9 @@
                 </el-col>
               </el-row>
             </div>
-          <router-view></router-view>
+            </div>
+          <!-- <router-view></router-view> -->
+          <addInfo v-show="showAddInfo" @showM="showPostDivM"></addInfo>
           </el-col>
           <!-- <el-col :span='6'>
                 <div style="color:white;background-color:white;height:200px;color:white;">sad</div>
@@ -206,23 +209,43 @@
 // require('../assets/js/js2wordcloud')
 import Js2WordCloud from 'js2wordcloud'
 import $ from 'jquery'
-import router from '../router'
+// import router from '../router'
+import addInfo from './addInfo'
 export default {
   name: 'personalPage',
+  components: {
+    addInfo
+  },
   data () {
     return {
       circleUrl:
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       squareUrl:
-        'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+        'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+      showPostDiv: true,
+      showAddInfo: false,
+      showHeadPic: false
     }
   },
   methods: {
     addInfo () {
-      router.push({ path: '/personalPage/addInfo' })
+      var _this = this
+      _this._data.showPostDiv = false
+      _this._data.showAddInfo = true
+      // router.push({ path: '/personalPage/addInfo' })
+    },
+    showPostDivM (data) {
+      var _this = this
+      _this._data.showPostDiv = data
+    },
+    uploadHeadPic () {
+      alert(111)
+      $('#headPic').click()
     }
   },
   mounted () {
+    var _this = this
+    _this._data.showPostDiv = true
     var wc = new Js2WordCloud(document.getElementById('wordCloudDiv'))
     var wd = $('#wordCloudDiv').width()
     wc.setOption({

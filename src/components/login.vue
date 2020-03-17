@@ -5,11 +5,11 @@
         <img style="display:inline-block;vertical-align:top;margin:0px 0 0 0;height:100%" src="../assets/image/a08ef81d577c4642f5faa9bb3055a4da_2_3_art.png" alt="">
   </div>
     <div style="width:405px;display:inline-block;height:530px;vertical-align:top;background:#52A0FD;background:-webkit-linear-gradient(left,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);background:linear-gradient(to right,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);position:relative;right:10px;">
-     <el-input clearable v-model="username" ref='hello' type="text"  placeholder="请输入用户名" style="margin:150px 0 0 5px; width:300px;" ><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
-      <el-input show-password  v-model="password" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 5px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input><br>
+     <el-input clearable v-model="userCount" ref='hello' type="text"  placeholder="请输入用户名" style="margin:150px 0 0 5px; width:300px;" ><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
+      <el-input show-password  v-model="userPassword" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 5px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input><br>
       <el-link type="info" :underline="false" style="position:relative;right:76px; color:white; margin:10px 0 0 0;"><router-link style="color:white; text-decoration: none;" to="/registe">忘记密码？</router-link></el-link>
       <el-link type="info" :underline="false" style="position:relative; left:88px; color:white; margin:10px 0 0 0;"><router-link style="color:white; text-decoration: none;" to="/registe">还没注册？</router-link></el-link>
-      <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;">登录</el-button>
+      <el-button @click="login" style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;">登录</el-button>
     </div>
   </div>
      <!-- <ckeditor value="Hello, World!"></ckeditor> -->
@@ -18,6 +18,9 @@
 
 <script>
 import $ from 'jquery'
+import axios from 'axios'
+// import router from 'vue-router'
+import router from '../router'
 export default {
   name: 'login',
   data () {
@@ -30,8 +33,8 @@ export default {
       imageUrl: '../assets/image/desktop-viewer-with-iphone.jpg',
       icon1: 'iconfont icon-user1',
       icon2: 'iconfont icon-eyeclose-fill',
-      username: '',
-      password: ''
+      userCount: '',
+      userPassword: ''
     }
   },
   methods: {
@@ -41,6 +44,22 @@ export default {
     },
     resize () {
       $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
+    },
+    login () {
+      var _this = this
+      axios({
+        method: 'post',
+        url: 'http://localhost:8082/login',
+        data: {
+          userCount: _this._data.userCount,
+          userPassword: _this._data.userPassword
+        }
+      }).then(function (response) {
+        console.log(response.data)
+        sessionStorage.userId = response.data.userId
+        router.push({ path: '/personalPage' })
+        // console.log(sessionStorage.userId)
+      })
     }
   },
   mounted () {
