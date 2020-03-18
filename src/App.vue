@@ -26,7 +26,7 @@
           </el-menu-item>
           <el-menu-item index="8" style="border:0;float:right;">
             <template slot="title">
-              <el-avatar shape="square" :size="30" :src="squareUrl"></el-avatar>
+              <el-avatar shape="square" :size="30" :src="this.$store.state.headPicUrl"></el-avatar>
             </template>
           </el-menu-item>
           <el-menu-item index="6" style="border:0;float:right;">
@@ -47,7 +47,9 @@
 <script>
 import $ from 'jquery'
 import router from './router'
+
 export default {
+  // store,
   data () {
     return {
       color: '',
@@ -57,7 +59,8 @@ export default {
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-      sizeList: ['medium']
+      sizeList: ['medium'],
+      state: ''
     }
   },
   methods: {
@@ -73,6 +76,9 @@ export default {
       // if ($('#demo1').click()) {
       //   console.log('click')
       // }
+    },
+    querySearchAsync () {
+
     }
   },
   mounted () {

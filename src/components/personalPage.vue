@@ -8,8 +8,8 @@
         <el-row>
           <el-col :span="6" style="height:200px;">
             <el-row>
-              <input type="file" v-show="showHeadPic" id="headPic">
-              <img :src="squareUrl" alt="" width="50%" height="50%" style="margin:50px 20px 0 0" @click="uploadHeadPic">
+              <input type="file" multiple @change="uploadHeadPic" v-show="showHeadPic" id="headPic" >
+              <img :src="headPicUrl" alt="" width="50%" height="50%" style="margin:50px 20px 0 0;object-fit: cover;" @click="upload">
             </el-row>
             <el-row style="margin:10px 0 0 20px;">
               <el-col :span="4" style="color:white">brave</el-col>
@@ -209,6 +209,7 @@
 // require('../assets/js/js2wordcloud')
 import Js2WordCloud from 'js2wordcloud'
 import $ from 'jquery'
+import axios from 'axios'
 // import router from '../router'
 import addInfo from './addInfo'
 export default {
@@ -224,7 +225,8 @@ export default {
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
       showPostDiv: true,
       showAddInfo: false,
-      showHeadPic: false
+      showHeadPic: false,
+      headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
     }
   },
   methods: {
@@ -238,12 +240,38 @@ export default {
       var _this = this
       _this._data.showPostDiv = data
     },
-    uploadHeadPic () {
+    upload () {
       alert(111)
       $('#headPic').click()
+    },
+    uploadHeadPic (e) {
+      alert(222)
+      var _this = this
+      var files = e.target.files
+      _this._data.headPicUrl = URL.createObjectURL(files[0])
+      var formData = new FormData()
+      // formData重复的往一个值添加数据并不会被覆盖掉，可以全部接收到，可以通过formData.getAll('files')来查看所有插入的数据
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i])
+      }
+      formData.append('userId', sessionStorage.userId)
+      var url = 'http://localhost:8082/uploadHeadPic'
+      var headers = {
+        'Content-Type': 'multipart/form-data'
+      }
+      axios.post(url, formData, {headers: headers}).then((response) => {
+        // var _this = this
+        // _this._data.headPicUrl = response.data.headPicUrl
+        this.$store.dispatch('commitHeadPicUrl', response.data.headPicUrl)
+        console.log(response.data)
+        // sessionStorage.userId = response.data.userId
+        // router.push({ path: '/personalPage' })
+        // console.log(sessionStorage.userId)
+      })
     }
   },
   mounted () {
+    console.log(this.$store.state.baseUrl)
     var _this = this
     _this._data.showPostDiv = true
     var wc = new Js2WordCloud(document.getElementById('wordCloudDiv'))

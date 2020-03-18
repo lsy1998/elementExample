@@ -29,7 +29,8 @@ export default {
       userSchool: '',
       userCompany: '',
       userJob: '',
-      userPage: ''
+      userPage: '',
+      showAddInfo: ''
     }
   },
   methods: {
