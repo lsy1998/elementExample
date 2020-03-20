@@ -10,6 +10,8 @@ import personalPage from '@/components/personalPage'
 import club from '@/components/club'
 import index from '@/components/index'
 import addInfo from '@/components/addInfo'
+import marked from '@/components/marked'
+import showPost from '@/components/showPost'
 Vue.use(Router)
 
 export default new Router({
@@ -60,6 +62,16 @@ export default new Router({
       path: '/club',
       name: 'club',
       component: club
+    },
+    {
+      path: '/marked',
+      name: 'marked',
+      component: marked
+    },
+    {
+      path: '/showPost',
+      name: 'showPost',
+      component: showPost
     },
     {
       path: '/index',

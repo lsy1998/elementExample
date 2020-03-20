@@ -9,7 +9,7 @@
           <el-col :span="6" style="height:200px;">
             <el-row>
               <input type="file" multiple @change="uploadHeadPic" v-show="showHeadPic" id="headPic" >
-              <img :src="headPicUrl" alt="" width="50%" height="50%" style="margin:50px 20px 0 0;object-fit: cover;" @click="upload">
+              <img :src="this.$store.state.headPicUrl" alt="" width="60%" height="60%" style="margin:40px 8px 0 0;object-fit: cover;border-radius:5px;" @click="upload">
             </el-row>
             <el-row style="margin:10px 0 0 20px;">
               <el-col :span="4" style="color:white">brave</el-col>
@@ -26,20 +26,20 @@
           </el-col>
           <el-col :span="6">
             <div style="margin:35px 0 0 0;font-size:24px;text-align:left">
-              acczc
+              {{userName}}
               <i @click="addInfo" style="margin:0 0 0 10px" class="el-icon-coordinate"></i>
             </div>
             <div style="margin:12px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              毕业院校：
+              毕业院校：{{userSchool}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              目前从事行业：
+              目前从事行业：{{userJob}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              所在公司/组织名称:
+              所在公司/组织名称：{{userCompany}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              个人网站主页:
+              个人网站主页：{{userPage}}
             </div>
           </el-col>
           <el-col :span="12">
@@ -65,7 +65,7 @@
               </el-button>
             </el-row>
             <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
+              <el-button @click="showPost" style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
               </el-button>
             </el-row>
             <el-row>
@@ -210,7 +210,7 @@
 import Js2WordCloud from 'js2wordcloud'
 import $ from 'jquery'
 import axios from 'axios'
-// import router from '../router'
+import router from '../router'
 import addInfo from './addInfo'
 export default {
   name: 'personalPage',
@@ -226,10 +226,20 @@ export default {
       showPostDiv: true,
       showAddInfo: false,
       showHeadPic: false,
-      headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+      headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+      userName: '',
+      userJob: '',
+      userCompany: '',
+      userPage: '',
+      userSchool: '',
+      ciyunList: []
     }
   },
   methods: {
+    showPost () {
+      alert(111)
+      router.push({ path: '/showPost' })
+    },
     addInfo () {
       var _this = this
       _this._data.showPostDiv = false
@@ -276,6 +286,40 @@ export default {
     _this._data.showPostDiv = true
     var wc = new Js2WordCloud(document.getElementById('wordCloudDiv'))
     var wd = $('#wordCloudDiv').width()
+    $('#wordCloudDiv canvas').width(wd)
+    $('#wordCloudDiv canvas').css('border-radius', '5px')
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:8082/getUserInfo',
+      data: {
+        userId: sessionStorage.userId
+      }
+    }).then((response) => {
+      console.log(response.data)
+      this.$store.dispatch('commitHeadPicUrl', response.data.userInfo[0].userImg)
+      this.$store.dispatch('commitUserName', response.data.userInfo[0].userName)
+      this.$store.dispatch('commitUserJob', response.data.userInfo[0].userJob)
+      this.$store.dispatch('commitUserCompany', response.data.userInfo[0].userCompany)
+      // this.$store.dispatch('commitUserPage', response.data.userInfo[0].userPage)
+      this.$store.dispatch('commitUserSchool', response.data.userInfo[0].userSchool)
+      this._data.userName = response.data.userInfo[0].userName
+      this._data.userJob = response.data.userInfo[0].userJob
+      this._data.userCompany = response.data.userInfo[0].userCompany
+      this._data.userPage = response.data.userInfo[0].userPage
+      this._data.userSchool = response.data.userInfo[0].userSchool
+      // this._data.ciyunList.push([response.data.userInfo[0].userName, 20])
+      // this._data.ciyunList.push([response.data.userInfo[0].userName, 10])
+      // this._data.ciyunList.push([response.data.userInfo[0].userName, 15])
+      // this._data.ciyunList.push([response.data.userInfo[0].userJob, 10])
+      // this._data.ciyunList.push([response.data.userInfo[0].userJob, 5])
+      // this._data.ciyunList.push([response.data.userInfo[0].userJob, 15])
+      // this._data.ciyunList.push([response.data.userInfo[0].userCompany, 15])
+      // this._data.ciyunList.push([response.data.userInfo[0].userSchool, 15])
+      // this._data.ciyunList.push([response.data.userInfo[0].userCompany, 10])
+      // this._data.ciyunList.push([response.data.userInfo[0].userSchool, 20])
+      // console.log(this._data.ciyunList)
+    })
     wc.setOption({
       maxFontSize: 30,
       minFontSize: 10,
@@ -285,22 +329,20 @@ export default {
         backgroundColor: 'rgba(2, 155, 98, 0.701961)'
       },
       list: [
-        ['皮革厂', 20],
-        ['桂林电子', 10],
-        ['科学与技术', 20],
-        ['前端开发', 20],
-        ['江南', 30],
-        ['科技大学', 10],
-        ['计算机', 20],
-        ['web', 30],
-        ['桂林电子', 20],
-        ['科技大学', 30],
-        ['桂林电子', 30]
+        [this.$store.state.userName, 20],
+        [this.$store.state.userName, 10],
+        [this.$store.state.userSchool, 20],
+        [this.$store.state.userCompany, 20],
+        [this.$store.state.userName, 30],
+        [this.$store.state.userJob, 10],
+        [this.$store.state.userJob, 20],
+        [this.$store.state.userCompany, 30],
+        [this.$store.state.userCompany, 20],
+        [this.$store.state.userSchool, 30],
+        [this.$store.state.userName, 30]
       ],
       color: 'rgb(2, 155, 98)'
     })
-    $('#wordCloudDiv canvas').width(wd)
-    $('#wordCloudDiv canvas').css('border-radius', '5px')
   }
 }
 </script>

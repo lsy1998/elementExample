@@ -43,7 +43,7 @@ export default {
       // this.$refs.hello.$forceUpdate()
     },
     resize () {
-      $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
+      $('#loginDiv').height($(window).height() - $('#meun').height() - 100)
     },
     login () {
       var _this = this
@@ -63,7 +63,7 @@ export default {
     }
   },
   mounted () {
-    $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
+    $('#loginDiv').height($(window).height() - $('#meun').height() - 100)
     // alert($(window).height() - $('#meun').height())
     // resize()
   }
