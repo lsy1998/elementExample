@@ -23,7 +23,7 @@ export default {
         method: 'post',
         url: 'http://localhost:8082/getPost',
         data: {
-          userId: sessionStorage.userId
+          postId: sessionStorage.postId
         }
       }).then((response) => {
         console.log(response.data)

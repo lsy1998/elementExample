@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="personalPageDiv">
     <el-row>
       <el-col :span="6">
         <div style="color:white;">bfbcbc</div>
@@ -65,25 +65,25 @@
               </el-button>
             </el-row>
             <el-row>
-              <el-button @click="showPost" style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
+              <el-button @click="getAllPost" style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
               </el-button>
             </el-row>
             <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">发布帖子
+              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;" @click="uploadPost">发布帖子
               </el-button>
             </el-row>
           </el-col>
           <el-col :span="18">
             <div style="" id="postDiv" v-show="showPostDiv">
-            <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-              <el-row style="height:100%">
+            <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId'  :key='post' style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
+              <el-row style="height:100%" >
                 <el-col :span="18" style="height:100%;">
                   <div style="width:100%;margin:20px 0 0 0; height:90%">
-                    <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">
-                      标题标题标题标题标题标题标题标题标题标题
+                    <h3 style="height:20%;float:left;margin:0 0 0 10px">
+                      {{post.postTitle}}
                     </h3>
-                    <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
-                      正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+                    <p style="height:57%; clear:both; font-size:12px;margin:0 0 0 10px;color:black;">
+                      {{post.postValue}}
                     </p>
                     <div style="height:20%;display:inline-block; width:100%">
                       <div class="el-icon-star-off"
@@ -98,9 +98,9 @@
                       </div>
                       <div
                         style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
-                        2020：2：22
+                        {{post.postDate.replace(/T/g,' ').replace(/\.[\d]{3}Z/,'')}}
                       </div>
-                      <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
+                      <el-avatar shape="square" :size="20" :src="headPicUrl" style="float:right;"></el-avatar>
                     </div>
                   </div>
                   <div></div>
@@ -108,83 +108,7 @@
                 <el-col :span="6" style="height:100%;">
                   <div
                     style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
-                    cxcx
-                  </div>
-                </el-col>
-              </el-row>
-            </div>
-            <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-              <el-row style="height:100%">
-                <el-col :span="18" style="height:100%;">
-                  <div style="width:100%;margin:20px 0 0 0; height:90%">
-                    <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">
-                      标题标题标题标题标题标题标题标题标题标题
-                    </h3>
-                    <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
-                      正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
-                    </p>
-                    <div style="height:20%;display:inline-block; width:100%">
-                      <div class="el-icon-star-off"
-                        style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-                        <div
-                          style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
-                          x7
-                        </div>
-                      </div>
-                      <div class="el-icon-share"
-                        style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
-                      </div>
-                      <div
-                        style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
-                        2020：2：22
-                      </div>
-                      <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
-                    </div>
-                  </div>
-                  <div></div>
-                </el-col>
-                <el-col :span="6" style="height:100%;">
-                  <div
-                    style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
-                    cxcx
-                  </div>
-                </el-col>
-              </el-row>
-            </div>
-            <div style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-              <el-row style="height:100%">
-                <el-col :span="18" style="height:100%;">
-                  <div style="width:100%;margin:20px 0 0 0; height:90%">
-                    <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">
-                      标题标题标题标题标题标题标题标题标题标题
-                    </h3>
-                    <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
-                      正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
-                    </p>
-                    <div style="height:20%;display:inline-block; width:100%">
-                      <div class="el-icon-star-off"
-                        style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-                        <div
-                          style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
-                          x7
-                        </div>
-                      </div>
-                      <div class="el-icon-share"
-                        style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
-                      </div>
-                      <div
-                        style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
-                        2020：2：22
-                      </div>
-                      <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
-                    </div>
-                  </div>
-                  <div></div>
-                </el-col>
-                <el-col :span="6" style="height:100%;">
-                  <div
-                    style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
-                    cxcx
+                    <img :src="post.postUrl" alt="" width="100%" height="100%" style="object-fit:cover;border-radius:5px;">
                   </div>
                 </el-col>
               </el-row>
@@ -212,7 +136,9 @@ import $ from 'jquery'
 import axios from 'axios'
 import router from '../router'
 import addInfo from './addInfo'
+// import store from '../store'
 export default {
+  // store,
   name: 'personalPage',
   components: {
     addInfo
@@ -232,12 +158,20 @@ export default {
       userCompany: '',
       userPage: '',
       userSchool: '',
-      ciyunList: []
+      ciyunList: [],
+      posts: [],
+      num: 2
     }
   },
   methods: {
-    showPost () {
-      alert(111)
+    showPost (event) {
+      // alert(111)
+      // console.log(e.target)
+      var el = event.currentTarget
+      console.log($(el).attr('data-index'))
+      sessionStorage.postId = $(el).attr('data-index')
+      // alert('当前对象的内容：' + el.innerHTML)
+      // console.log(this)
       router.push({ path: '/showPost' })
     },
     addInfo () {
@@ -272,15 +206,63 @@ export default {
       axios.post(url, formData, {headers: headers}).then((response) => {
         // var _this = this
         // _this._data.headPicUrl = response.data.headPicUrl
+        this.headPicUrl = response.data.headPicUrl
         this.$store.dispatch('commitHeadPicUrl', response.data.headPicUrl)
         console.log(response.data)
         // sessionStorage.userId = response.data.userId
         // router.push({ path: '/personalPage' })
         // console.log(sessionStorage.userId)
       })
+    },
+    getAllPost () {
+      // alert(222)
+      this.$axios({
+        method: 'post',
+        url: 'http://localhost:8082/getAllPost',
+        data: {
+          userId: sessionStorage.userId
+        }
+      }).then((response) => {
+        console.log(response)
+        // console.log(response.data.post[0].postValue.replace(/\s*/g, '').replace(/<[^>]+>/g, '').replace(/↵/g, '').replace(/[\r\n]/g, ''))
+        for (var i = 0; i < response.data.post.length; i++) {
+          // var reg = /<img\s+.*?src=(?:'(.+?)'|"(.+?)")\s*.*?(?:>|\/>)/igm
+          // var reg = <img\b[^<>]*?\bsrc[\\s\t\r\n]*=[\\s\t\r\n]*[""']?[\\s\t\r\n]*(?<imgUrl>[^\\s\t\r\n""'<>]*)[^<>]*?/?[\\s\t\r\n]*>
+          var imgReg = /<img.*?(?:>|\/>)/gi
+          // 匹配src属性
+          var srcReg = /src=[\\'\\"]?([^\\'\\"]*)[\\'\\"]?/i
+          var arr = response.data.post[i].postValue.match(imgReg)
+          // console.log('所有已成功匹配图片的数组：' + arr)
+          if (arr != null) {
+            for (var a = 0; a < arr.length; a++) {
+              var src = arr[a].match(srcReg)
+              // 获取图片地址
+              if (src[1]) {
+                response.data.post[i].postUrl = src[1]
+                console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
+              }
+
+            // 当然你也可以替换src属性
+            // if (src[0]) {
+            //   var t = src[0].replace(/src/i, 'href')
+            //   console.log(t)
+            // }
+            }
+          }
+          response.data.post[i].postValue = response.data.post[i].postValue.replace(/<[^>]+>/g, '').replace(/↵/g, '')
+          //  Regex regImg = new Regex(@"<img\b[^<>]*?\bsrc[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>", RegexOptions.IgnoreCase)
+          //  var r= /<img[^>]+?src=(/"|/')([^/'/"]+)/1/i
+        }
+        this.posts = response.data.post
+        // var res =con.replace(/<[^>]+>/g, "");
+      })
+    },
+    uploadPost () {
+      router.push({path: '/post'})
     }
   },
   mounted () {
+    $('#personalPageDiv').height($(window).height() - $('#meun').height())
     console.log(this.$store.state.baseUrl)
     var _this = this
     _this._data.showPostDiv = true
@@ -297,6 +279,7 @@ export default {
       }
     }).then((response) => {
       console.log(response.data)
+      this.headPicUrl = response.data.userInfo[0].userImg
       this.$store.dispatch('commitHeadPicUrl', response.data.userInfo[0].userImg)
       this.$store.dispatch('commitUserName', response.data.userInfo[0].userName)
       this.$store.dispatch('commitUserJob', response.data.userInfo[0].userJob)
@@ -343,6 +326,7 @@ export default {
       ],
       color: 'rgb(2, 155, 98)'
     })
+    this.getAllPost()
   }
 }
 </script>
