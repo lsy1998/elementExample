@@ -12,6 +12,7 @@ import index from '@/components/index'
 import addInfo from '@/components/addInfo'
 import marked from '@/components/marked'
 import showPost from '@/components/showPost'
+import changePassword from '@/components/changePassword'
 Vue.use(Router)
 
 export default new Router({
@@ -72,6 +73,11 @@ export default new Router({
       path: '/showPost',
       name: 'showPost',
       component: showPost
+    },
+    {
+      path: '/changePassword',
+      name: 'changePassword',
+      component: changePassword
     },
     {
       path: '/index',
