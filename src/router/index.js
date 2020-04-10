@@ -13,6 +13,7 @@ import addInfo from '@/components/addInfo'
 import marked from '@/components/marked'
 import showPost from '@/components/showPost'
 import changePassword from '@/components/changePassword'
+import dicomList from '@/components/dicomList'
 Vue.use(Router)
 
 export default new Router({
@@ -40,7 +41,9 @@ export default new Router({
     {
       path: '/newDemo',
       name: 'newDemo',
-      component: newDemo
+      component: newDemo,
+      children: [
+      ]
     },
     {
       path: '/Post',
@@ -83,6 +86,11 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: index
+    },
+    {
+      path: '/dicomList',
+      name: 'dicomList',
+      component: dicomList
     }
   ]
 })

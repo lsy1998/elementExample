@@ -2,10 +2,7 @@
   <div class="container">
     <el-row>
       <el-col :span="3">
-        <div
-          id="sideBar"
-          style="height:400px;display:inline-block; background-color:white;width:100%;background-color:rgb(50, 50, 50);"
-        >
+        <div id="sideBar" style="height:400px;display:inline-block; background-color:white;width:100%;background-color:rgb(50, 50, 50);">
           <div style="background-color:rgb(37, 37, 37);border-top:1px solid rgb(128, 128, 128);">
             <div
               style="background-color:rgb(91, 91, 91);width:80px;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200)"
@@ -434,7 +431,7 @@
               </el-col>
             </el-row>
           </div>
-
+<div @click="showDicomList">文件列表</div>
           <!-- <div class="enterURL">
             <input type="text" id="wadoURL" style="width: 35%;" placeholder="Enter WADO URL" value="http://localhost:8080/static/series-000001/image-000001.dcm"/>
             <el-button type="button" id="downloadAndView">加载Dicom</el-button>
@@ -509,6 +506,7 @@ import cornerstoneMath from 'cornerstone-math'
 import cornerstoneTools from 'cornerstone-tools'
 import Hammer from 'hammerjs'
 import $ from 'jquery'
+import router from '../router'
 // 指定要注册加载程序的基石实例
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone
 cornerstoneWADOImageLoader.external.dicomParser = dicomParser
@@ -549,6 +547,9 @@ export default {
     }
   },
   methods: {
+    showDicomList () {
+      router.push({path: '/dicomList'})
+    },
     showMeun () {
       $('#meun').show()
     },
