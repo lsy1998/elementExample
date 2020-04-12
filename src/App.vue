@@ -6,7 +6,7 @@
         <el-menu :default-active="activeIndex2" mode="horizontal" @select="handleSelect" text-color="black"
           active-text-color="rgb(0, 154, 97)">
           <el-menu-item index="1" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/marked">DEMO</router-link>
+            <router-link style=" text-decoration:none;" to="/demo">DEMO</router-link>
           </el-menu-item>
           <el-menu-item index="3" style="border:0;">
             <router-link style=" text-decoration:none;" to="/Post">POST</router-link>

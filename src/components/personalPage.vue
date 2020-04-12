@@ -8,8 +8,9 @@
         <el-row>
           <el-col :span="6" style="height:200px;">
             <el-row>
-              <input type="file" multiple @change="uploadHeadPic" v-show="showHeadPic" id="headPic" >
-              <img :src="this.$store.state.headPicUrl" alt="" width="60%" height="60%" style="margin:40px 8px 0 0;object-fit: cover;border-radius:5px;" @click="upload">
+              <input type="file" multiple @change="uploadHeadPic" v-show="showHeadPic" id="headPic">
+              <img :src="this.$store.state.headPicUrl" alt="" width="60%" height="60%"
+                style="margin:40px 8px 0 0;object-fit: cover;border-radius:5px;" @click="upload">
             </el-row>
             <el-row style="margin:10px 0 0 20px;">
               <el-col :span="4" style="color:white">brave</el-col>
@@ -65,57 +66,66 @@
               </el-button>
             </el-row>
             <el-row>
-              <el-button @click="getAllPost" style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
+              <el-button @click="getAllPost"
+                style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
               </el-button>
             </el-row>
             <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;" @click="uploadPost">发布帖子
+              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
+                @click="uploadPost">发布帖子
+              </el-button>
+            </el-row>
+            <el-row>
+              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
+                @click="dialogFormVisible = true">上传资源
               </el-button>
             </el-row>
           </el-col>
           <el-col :span="18">
             <div style="" id="postDiv" v-show="showPostDiv">
-            <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId'  :key='post' style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
-              <el-row style="height:100%" >
-                <el-col :span="18" style="height:100%;">
-                  <div style="width:100%;margin:20px 0 0 0; height:90%">
-                    <h3 style="height:20%;float:left;margin:0 0 0 10px">
-                      {{post.postTitle}}
-                    </h3>
-                    <p style="height:57%; clear:both; font-size:12px;margin:0 0 0 10px;color:black;">
-                      {{post.postValue}}
-                    </p>
-                    <div style="height:20%;display:inline-block; width:100%">
-                      <div class="el-icon-star-off"
-                        style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-                        <div
-                          style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
-                          x7
+              <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId' :key='post'
+                style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
+                <el-row style="height:100%">
+                  <el-col :span="18" style="height:100%;">
+                    <div style="width:100%;margin:20px 0 0 0; height:90%">
+                      <h3 style="height:20%;float:left;margin:0 0 0 10px">
+                        {{post.postTitle}}
+                      </h3>
+                      <p style="height:57%; clear:both; font-size:12px;margin:0 0 0 10px;color:black;">
+                        {{post.postValue}}
+                      </p>
+                      <div style="height:20%;display:inline-block; width:100%">
+                        <div class="el-icon-star-off"
+                          style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
+                          <div
+                            style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
+                            x7
+                          </div>
                         </div>
+                        <div class="el-icon-share"
+                          style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
+                        </div>
+                        <div
+                          style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
+                          {{post.postDate.replace(/T/g,' ').replace(/\.[\d]{3}Z/,'')}}
+                        </div>
+                        <el-avatar shape="square" :size="20" :src="headPicUrl" style="float:right;"></el-avatar>
                       </div>
-                      <div class="el-icon-share"
-                        style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
-                      </div>
-                      <div
-                        style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
-                        {{post.postDate.replace(/T/g,' ').replace(/\.[\d]{3}Z/,'')}}
-                      </div>
-                      <el-avatar shape="square" :size="20" :src="headPicUrl" style="float:right;"></el-avatar>
                     </div>
-                  </div>
-                  <div></div>
-                </el-col>
-                <el-col :span="6" style="height:100%;">
-                  <div
-                    style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
-                    <img :src="post.postUrl" alt="" width="100%" height="100%" style="object-fit:cover;border-radius:5px;">
-                  </div>
-                </el-col>
-              </el-row>
+                    <div></div>
+                  </el-col>
+                  <el-col :span="6" style="height:100%;">
+                    <div
+                      style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
+                      <img :src="post.postUrl" alt="" width="100%" height="100%"
+                        style="object-fit:cover;border-radius:5px;">
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
             </div>
-            </div>
-          <!-- <router-view></router-view> -->
-          <addInfo v-show="showAddInfo" @showM="showPostDivM"></addInfo>
+            <!-- <router-view></router-view> -->
+            <addInfo v-show="showAddInfo" @showM="showPostDivM"></addInfo>
           </el-col>
           <!-- <el-col :span='6'>
                 <div style="color:white;background-color:white;height:200px;color:white;">sad</div>
@@ -126,6 +136,19 @@
         <div style="color:white;">bfbcbc</div>
       </el-col>
     </el-row>
+    <el-dialog title="上传资源" :visible.sync="dialogFormVisible">
+      <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
+        :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="3" :on-exceed="handleExceed" :before-upload="beforeAvatarUpload"
+        :file-list="fileList"
+        accept=".zip,.rar,.tar,.7z">
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <!-- <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button> -->
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -160,10 +183,47 @@ export default {
       userSchool: '',
       ciyunList: [],
       posts: [],
-      num: 2
+      num: 2,
+      dialogFormVisible: false,
+      fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }]
     }
   },
   methods: {
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove (file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
+    },
+    beforeAvatarUpload (file) {
+      // console.log(file.type)
+      // const isTAR = file.type === 'application/x-tar'
+      // const isZIP = file.type === 'application/x-zip-compressed'
+      // const isRAR = file.type === 'application/octet-stream'
+      // const is7Z = file.type === 'application/x-7z-compressed'
+      // const isSupport = isTAR || isRAR || isZIP || is7Z
+      // console.log(isTAR)
+      // console.log(isZIP)
+      // console.log(isRAR)
+      // console.log(is7Z)
+      // console.log(isSupport)
+      // // const isJPG = (file.type === 'x-zip-compressed' || file.type === 'application/x-tarx-tar' || file.type === 'application/octet-stream' || file.type === 'x-7z-compressed')
+      // const isLt2M = file.size / 1024 / 1024 < 2
+
+      // if (!isSupport) {
+      //   this.$message.error('上传的不是压缩包')
+      // }
+      // if (!isLt2M) {
+      //   this.$message.error('上传头像图片大小不能超过 2MB!')
+      // }
+      // return isSupport && isLt2M
+    },
     showPost (event) {
       // alert(111)
       // console.log(e.target)
@@ -203,7 +263,7 @@ export default {
       var headers = {
         'Content-Type': 'multipart/form-data'
       }
-      axios.post(url, formData, {headers: headers}).then((response) => {
+      axios.post(url, formData, { headers: headers }).then((response) => {
         // var _this = this
         // _this._data.headPicUrl = response.data.headPicUrl
         this.headPicUrl = response.data.headPicUrl
@@ -242,11 +302,11 @@ export default {
                 console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
               }
 
-            // 当然你也可以替换src属性
-            // if (src[0]) {
-            //   var t = src[0].replace(/src/i, 'href')
-            //   console.log(t)
-            // }
+              // 当然你也可以替换src属性
+              // if (src[0]) {
+              //   var t = src[0].replace(/src/i, 'href')
+              //   console.log(t)
+              // }
             }
           }
           response.data.post[i].postValue = response.data.post[i].postValue.replace(/<[^>]+>/g, '').replace(/↵/g, '')
@@ -258,7 +318,7 @@ export default {
       })
     },
     uploadPost () {
-      router.push({path: '/post'})
+      router.push({ path: '/post' })
     }
   },
   mounted () {
