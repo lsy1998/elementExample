@@ -18,7 +18,7 @@
             <router-link style=" text-decoration:none;" to="/personalPage">PERSONALPAGE</router-link>
           </el-menu-item>
           <el-menu-item index="10" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/club">CLUB</router-link>
+            <router-link style=" text-decoration:none;" to="/newClub">CLUB</router-link>
           </el-menu-item>
           <el-menu-item index="7" style="border:0;">
             <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"

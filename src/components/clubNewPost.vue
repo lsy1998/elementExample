@@ -1,6 +1,38 @@
 
 <template>
-  <div style="" id="postDiv">
+  <div style="">
+    <!-- <div style="width:100%;height:200px;background-color:white;margin:10px 0 10px 0;">
+      <el-row style="height:100%">
+        <el-col :span='18' style="height:100%;">
+          <div style="width:100%;margin:20px 0 0 0; height:90%">
+            <h3 style="height:20%;display:inline-block;float:left;margin:0 0 0 10px">标题标题标题标题标题标题标题标题标题标题</h3>
+            <p style="height:57%;display:inline-block; font-size:12px;margin:0 0 0 7px">
+              正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+            </p>
+            <div style="height:20%;display:inline-block; width:100%">
+              <div class='el-icon-star-off'
+                style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
+                <div
+                  style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
+                  x7</div>
+              </div>
+              <div class='el-icon-share'
+                style="font-size:20px;float:left;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98)">
+              </div>
+              <div style="font-size:14px;display:inline-block;margin:0 0 0 15px;color:rgb(2, 155, 98);float:left;">
+                2020：2：22</div>
+              <el-avatar shape="square" :size="20" :src="squareUrl" style="float:right;"></el-avatar>
+            </div>
+          </div>
+          <div></div>
+        </el-col>
+        <el-col :span='6' style="height:100%;">
+          <div
+            style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
+            cxcx</div>
+        </el-col>
+      </el-row>
+    </div> -->
     <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId' :key='post'
       style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
       <el-row style="height:100%">
@@ -47,7 +79,7 @@ import router from '../router'
 // import axios from 'axios'
 import $ from 'jquery'
 export default {
-  name: 'myPost',
+  name: 'clubNewPost',
   data () {
     return {
       posts: []

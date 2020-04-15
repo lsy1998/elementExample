@@ -7,13 +7,19 @@ import demo from '@/components/demo'
 import newDemo from '@/components/newDemo'
 import createPost from '@/components/createPost'
 import personalPage from '@/components/personalPage'
-import club from '@/components/club'
+// import club from '@/components/club'
 import index from '@/components/index'
 import addInfo from '@/components/addInfo'
 import marked from '@/components/marked'
 import showPost from '@/components/showPost'
 import changePassword from '@/components/changePassword'
 import dicomList from '@/components/dicomList'
+import changePersonalInfo from '@/components/changePersonalInfo'
+import fileList from '@/components/fileList'
+import myPost from '@/components/myPost'
+import newClub from '@/components/newClub'
+import clubNewPost from '@/components/clubNewPost'
+import downloadFileList from '@/components/downloadFileList'
 Vue.use(Router)
 
 export default new Router({
@@ -59,14 +65,29 @@ export default new Router({
           path: 'addInfo',
           name: 'addInfo',
           component: addInfo
+        },
+        {
+          path: 'fileList',
+          name: 'fileList',
+          component: fileList
+        },
+        {
+          path: 'myPost',
+          name: 'myPost',
+          component: myPost
+        },
+        {
+          path: 'changePersonalInfo',
+          name: 'changePersonalInfo',
+          component: changePersonalInfo
         }
       ]
     },
-    {
-      path: '/club',
-      name: 'club',
-      component: club
-    },
+    // {
+    //   path: 'club',
+    //   name: 'club',
+    //   component: club
+    // },
     {
       path: '/marked',
       name: 'marked',
@@ -81,6 +102,23 @@ export default new Router({
       path: '/changePassword',
       name: 'changePassword',
       component: changePassword
+    },
+    {
+      path: '/newClub',
+      name: 'newClub',
+      component: newClub,
+      children: [
+        {
+          path: 'clubNewPost',
+          name: 'clubNewPost',
+          component: clubNewPost
+        },
+        {
+          path: 'downloadFileList',
+          name: 'downloadFileList',
+          component: downloadFileList
+        }
+      ]
     },
     {
       path: '/index',

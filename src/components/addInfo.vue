@@ -1,7 +1,11 @@
 
 <template>
-  <div v-show="showAddInfo" style="width:90%;height:400px;padding:30px;background-color:rgb(217, 237, 247);margin:50px 0 0 0">
-    <div style="float:left; margin:10px 0;">请选择你的性别：</div><i class="icon icon-uniE014" @click="hideAddInfoDiv" style="position:relative;bottom:10px; left:41%;"></i>
+  <div style="width:90%;height:400px;padding:30px;background-color:rgb(217, 237, 247);margin:50px 0 0 0">
+    <div style="float:left; margin:10px 0;">请选择你的昵称：</div>
+    <!-- <i class="icon icon-uniE014" @click="hideAddInfoDiv" style="position:relative;bottom:10px; left:41%;"></i> -->
+    <el-input v-model="userName" placeholder="请输入内容"></el-input>
+    <div style="float:left; margin:10px 0;">请选择你的性别：</div>
+    <!-- <i class="icon icon-uniE014" @click="hideAddInfoDiv" style="position:relative;bottom:10px; left:41%;"></i> -->
     <el-input v-model="userGender" placeholder="请输入内容"></el-input>
     <div style="float:left; margin:10px 0;">请输入你的毕业学校：</div><br>
     <el-input v-model="userSchool" placeholder="请输入内容"></el-input>
@@ -25,6 +29,7 @@ export default {
   name: 'addInfo',
   data () {
     return {
+      userName: '',
       userGender: '',
       userSchool: '',
       userCompany: '',
@@ -34,10 +39,10 @@ export default {
     }
   },
   methods: {
-    hideAddInfoDiv () {
-      var _this = this
-      _this.$emit('showM', true)
-    },
+    // hideAddInfoDiv () {
+    //   var _this = this
+    //   _this.$emit('showM', true)
+    // },
     addInfo () {
       var _this = this
       // if (_this._data.userGender) {
@@ -49,6 +54,7 @@ export default {
         method: 'post',
         url: 'http://localhost:8082/addUserInfo',
         data: {
+          userName: _this._data.userName,
           userGender: 1,
           userSchool: _this._data.userSchool,
           userCompany: _this._data.userCompany,
