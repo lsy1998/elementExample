@@ -83,6 +83,7 @@ export default {
   },
   mounted () {
     router.push({ path: '/index' })
+    $('body').css('background-color', 'white')
     // if ($('#demo1').click()) {
     //   console.log('click')
     // }

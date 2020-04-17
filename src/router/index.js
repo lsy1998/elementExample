@@ -20,6 +20,7 @@ import myPost from '@/components/myPost'
 import newClub from '@/components/newClub'
 import clubNewPost from '@/components/clubNewPost'
 import downloadFileList from '@/components/downloadFileList'
+import otherInfo from '@/components/otherInfo'
 Vue.use(Router)
 
 export default new Router({
@@ -112,6 +113,11 @@ export default new Router({
           path: 'clubNewPost',
           name: 'clubNewPost',
           component: clubNewPost
+        },
+        {
+          path: 'otherInfo',
+          name: 'otherInfo',
+          component: otherInfo
         },
         {
           path: 'downloadFileList',

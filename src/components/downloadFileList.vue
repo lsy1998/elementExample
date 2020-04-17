@@ -1,19 +1,19 @@
 
 <template>
 <div style="width:100%;height:100%;">
-<div style="width:100%;height:100%;background-color:white; margin:20px">
+<div v-for="file in files" :key="file" style="width:100%;height:100%;background-color:white; margin:20px">
       <el-row>
           <el-col :span='18'>
-              <div style="margin:20px 0 0 20px;font-size:16px; height:60px; text-align:left">dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害</div>
+              <div style="margin:20px 0 0 20px;font-size:16px; height:60px; text-align:left">{{file.fileDesc}}</div>
               <el-row style="margin:10px 0 0 0">
                   <el-col :span='9'>
-                      <div style="margin:10px 0 0 20px;float:left;font-size:14px;color:rgb(2, 155, 98)">龙思宇</div>
+                      <div style="margin:10px 0 0 20px;float:left;font-size:14px;color:rgb(2, 155, 98)">{{file.userName}}</div>
                   </el-col>
                   <el-col :span='12'>
-                      <div style="margin:10px 0 0 20px;float:right;font-size:14px;">2020:02:02</div>
+                      <div style="margin:10px 0 0 20px;float:right;font-size:14px;">{{file.date.replace(/T/g,' ').replace(/T/g,' ').replace(/\.[\d]{3}Z/,'')}}</div>
                   </el-col>
                   <el-col :span='3'>
-                      <el-button style="background-color:rgb(2, 155, 98); color:white;float:right; " size='small'>下载</el-button>
+                      <el-button :data-index='file.filePath' :data-name='file.fileName' style="background-color:rgb(2, 155, 98); color:white;float:right; " @click="downloadFile($event)" size='small'>下载</el-button>
                   </el-col>
               </el-row>
           </el-col>
@@ -23,38 +23,46 @@
           <!-- <el-col></el-col> -->
       </el-row>
   </div>
-  <div style="width:100%;height:100%;background-color:white; margin:20px">
-      <el-row>
-          <el-col :span='18'>
-              <div style="margin:20px 0 0 20px;font-size:16px; height:60px; text-align:left">dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害dicom文件下载最后一个厉害</div>
-              <el-row style="margin:10px 0 0 0">
-                  <el-col :span='9'>
-                      <div style="margin:10px 0 0 20px;float:left;font-size:14px;color:rgb(2, 155, 98)">龙思宇</div>
-                  </el-col>
-                  <el-col :span='12'>
-                      <div style="margin:10px 0 0 20px;float:right;font-size:14px;">2020:02:02</div>
-                  </el-col>
-                  <el-col :span='3'>
-                      <el-button style="background-color:rgb(2, 155, 98); color:white;float:right; " size='small'>下载</el-button>
-                  </el-col>
-              </el-row>
-          </el-col>
-          <el-col :span='6'>
-              <div style="width:100%; height:100px; font-size:100px; margin:20px 0 0 0; color:rgb(2, 155, 98)" class="iconfont icon-geshi_yasuobaorar"></div>
-          </el-col>
-          <!-- <el-col></el-col> -->
-      </el-row>
-  </div>
 </div>
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   name: 'downloadFileList',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      files: []
     }
+  },
+  methods: {
+    downloadFile (event) {
+      var el = event.currentTarget
+      console.log($(el).attr('data-index'))
+      console.log($(el).attr('data-name'))
+      this.$axios({
+        method: 'get',
+        url: 'http://localhost:8082/download',
+        params: {
+          path: $(el).attr('data-index')
+        }
+      }).then((res) => {
+        const url = window.URL.createObjectURL(new Blob([res.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', $(el).attr('data-name'))
+        document.body.appendChild(link)
+        link.click()
+      })
+    }
+  },
+  mounted () {
+    this.$axios({
+      method: 'post',
+      url: 'http://localhost:8082/getAllFileList'
+    }).then((res) => {
+      this.files = res.data.data
+    })
   }
 }
 </script>

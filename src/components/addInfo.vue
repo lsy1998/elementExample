@@ -1,6 +1,6 @@
 
 <template>
-  <div style="width:90%;height:400px;padding:30px;background-color:rgb(217, 237, 247);margin:50px 0 0 0">
+  <div style="width:90%;height:520px;padding:30px;background-color:rgb(246, 246, 246);margin:50px 0 0 0">
     <div style="float:left; margin:10px 0;">请选择你的昵称：</div>
     <!-- <i class="icon icon-uniE014" @click="hideAddInfoDiv" style="position:relative;bottom:10px; left:41%;"></i> -->
     <el-input v-model="userName" placeholder="请输入内容"></el-input>
@@ -17,7 +17,7 @@
     <el-input placeholder="请输入内容" v-model="userPage">
     <template slot="prepend">Http://</template>
   </el-input>
-  <el-button @click="addInfo">提交</el-button>
+  <el-button @click="addInfo" style="margin:10px 0 0 0;background-color:rgb(2, 155, 98);color:white">提交</el-button>
   </div>
 </template>
 

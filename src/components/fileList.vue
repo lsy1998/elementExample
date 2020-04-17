@@ -7,13 +7,13 @@
         <el-table :data="tableData"  :border=true style="width: 100%" fit highlight-current-row max-height="750">
           <el-table-column prop="fileId" label="序号" align="center">
           </el-table-column>
-          <el-table-column prop="filePath" label="文件名" align="center">
+          <el-table-column prop="fileName" label="文件名" align="center">
           </el-table-column>
            <el-table-column prop="fileDesc" label="描述" align="center">
           </el-table-column>
           <el-table-column label="操作" align="center">
             <template slot-scope="scope">
-              <el-button type="primary" size="mini" @click="handleDownload(scope.$index, scope.row)" >下载</el-button>
+              <el-button style="background-color:rgb(2,155,98)" type="primary" size="mini" @click="handleDownload(scope.$index, scope.row)" >下载</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -40,7 +40,22 @@ export default {
   },
   methods: {
     handleDownload (index, row) {
-
+      console.log(row.filePath)
+      this.$axios({
+        method: 'get',
+        url: 'http://localhost:8082/download',
+        params: {
+          path: row.filePath,
+          name: row.fileName
+        }
+      }).then((res) => {
+        const url = window.URL.createObjectURL(new Blob([res.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', row.fileName)
+        document.body.appendChild(link)
+        link.click()
+      })
     },
     showPost (event) {
       // alert(111)

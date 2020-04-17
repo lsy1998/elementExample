@@ -36,13 +36,13 @@
     <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId' :key='post'
       style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;height:200px; ">
       <el-row style="height:100%">
-        <el-col :span="18" style="height:100%;">
+        <el-col :span="post.leftSpan" style="height:100%;">
           <div style="width:100%;margin:20px 0 0 0; height:90%">
             <h3 style="height:20%;float:left;margin:0 0 0 10px">
               {{post.postTitle}}
             </h3>
             <p style="height:57%; clear:both; font-size:12px;margin:0 0 0 10px;color:black;">
-              {{post.postValue}}
+              {{post.postValue.substring(0,300)}}
             </p>
             <div style="height:20%;display:inline-block; width:100%">
               <div class="el-icon-star-off"
@@ -63,9 +63,9 @@
           </div>
           <div></div>
         </el-col>
-        <el-col :span="6" style="height:100%;">
+        <el-col :span="post.rightSpan" style="height:100%;">
           <div
-            style="height:80%;margin:20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
+            style="height:80%;margin:20px 0 20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
             <img :src="post.postUrl" alt="" width="100%" height="100%" style="object-fit:cover;border-radius:5px;">
           </div>
         </el-col>
@@ -111,6 +111,8 @@ export default {
           var srcReg = /src=[\\'\\"]?([^\\'\\"]*)[\\'\\"]?/i
           var arr = response.data.post[i].postValue.match(imgReg)
           if (arr != null) {
+            response.data.post[i].leftSpan = '18'
+            response.data.post[i].rightSpan = '6'
             for (var a = 0; a < arr.length; a++) {
               var src = arr[a].match(srcReg)
               if (src[1]) {
@@ -118,6 +120,9 @@ export default {
                 console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
               }
             }
+          } else {
+            response.data.post[i].leftSpan = '24'
+            response.data.post[i].rightSpan = '0'
           }
           response.data.post[i].postValue = response.data.post[i].postValue.replace(/<[^>]+>/g, '').replace(/↵/g, '')
         }

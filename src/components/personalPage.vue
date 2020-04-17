@@ -109,7 +109,7 @@
       <div style="float:left; margin:10px 0;">添加文件描述：</div>
     <!-- <i class="icon icon-uniE014" @click="hideAddInfoDiv" style="position:relative;bottom:10px; left:41%;"></i> -->
     <el-input v-model="fileDesc" placeholder="请输入内容"></el-input>
-     <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+     <el-button style="margin:20px 0 0 10px; " size="small" type="success" @click="submitUpload">上传到服务器</el-button>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <!-- <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button> -->
@@ -150,6 +150,7 @@ export default {
       userCompany: '',
       userPage: '',
       userSchool: '',
+      userCount: '',
       fileDesc: '',
       ciyunList: [],
       num: 2,
@@ -163,6 +164,8 @@ export default {
     },
     submitUpload () {
       this.uploadFileDate.fileDesc = this.fileDesc
+      this.uploadFileDate.userName = this.userName
+      this.uploadFileDate.userCount = this.userCount
       this.$refs.upload.submit()
     },
     showFileList () {
@@ -326,6 +329,7 @@ export default {
       this._data.userCompany = response.data.userInfo[0].userCompany
       this._data.userPage = response.data.userInfo[0].userPage
       this._data.userSchool = response.data.userInfo[0].userSchool
+      this._data.userCount = response.data.userInfo[0].userCount
       // this._data.ciyunList.push([response.data.userInfo[0].userName, 20])
       // this._data.ciyunList.push([response.data.userInfo[0].userName, 10])
       // this._data.ciyunList.push([response.data.userInfo[0].userName, 15])
