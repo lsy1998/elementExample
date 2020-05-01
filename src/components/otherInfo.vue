@@ -29,7 +29,7 @@ export default {
     // alert(112)
     this.$axios({
       method: 'post',
-      url: 'http://localhost:8082/getOtherInfo'
+      url: 'http://47.115.131.98:39002/getOtherInfo'
     }).then((res) => {
     //   alert(111)
       console.log(res.data)

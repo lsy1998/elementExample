@@ -25,6 +25,14 @@
         "styleLibraryName": "theme-chalk"
       }
     ]
+//     ["prismjs", 
+//       {
+//       "languages": ["javascript", "css", "python", "html"],
+//       "plugins": ["line-numbers", "copy-to-clipboard", "show-invisibles", "show-language", "unescaped-markup"],
+//       "theme": "twilight",
+//       "css": true
+//   }
+// ]
   ],
   "env": {
     "test": {

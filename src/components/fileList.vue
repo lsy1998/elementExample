@@ -43,7 +43,7 @@ export default {
       console.log(row.filePath)
       this.$axios({
         method: 'get',
-        url: 'http://localhost:8082/download',
+        url: 'http://47.115.131.98:39002/download',
         params: {
           path: row.filePath,
           name: row.fileName
@@ -52,7 +52,7 @@ export default {
         const url = window.URL.createObjectURL(new Blob([res.data]))
         const link = document.createElement('a')
         link.href = url
-        link.setAttribute('download', row.fileName)
+        link.setAttribute('download', Buffer.from(row.fileName, 'base64').toString())
         document.body.appendChild(link)
         link.click()
       })
@@ -72,7 +72,7 @@ export default {
     alert(111)
     axios({
       method: 'post',
-      url: 'http://localhost:8082/getFileList',
+      url: 'http://47.115.131.98:39002/getFileList',
       data: {
         userId: sessionStorage.userId
       }

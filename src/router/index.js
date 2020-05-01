@@ -21,6 +21,8 @@ import newClub from '@/components/newClub'
 import clubNewPost from '@/components/clubNewPost'
 import downloadFileList from '@/components/downloadFileList'
 import otherInfo from '@/components/otherInfo'
+import teach from '@/components/teach'
+import canny from '@/components/teach/canny'
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +31,16 @@ export default new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/canny',
+      name: 'canny',
+      component: canny
+    },
+    {
+      path: '/teach',
+      name: 'teach',
+      component: teach
     },
     {
       path: '/login',

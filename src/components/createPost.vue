@@ -5,7 +5,7 @@
       <el-col :span="16">
         <el-row style="margin:10px 0 0 0;">
         <el-col :span='18'>
-          <input v-model="title" placeholder="请输入标题..." style="font-size:25px;margin:0 0 0 20px;width:100%;float:left;border: 0px;outline:none;">
+          <input id="title" v-model="title" placeholder="请输入标题..." style="font-size:25px;margin:0 0 0 20px;width:100%;float:left;border: 0px;outline:none;">
         </el-col>
         <el-col :span='6'>
           <el-button size="medium" style="background-color:rgb(2, 155, 98);color:white;float:right;margin:0 20px 0 0;">发布帖子<i class="el-icon-upload el-icon--right"></i></el-button>
@@ -27,6 +27,7 @@
 // import mavonEditor from 'mavon-editor'
 // import 'mavon-editor/dist/css/index.css'
 import md from '../../README.md'
+import $ from 'jquery'
 // import Axios from 'axios'
 // import marked from 'marked'
 console.log(md)
@@ -47,15 +48,15 @@ export default {
     // 将图片上传到服务器，返回地址替换到md中
     $imgAdd (pos, $file) {
       var formdata = new FormData()
-      formdata.append('files', $file)
+      formdata.append('file', $file)
       formdata.append('userId', sessionStorage.userId)
       this.$axios({
-        url: 'http://localhost:8082/uploadMDPic',
+        url: 'http://47.115.131.98:888/uploadMDPic',
         method: 'post',
         data: formdata,
         headers: { 'Content-Type': 'multipart/form-data' }
       }).then((url) => {
-        this.$refs.md.$img2Url(pos, url.data.MDPicUrl)
+        this.$refs.md.$img2Url(pos, url.data.picUrl)
         console.log(url)
       })
     },
@@ -70,18 +71,22 @@ export default {
       this.$message.success('提交成功，已打印至控制台！')
     },
     saveMD (value, render) {
-      this.$axios({
-        url: 'http://localhost:8082/uploadPost',
-        method: 'post',
-        data: {
-          userId: sessionStorage.userId,
-          postValue: render,
-          postTitle: this.title
-        }
-      }).then((result) => {
-        console.log(result)
+      if ($('#title').val() === '') {
+        alert('请输入标题')
+      } else {
+        this.$axios({
+          url: 'http://47.115.131.98:39002/uploadPost',
+          method: 'post',
+          data: {
+            userId: sessionStorage.userId,
+            postValue: render,
+            postTitle: this.title
+          }
+        }).then((result) => {
+          console.log(result)
         // console.log(url)
-      })
+        })
+      }
     }
   },
   mounted () {

@@ -9,7 +9,7 @@
             <router-link style=" text-decoration:none;" to="/demo">DEMO</router-link>
           </el-menu-item>
           <el-menu-item index="3" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/Post">POST</router-link>
+            <router-link style=" text-decoration:none;" to="/teach">teach</router-link>
           </el-menu-item>
           <el-menu-item id="demo1" @click="demo1" index="4" style="border:0;">
             <router-link style=" text-decoration:none;" to="/newDemo">DEMO1</router-link>

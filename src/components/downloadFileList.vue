@@ -42,7 +42,7 @@ export default {
       console.log($(el).attr('data-name'))
       this.$axios({
         method: 'get',
-        url: 'http://localhost:8082/download',
+        url: 'http://47.115.131.98:39002/download',
         params: {
           path: $(el).attr('data-index')
         }
@@ -59,7 +59,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: 'http://localhost:8082/getAllFileList'
+      url: 'http://47.115.131.98:39002/getAllFileList'
     }).then((res) => {
       this.files = res.data.data
     })

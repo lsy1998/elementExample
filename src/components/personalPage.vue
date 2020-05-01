@@ -100,7 +100,7 @@
       </el-col>
     </el-row>
     <el-dialog title="上传资源" :visible.sync="dialogFormVisible">
-      <el-upload ref="upload" class="upload-demo" action="http://localhost:8082/uploadFile" :on-preview="handlePreview"
+      <el-upload ref="upload" class="upload-demo" action="http://47.115.131.98:888/uploadResource" :on-preview="handlePreview"
         :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="1" :on-exceed="handleExceed" :auto-upload="false"
         :before-upload="beforeAvatarUpload" :data='uploadFileDate' accept=".zip,.rar,.tar,.7z">
         <el-button size="small" type="primary">点击上传</el-button>
@@ -192,7 +192,7 @@ export default {
       // const isSupport = isTAR || isRAR || isZIP || is7Z
       // console.log(isTAR)
       // console.log(isZIP)
-      // console.log(isRAR)
+      // console.log(isRAR)uploadFile
       // console.log(is7Z)
       // console.log(isSupport)
       // // const isJPG = (file.type === 'x-zip-compressed' || file.type === 'application/x-tarx-tar' || file.type === 'application/octet-stream' || file.type === 'x-7z-compressed')
@@ -237,25 +237,55 @@ export default {
       _this._data.headPicUrl = URL.createObjectURL(files[0])
       var formData = new FormData()
       // formData重复的往一个值添加数据并不会被覆盖掉，可以全部接收到，可以通过formData.getAll('files')来查看所有插入的数据
-      for (let i = 0; i < files.length; i++) {
-        formData.append('files', files[i])
-      }
+      formData.append('file', files[0])
       formData.append('userId', sessionStorage.userId)
-      var url = 'http://localhost:8082/uploadHeadPic'
-      var headers = {
-        'Content-Type': 'multipart/form-data'
+      console.log(formData)
+      for (var value of formData.values()) {
+        console.log(value)
       }
-      axios.post(url, formData, { headers: headers }).then((response) => {
-        this.headPicUrl = response.data.headPicUrl
-        this.$store.dispatch('commitHeadPicUrl', response.data.headPicUrl)
+      var url = 'http://47.115.131.98:888/upload'
+      // var url = 'http://127.0.0.1:5000/upload'
+      // var headers = {
+      //   'Content-Type': 'application/x-www-form-urlencoded'
+      // }
+      // const instance = axios.create({
+      //   withCredentials: true // 如果发送请求的时候需要带上token 验证之类的也可以写在这个对象里
+      // })
+      axios.post(url, formData).then((response) => {
+        this.headPicUrl = response.data.path
+        // this.headPicUrl = 'http://47.115.131.98:39002/headPic/6.jpg'
+        this.$store.dispatch('commitHeadPicUrl', response.data.path)
         console.log(response.data)
       })
+      // var json = {
+      //   'token': sessionStorage.token,
+      //   'userId': result.data.content.list[i].userId
+      // }
+      // var jsondata
+      // jsondata = JSON.stringify(json)
+      // console.log('-发送请求数据:')
+      // console.log(json)
+      // $.ajax({
+      //   async: false,
+      //   type: 'POST',
+      //   url: url,
+      //   data: formData,
+      //   processData: false,
+      //   contentType: false,
+      //   success: function (result) {
+      //     console.log('-返回结果: ')
+      //     console.log(result)
+      //     if (result.code === 200) {
+      //     } else {
+      //     }
+      //   }
+      // })
     },
     // getAllPost () {
     //   // alert(222)
     //   this.$axios({
     //     method: 'post',
-    //     url: 'http://localhost:8082/getAllPost',
+    //     url: 'http://47.115.131.98:39002/getAllPost',
     //     data: {
     //       userId: sessionStorage.userId
     //     }
@@ -310,7 +340,7 @@ export default {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8082/getUserInfo',
+      url: 'http://47.115.131.98:39002/getUserInfo',
       data: {
         userId: sessionStorage.userId
       }

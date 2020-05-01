@@ -21,7 +21,7 @@ export default {
     getPost () {
       this.$axios({
         method: 'post',
-        url: 'http://localhost:8082/getPost',
+        url: 'http://47.115.131.98:39002/getPost',
         data: {
           postId: sessionStorage.postId
         }
@@ -38,7 +38,7 @@ export default {
     this.getPost()
     // this.$axios({
     //   method: 'post',
-    //   url: 'http://localhost:8082/getPost',
+    //   url: 'http://47.115.131.98:39002/getPost',
     //   data: {
     //     userId: sessionStorage.userId
     //   }

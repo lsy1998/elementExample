@@ -49,7 +49,7 @@ export default {
       var _this = this
       axios({
         method: 'post',
-        url: 'http://localhost:8082/login',
+        url: 'http://47.115.131.98:39002/login',
         data: {
           userCount: _this._data.userCount,
           userPassword: _this._data.userPassword
@@ -57,6 +57,7 @@ export default {
       }).then(function (response) {
         console.log(response.data)
         sessionStorage.userId = response.data.userId
+        sessionStorage.userCount = _this._data.userCount
         router.push({ path: '/personalPage' })
         // console.log(sessionStorage.userId)
       })

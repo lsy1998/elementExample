@@ -67,7 +67,7 @@ export default {
     getAllPost () {
       this.$axios({
         method: 'post',
-        url: 'http://localhost:8082/getAllPost',
+        url: 'http://47.115.131.98:39002/getAllPost',
         data: {
           userId: sessionStorage.userId,
           headPicUrl: ''
