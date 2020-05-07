@@ -32,19 +32,19 @@
             <el-collapse accordion style="margin:0 40px;">
               <el-collapse-item>
                 <template slot="title">图像几何变换</template>
-                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">最近邻插值法</div>
-                <div >双线性插值法</div>
+                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0"  @click="chooseMethod($event)" data-name='zjl'>最近邻插值法</div>
+                <div @click="chooseMethod($event)" data-name='bilinearInterpolation'>双线性插值法</div>
               </el-collapse-item>
               <el-collapse-item title="图像增强">
-                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">傅里叶变换</div>
+                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0"  @click="chooseMethod($event)" data-name='canny'>傅里叶变换</div>
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">离散余弦变换</div>
                 <div>小波变换</div>
               </el-collapse-item>
               <el-collapse-item title="图像分割">
-                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0" @click="canny">canny边缘检测</div>
-                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">拉普拉斯边缘检测</div>
-                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">OTSU大津阈值分割</div>
-                <div>区域生长算法</div>
+                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0" @click="chooseMethod($event)" data-name='canny'>canny边缘检测</div>
+                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0" @click="chooseMethod($event)" data-name='Laplacian'>拉普拉斯边缘检测</div>
+                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0" @click="chooseMethod($event)" data-name='OTSU'>OTSU大津阈值分割</div>
+                <div  @click="chooseMethod($event)" data-name='regionGrow'>区域生长算法</div>
               </el-collapse-item>
               <el-collapse-item title="特征提取">
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">PCA算法</div>
@@ -109,8 +109,8 @@ export default {
     }
   },
   methods: {
-    canny () {
-      router.push({path: '/canny'})
+    chooseMethod (e) {
+      router.push({path: `/${$(e.currentTarget).attr('data-name')}`})
     },
     jumpTo (e) {
       // $(e.tatget).attr('data-link')

@@ -61,11 +61,11 @@
       <el-col :span="12">
         <el-row>
           <el-col :span="6" style="height:200px;">
-            <el-row>
+            <!-- <el-row>
               <el-button style="margin:50px 0 0 0;width:60%;background-color:rgb(2, 155, 98);color:white;">我的主页
               </el-button>
-            </el-row>
-            <el-row>
+            </el-row> -->
+            <el-row style="margin:50px 0 0 0;">
               <el-button @click="showMyPost"
                 style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
               </el-button>
@@ -395,7 +395,7 @@ export default {
         color: 'rgb(2, 155, 98)'
       })
     })
-    this.getAllPost()
+    router.push({path: '/personalPage/myPost'})
   }
 }
 </script>

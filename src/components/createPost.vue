@@ -1,8 +1,8 @@
 <template>
-    <div class="markdown">
+    <div class="markdown" style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239)">
       <el-row>
-      <el-col :span="4" style="color:white;">555</el-col>
-      <el-col :span="16">
+      <el-col :span="4" style="">555</el-col>
+      <el-col :span="16" style="background-color:white;">
         <el-row style="margin:10px 0 0 0;">
         <el-col :span='18'>
           <input id="title" v-model="title" placeholder="请输入标题..." style="font-size:25px;margin:0 0 0 20px;width:100%;float:left;border: 0px;outline:none;">
@@ -18,7 +18,7 @@
             <!-- <button @click="submit">提交</button> -->
         </div>
       </el-col>
-      <el-col :span="4" style="color:white;">sas</el-col>
+      <el-col :span="4" style="">sas</el-col>
     </el-row>
     </div>
 </template>

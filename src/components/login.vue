@@ -5,11 +5,19 @@
         <img style="display:inline-block;vertical-align:top;margin:0px 0 0 0;height:100%" src="../assets/image/a08ef81d577c4642f5faa9bb3055a4da_2_3_art.png" alt="">
   </div>
     <div style="width:405px;display:inline-block;height:530px;vertical-align:top;background:#52A0FD;background:-webkit-linear-gradient(left,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);background:linear-gradient(to right,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);position:relative;right:10px;">
-     <el-input clearable v-model="userCount" ref='hello' type="text"  placeholder="请输入用户名" style="margin:150px 0 0 5px; width:300px;" ><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
-      <el-input show-password  v-model="userPassword" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 5px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input><br>
-      <el-link type="info" :underline="false" style="position:relative;right:76px; color:white; margin:10px 0 0 0;"><router-link style="color:white; text-decoration: none;" to="/changePassword">忘记密码？</router-link></el-link>
-      <el-link type="info" :underline="false" style="position:relative; left:88px; color:white; margin:10px 0 0 0;"><router-link style="color:white; text-decoration: none;" to="/registe">还没注册？</router-link></el-link>
-      <el-button @click="login" style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;">登录</el-button>
+     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+      <el-form-item style="width:150px;margin:0 0 0 55px;" prop="userCount">
+        <el-tooltip class="item" effect="dark" content="请输入11位手机号码" placement="right-end">
+        <el-input clearable v-model="ruleForm.userCount" ref='hello' type="text"  placeholder="请输入用户名" style="margin:150px 0 0 0px; width:300px;" ><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
+        </el-tooltip>
+      </el-form-item>
+      <el-form-item style="width:150px;margin:0 0 0 55px;"  prop="userPassword">
+        <el-tooltip  effect="dark" content="请输入您的密码" placement="right-end">
+      <el-input show-password  v-model="ruleForm.userPassword" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 0px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input>
+      </el-tooltip>
+      </el-form-item>
+      <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;" @click="login">登录</el-button>
+      </el-form>
     </div>
   </div>
      <!-- <ckeditor value="Hello, World!"></ckeditor> -->
@@ -25,6 +33,20 @@ export default {
   name: 'login',
   data () {
     return {
+      ruleForm: {
+        userPassword: '',
+        userCount: ''
+      },
+      rules: {
+        userCount: [
+          { required: true, message: '内容不能为空', trigger: 'blur' },
+          { min: 11, max: 11, message: '请输入11位手机号码', trigger: 'change' }
+        ],
+        userPassword: [
+          { required: true, message: '内容不能为空', trigger: 'blur' }
+          // { min: 11, max: 11, message: '请输入11位手机号码', trigger: 'change' }
+        ]
+      },
       style1: {
         backgroundImage: 'url(' + require('../assets/image/desktop-viewer-with-iphone.jpg-1578217495543.png') + ')',
         backgroundRepeat: 'no-repeat',
@@ -38,26 +60,26 @@ export default {
     }
   },
   methods: {
-    change (e) {
-      console.log(this.$refs.hello.html)
-      // this.$refs.hello.$forceUpdate()
-    },
+    // change (e) {
+    //   console.log(this.$refs.hello.html)
+    //   // this.$refs.hello.$forceUpdate()
+    // },
     resize () {
       $('#loginDiv').height($(window).height() - $('#meun').height() - 100)
     },
     login () {
-      var _this = this
+      // var _this = this
       axios({
         method: 'post',
         url: 'http://47.115.131.98:39002/login',
         data: {
-          userCount: _this._data.userCount,
-          userPassword: _this._data.userPassword
+          userCount: this.ruleForm.userCount,
+          userPassword: this.ruleForm.userPassword
         }
-      }).then(function (response) {
+      }).then((response) => {
         console.log(response.data)
         sessionStorage.userId = response.data.userId
-        sessionStorage.userCount = _this._data.userCount
+        sessionStorage.userCount = this.ruleForm.userCount
         router.push({ path: '/personalPage' })
         // console.log(sessionStorage.userId)
       })

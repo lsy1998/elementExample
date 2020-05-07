@@ -21,8 +21,13 @@ import newClub from '@/components/newClub'
 import clubNewPost from '@/components/clubNewPost'
 import downloadFileList from '@/components/downloadFileList'
 import otherInfo from '@/components/otherInfo'
-import teach from '@/components/teach'
+// import teach from '@/components/teach'
 import canny from '@/components/teach/canny'
+import Laplacian from '@/components/teach/Laplacian'
+import OTSU from '@/components/teach/OTSU'
+import regionGrow from '@/components/teach/regionGrow'
+import zjl from '@/components/teach/zjl'
+import bilinearInterpolation from '@/components/teach/bilinearInterpolation'
 Vue.use(Router)
 
 export default new Router({
@@ -38,9 +43,29 @@ export default new Router({
       component: canny
     },
     {
-      path: '/teach',
-      name: 'teach',
-      component: teach
+      path: '/bilinearInterpolation',
+      name: 'bilinearInterpolation',
+      component: bilinearInterpolation
+    },
+    {
+      path: '/regionGrow',
+      name: 'regionGrow',
+      component: regionGrow
+    },
+    {
+      path: '/OTSU',
+      name: 'OTSU',
+      component: OTSU
+    },
+    {
+      path: '/Laplacian',
+      name: 'Laplacian',
+      component: Laplacian
+    },
+    {
+      path: '/zjl',
+      name: 'zjl',
+      component: zjl
     },
     {
       path: '/login',

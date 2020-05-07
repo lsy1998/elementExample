@@ -70,7 +70,7 @@ export default {
     demo1 () {
       // var _this = this
       console.log('click')
-      $('#meun').hide()
+      // $('#meun').hide()
       // _this._data.color = '#323232'
       // $('menu').css('background-color', 'rgb(50, 50, 50)')
       // if ($('#demo1').click()) {

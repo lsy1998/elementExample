@@ -16,7 +16,7 @@
             return retimg
         im_path = f'./{name}'
         image = np.array(Image.open(im_path))
-        image1 = NN_interpolation(image, image.shape[0]*<input id="num1" ref="num1" v-model="num1" type="text" style="width:20px" placeholder="1">, image.shape[1]*<input id="num2" ref="num2" v-model="num2" style="width:20px" placeholder="1" type="text" >)
+        image1 = NN_interpolation(image, image.shape[0]*<input id="num1" ref="num1" v-model="num1" type="text" style="width:20px" value="1">, image.shape[1]*<input id="num2" ref="num2" v-model="num2" style="width:20px" value="1" type="text" >)
         </code></pre>
         </div>
         <el-button id="submit" @click="submit">提交</el-button>
@@ -37,11 +37,11 @@
 <script>
 import $ from 'jquery'
 // import '../../static/dist/prism.js'
-import prism from '../../static/dist/prism.js'
+import prism from '../../../static/dist/prism.js'
 // prism.highlightAll()
 // import prism from 'prismjs'
 export default {
-  name: 'teach',
+  name: 'zjl',
   data () {
     return {
       num1: 2,
@@ -63,7 +63,7 @@ export default {
       console.log(this.$refs.num2.value)
       alert(12)
       this.$axios({
-        url: 'http://47.115.131.98:888/jiaocheng',
+        url: 'http://47.115.131.98:888/zjl',
         method: 'post',
         data: {
           userCount: sessionStorage.userCount,

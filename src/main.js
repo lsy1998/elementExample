@@ -16,6 +16,7 @@ import axios from 'axios'
 import 'mavon-editor/dist/css/index.css'
 // import '../static/dist/prism1.css'
 import './assets/css/prism.css'
+import cookies from 'vue-cookies'
 // import './assets/prism.js'
 // use
 // import CKEditor from 'ckeditor4-vue'
@@ -37,6 +38,7 @@ Vue.use(Element)
 Vue.use(Router)
 // Vue.use(axios)
 Vue.prototype.$axios = axios
+Vue.prototype.$cookies = cookies
 // Vue.use($)
 Vue.component('vue-drag-resize', VueDragResize)
 Vue.use(mavonEditor)

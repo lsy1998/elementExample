@@ -653,7 +653,7 @@ export default {
     }
   },
   mounted() {
-    $('#meun').hide()
+    // $('#meun').hide()
     const _this = this;
     _this._data.element = document.getElementById("dicomImage");
     $("#sideBar").height($(window).height());
