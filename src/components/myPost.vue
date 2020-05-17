@@ -10,7 +10,7 @@
               {{post.postTitle}}
             </h3>
             <p style="height:57%; clear:both; font-size:12px;margin:0 0 0 10px;color:black;">
-              {{post.postValue.substring(0,300)}}
+              {{post.postValue.substring(0,250)}}
             </p>
             <div style="height:20%;display:inline-block; width:100%">
               <div class="el-icon-star-off"

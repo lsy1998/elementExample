@@ -85,6 +85,11 @@
                 @click="showFileList">我的资源
               </el-button>
             </el-row>
+            <!-- <el-row>
+              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
+                @click="checkResource">我的
+              </el-button>
+            </el-row> -->
           </el-col>
           <el-col :span="18">
             <router-view />
@@ -101,17 +106,17 @@
     </el-row>
     <el-dialog title="上传资源" :visible.sync="dialogFormVisible">
       <el-upload ref="upload" class="upload-demo" action="http://47.115.131.98:888/uploadResource" :on-preview="handlePreview"
-        :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="1" :on-exceed="handleExceed" :auto-upload="false"
-        :before-upload="beforeAvatarUpload" :data='uploadFileDate' accept=".zip,.rar,.tar,.7z">
-        <el-button size="small" type="primary">点击上传</el-button>
+        :on-remove="handleRemove" :before-remove="beforeRemove" :on-success="uploadSuccess" :on-error='uploadError' multiple :limit="1" :on-exceed="handleExceed" :auto-upload="false"
+        :on-change="checkResource" :data='uploadFileDate' accept=".zip,.rar,.tar,.7z">
+        <el-button size="small" type="primary">选择文件</el-button>
         <div slot="tip" class="el-upload__tip">只能上传.rar/.zip/.tar/.7z文件</div>
       </el-upload>
       <div style="float:left; margin:10px 0;">添加文件描述：</div>
     <!-- <i class="icon icon-uniE014" @click="hideAddInfoDiv" style="position:relative;bottom:10px; left:41%;"></i> -->
     <el-input v-model="fileDesc" placeholder="请输入内容"></el-input>
-     <el-button style="margin:20px 0 0 10px; " size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+     <el-button style="margin:20px 0 0 10px; " size="small" type="success" @click="submitUpload">点击上传</el-button>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
         <!-- <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button> -->
       </div>
     </el-dialog>
@@ -159,6 +164,30 @@ export default {
     }
   },
   methods: {
+    checkResource (file) {
+      console.log('badhbahb')
+      axios({
+        method: 'post',
+        url: 'http://47.115.131.98:888/checkResource',
+        data: {
+          fileName: file.name,
+          userCount: sessionStorage.userCount
+        }
+      }).then((response) => {
+        // console.log(response.data)
+        if (response.data.result === 1) {
+          alert('已存在同名文件')
+          this.$refs.upload.clearFiles()
+        }
+      })
+    },
+    uploadError () {
+      alert('上传失败')
+    },
+    uploadSuccess () {
+      alert('上传成功')
+      this.dialogFormVisible = false
+    },
     showMyPost () {
       router.push({path: '/personalPage/myPost'})
     },

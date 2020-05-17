@@ -1,26 +1,30 @@
 <template>
-    <div class="markdown" style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239)">
-      <el-row>
+  <div class="markdown" style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239)">
+    <el-row>
       <el-col :span="4" style="">555</el-col>
-      <el-col :span="16" style="background-color:white;">
+      <el-col :span="16" style="background-color:white; margin:20px 0 0 0">
         <el-row style="margin:10px 0 0 0;">
-        <el-col :span='18'>
-          <input id="title" v-model="title" placeholder="请输入标题..." style="font-size:25px;margin:0 0 0 20px;width:100%;float:left;border: 0px;outline:none;">
-        </el-col>
-        <el-col :span='6'>
-          <el-button size="medium" style="background-color:rgb(2, 155, 98);color:white;float:right;margin:0 20px 0 0;">发布帖子<i class="el-icon-upload el-icon--right"></i></el-button>
-        </el-col>
-      </el-row>
-      <div class="container">
-            <mavon-editor @save='saveMD'  :boxShadow='false' v-model="content" ref="md" @imgAdd="$imgAdd" @change="change" style="min-height: 900px;border:none;"/>
-            <!-- <mavon-editor v-model="content" v-html="getRender"   @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/> -->
-            <!-- <div v-html="render"></div> -->
-            <!-- <button @click="submit">提交</button> -->
+          <el-col :span='18'>
+            <input id="title" v-model="title" placeholder="请输入标题..."
+              style="font-size:25px;margin:0 0 0 20px;width:100%;float:left;border: 0px;outline:none;">
+          </el-col>
+          <el-col :span='6'>
+            <el-button @click="createPost" size="medium"
+              style="background-color:rgb(2, 155, 98);color:white;float:right;margin:0 20px 0 0;">发布帖子<i
+                class="el-icon-upload el-icon--right"></i></el-button>
+          </el-col>
+        </el-row>
+        <div class="container">
+          <mavon-editor :ishljs="true" @save='saveMD' :boxShadow='false' v-model="content" ref="md" @imgDel='$imgDel'
+            @imgAdd="$imgAdd" @change="change" style="min-height: 900px;border:none;" />
+          <!-- <mavon-editor v-model="content" v-html="getRender"   @imgAdd="$imgAdd" @change="change" style="min-height: 600px"/> -->
+          <!-- <div v-html="render"></div> -->
+          <!-- <button @click="submit">提交</button> -->
         </div>
       </el-col>
       <el-col :span="4" style="">sas</el-col>
     </el-row>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -45,11 +49,32 @@ export default {
     }
   },
   methods: {
+    createPost () {
+      $('.fa-mavon-floppy-o').click()
+    },
+    $imgDel (pos) {
+      console.log(pos)
+      var pic = pos[0].split('http://47.115.131.98:39002/MDPic/')
+      console.log(pic)
+      console.log(pic[1])
+      this.$axios({
+        url: 'http://47.115.131.98:888/deleteMDPic',
+        method: 'post',
+        data: {
+          userId: sessionStorage.userId,
+          userCount: sessionStorage.userCount,
+          fileName: pic[1]
+        }
+      }).then((response) => {
+        console.log(response.data)
+      })
+    },
     // 将图片上传到服务器，返回地址替换到md中
     $imgAdd (pos, $file) {
       var formdata = new FormData()
       formdata.append('file', $file)
       formdata.append('userId', sessionStorage.userId)
+      formdata.append('userCount', sessionStorage.userCount)
       this.$axios({
         url: 'http://47.115.131.98:888/uploadMDPic',
         method: 'post',
@@ -84,7 +109,7 @@ export default {
           }
         }).then((result) => {
           console.log(result)
-        // console.log(url)
+          // console.log(url)
         })
       }
     }
@@ -114,7 +139,5 @@ export default {
 </script>
 
 <style scoped>
-
-@import '../assets/iconfont/iconfont.css'
-
+@import "../assets/iconfont/iconfont.css";
 </style>
