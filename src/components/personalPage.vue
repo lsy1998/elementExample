@@ -358,6 +358,8 @@ export default {
     }
   },
   mounted () {
+    alert(this.$route.query.userCount)
+    // console.log(router.query.userCount)
     $('#personalPageDiv').height($(window).height() - $('#meun').height())
     console.log(this.$store.state.baseUrl)
     var _this = this
@@ -424,7 +426,12 @@ export default {
         color: 'rgb(2, 155, 98)'
       })
     })
-    router.push({path: '/personalPage/myPost'})
+    this.$router.push({
+      path: '/personalPage/myPost',
+      query: {
+        userCount: this.$route.query.userCount
+      }
+    })
   }
 }
 </script>

@@ -18,6 +18,7 @@
 import $ from 'jquery'
 import axios from 'axios'
 import router from '../router'
+import md5 from 'js-md5'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 export default {
   name: 'changePassword',
@@ -43,7 +44,7 @@ export default {
         url: 'http://47.115.131.98:39002/changePassword',
         data: {
           userCount: _this._data.userCount,
-          userPassword: _this._data.userPassword
+          userPassword: md5(`${_this._data.userPassword}545464`)
         }
       }).then(function (response) {
         console.log(response.data)

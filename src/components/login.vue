@@ -28,7 +28,8 @@
 import $ from 'jquery'
 import axios from 'axios'
 // import router from 'vue-router'
-import router from '../router'
+// import router from '../router'
+import md5 from 'js-md5'
 export default {
   name: 'login',
   data () {
@@ -74,13 +75,18 @@ export default {
         url: 'http://47.115.131.98:39002/login',
         data: {
           userCount: this.ruleForm.userCount,
-          userPassword: this.ruleForm.userPassword
+          userPassword: md5(`${this.ruleForm.userPassword}545464`)
         }
       }).then((response) => {
         console.log(response.data)
         sessionStorage.userId = response.data.userId
         sessionStorage.userCount = this.ruleForm.userCount
-        router.push({ path: '/personalPage' })
+        this.$router.push({
+          path: '/personalPage',
+          query: {
+            userCount: this.ruleForm.userCount
+          }
+        })
         // console.log(sessionStorage.userId)
       })
     }

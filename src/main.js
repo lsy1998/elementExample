@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import md5 from 'js-md5'
 import Vuex from 'vuex'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -17,6 +18,7 @@ import 'mavon-editor/dist/css/index.css'
 // import '../static/dist/prism1.css'
 import './assets/css/prism.css'
 import cookies from 'vue-cookies'
+import HighchartsVue from 'highcharts-vue'
 // import './assets/prism.js'
 // use
 // import CKEditor from 'ckeditor4-vue'
@@ -36,7 +38,9 @@ Vue.use(Vuex)
 Vue.use(store)
 Vue.use(Element)
 Vue.use(Router)
+Vue.use(HighchartsVue)
 // Vue.use(axios)
+Vue.prototype.$md5 = md5
 Vue.prototype.$axios = axios
 Vue.prototype.$cookies = cookies
 // Vue.use($)

@@ -45,6 +45,7 @@
 <script>
 import $ from 'jquery'
 import axios from 'axios'
+import md5 from 'js-md5'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 export default {
   name: 'registe',
@@ -133,7 +134,7 @@ export default {
         url: 'http://47.115.131.98:39002/addUser',
         data: {
           userCount: this.ruleForm.userCount,
-          userPassword: this.ruleForm.userPassword
+          userPassword: md5(`${this.ruleForm.userPassword}545464`)
         }
       }).then(function (response) {
         console.log(response.data)

@@ -47,7 +47,7 @@
                 <div  @click="chooseMethod($event)" data-name='regionGrow'>区域生长算法</div>
               </el-collapse-item>
               <el-collapse-item title="特征提取">
-                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">PCA算法</div>
+                <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0"  @click="chooseMethod($event)" data-name='histogram'>PCA算法</div>
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">LDA算法</div>
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">LBP特征</div>
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">灰度共生矩阵算法</div>

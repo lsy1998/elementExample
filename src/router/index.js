@@ -28,6 +28,8 @@ import OTSU from '@/components/teach/OTSU'
 import regionGrow from '@/components/teach/regionGrow'
 import zjl from '@/components/teach/zjl'
 import bilinearInterpolation from '@/components/teach/bilinearInterpolation'
+import histogram from '@/components/teach/histogram'
+
 Vue.use(Router)
 
 export default new Router({
@@ -36,6 +38,11 @@ export default new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/histogram',
+      name: 'histogram',
+      component: histogram
     },
     {
       path: '/canny',

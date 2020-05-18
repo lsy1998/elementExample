@@ -47,7 +47,7 @@
 <script>
 import $ from 'jquery'
 import router from './router'
-
+import md5 from 'js-md5'
 export default {
   // store,
   data () {
@@ -68,7 +68,7 @@ export default {
       console.log(key, keyPath)
     },
     demo1 () {
-      // var _this = this
+      // var _this = this 25f9e794323b453885f5181f1b624d0b
       console.log('click')
       // $('#meun').hide()
       // _this._data.color = '#323232'
@@ -84,6 +84,7 @@ export default {
   mounted () {
     router.push({ path: '/index' })
     $('body').css('background-color', 'white')
+    console.log(md5(`${111}545464`))
     // if ($('#demo1').click()) {
     //   console.log('click')
     // }
