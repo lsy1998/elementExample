@@ -1,41 +1,41 @@
 <template>
   <div id="app" style="margin:0px; background-color:white;">
-    <el-row id="meun">
+    <el-row id="meun" style="box-shadow:0 2px 1px 1px rgb(228, 228, 228); border-top:2px solid rgb(2, 155, 98)">
       <el-col :span="4" style="color:white;">555</el-col>
       <el-col :span="16">
         <el-menu :default-active="activeIndex2" mode="horizontal" @select="handleSelect" text-color="black"
-          active-text-color="rgb(0, 154, 97)">
-          <el-menu-item index="1" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/demo">DEMO</router-link>
+          active-text-color="black">
+          <el-menu-item class="index" index="1" style="border:0;">
+            <router-link  style=" text-decoration:none; font-size:16px" to="/index"><span class="meunItem index1" @click="toggleMeunItem($event)" > 首页</span></router-link>
           </el-menu-item>
-          <el-menu-item index="3" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/teach">teach</router-link>
+          <el-menu-item class="course" index="3" style="border:0;">
+            <router-link  style=" text-decoration:none; font-size:16px" to="/course" > <span class="meunItem course1" @click="toggleMeunItem($event)"> 教程学习</span></router-link>
           </el-menu-item>
-          <el-menu-item id="demo1" @click="demo1" index="4" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/newDemo">DEMO1</router-link>
+          <el-menu-item class="viewer"  @click="demo1" index="4" style="border:0;">
+            <router-link style=" text-decoration:none; font-size:16px" to="/newDemo"> <span class="meunItem viewer1" @click="toggleMeunItem($event)" > 图像查看器</span></router-link>
           </el-menu-item>
-          <el-menu-item index="9" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/personalPage">PERSONALPAGE</router-link>
+          <el-menu-item class="downloadFile" index="9" style="border:0;">
+            <router-link class="downloadFile2" style=" text-decoration:none; font-size:16px" to="/downloadResource"><span class="meunItem downloadFile1" @click="toggleMeunItem($event)"> 资源下载</span></router-link>
           </el-menu-item>
-          <el-menu-item index="10" style="border:0;">
-            <router-link style=" text-decoration:none;" to="/newClub">CLUB</router-link>
+          <el-menu-item class="talk" index="10" style="border:0;">
+            <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 交流互动</span></router-link>
           </el-menu-item>
-          <el-menu-item index="7" style="border:0;">
+          <!-- <el-menu-item index="7" style="border:0;">
             <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"
               @select="handleSelect"></el-autocomplete>
-          </el-menu-item>
-          <el-menu-item index="8" style="border:0;float:right;">
+          </el-menu-item> -->
+          <el-menu-item index="8" style="border:0;float:right;"  @click="toPersonalPage">
             <template slot="title">
               <el-avatar shape="square" :size="30" :src="this.$store.state.headPicUrl"></el-avatar>
             </template>
           </el-menu-item>
           <el-menu-item index="6" style="border:0;float:right;">
             <el-button style="text-decoration:none;background-color:rgb(2, 155, 98); color:white;">
-              <router-link style=" text-decoration:none;" to="/registe">免费注册</router-link>
+              <router-link style=" text-decoration:none;  font-size:14px" to="/registe">免费注册</router-link>
             </el-button>
           </el-menu-item>
           <el-menu-item index="5" style="border:0;float:right;">
-            <router-link style=" text-decoration:none;" to="/login">立即登录</router-link>
+            <router-link style=" text-decoration:none;  font-size:14px" to="/login">立即登录</router-link>
           </el-menu-item>
         </el-menu>
       </el-col>
@@ -64,6 +64,17 @@ export default {
     }
   },
   methods: {
+    // toggleMeunItem (e) {
+    //   var el = e.currentTarget
+    //   $(el).addClass('meunItem1')
+    //   $(el).removeClass('meunItem')
+    //   $('.meunItem').removeClass('meunItem1')
+    //   $(el).addClass('meunItem')
+    // },
+    toPersonalPage () {
+      alert(111)
+      this.$router.push({path: '/personalPage'})
+    },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
     },
@@ -88,11 +99,113 @@ export default {
     // if ($('#demo1').click()) {
     //   console.log('click')
     // }
+  },
+  watch: {
+    $route (to) {
+      console.log(to)
+      // if (to.path.indexOf('index') != -1) {
+      //   // 路由变化后重新获取帖子列表
+      //   this.$http.get('/api/communityList').then((res) => {
+      //     if (res.data.errCode === 0) {
+      //       let getRes = res.data.data.hotList
+      //       this.postList = getRes
+      //     }
+      //   })
+      // }
+      if (to.name === 'newDemo') {
+        $('#meun').hide()
+      } else {
+        $('#meun').show()
+      }
+      if (to.matched[0].name === 'downloadResource') {
+        // console.log('dbajd')
+        // $('.meunItem').addClass('meunItem2')
+        // $('#downloadFile').removeClass('meunItem1')
+        // $('.meunItem').removeClass('meunItem1')
+        // $('.downloadFile1').addClass('meunItem3')
+        // $('#downloadFile').addClass('meunItem')
+        // $('.downloadFile').click()
+        // $('.downloadFile1').click()
+        // $('.downloadFile2').click()
+        // var el = e.currentTarget
+        $('.downloadFile1').addClass('meunItem1')
+        $('.downloadFile1').removeClass('meunItem')
+        $('.meunItem').removeClass('meunItem1')
+        $('.downloadFile1').addClass('meunItem')
+      }
+      if (to.matched[0].name === 'index') {
+        $('.index1').addClass('meunItem1')
+        $('.index1').removeClass('meunItem')
+        $('.meunItem').removeClass('meunItem1')
+        $('.index1').addClass('meunItem')
+        // $('#index').addClass('meunItem1')
+        // $('#index').removeClass('meunItem')
+        // $('.meunItem').removeClass('meunItem1')
+        // $('.meunItem').addClass('meunItem2')
+        // $('#index').addClass('meunItem')
+        // $('.index').click()
+      }
+      if (to.matched[0].name === 'newClub') {
+        $('.talk1').addClass('meunItem1')
+        $('.talk1').removeClass('meunItem')
+        $('.meunItem').removeClass('meunItem1')
+        $('.talk1').addClass('meunItem')
+        // $('#talk').addClass('meunItem1')
+        // $('#talk').removeClass('meunItem')
+        // $('.meunItem').removeClass('meunItem1')
+        // $('.meunItem').addClass('meunItem2')
+        // $('#talk').addClass('meunItem')
+        // $('.talk').click()
+      }
+      if (to.matched[0].name === 'newDemo') {
+        $('.viewer1').addClass('meunItem1')
+        $('.viewer1').removeClass('meunItem')
+        $('.meunItem').removeClass('meunItem1')
+        $('.viewer1').addClass('meunItem')
+        // $('#viewer').addClass('meunItem1')
+        // $('#viewer').removeClass('meunItem')
+        // $('.meunItem').removeClass('meunItem1')
+        // $('.meunItem').addClass('meunItem2')
+        // $('#viewer').addClass('meunItem')
+        // $('.viewer').click()
+      }
+      if (to.matched[0].name === 'course') {
+        $('.course1').addClass('meunItem1')
+        $('.course1').removeClass('meunItem')
+        $('.meunItem').removeClass('meunItem1')
+        $('.course1').addClass('meunItem')
+        // $('#course').addClass('meunItem1')
+        // $('#course').removeClass('meunItem')
+        // $('.meunItem').removeClass('meunItem1')
+        // $('.meunItem').addClass('meunItem2')
+        // $('#course').addClass('meunItem')
+        // $('.course').click()
+      }
+    }
   }
 }
 </script>
 
-<style>
+<style scope>
+@keyframes mymove {
+  from{font-size:16px;}
+  to{font-size:20px;}
+}
+.meunItem1 {
+  animation: mymove 0.5s;
+  font-size:20px;
+  color:rgb(2, 155, 98)
+}
+.meunItem3 {
+  font-size:20px;
+  color:rgb(2, 155, 98)
+}
+.meunItem2 {
+  /* animation: mymove 0.5s;
+  font-size:20px; */
+  font-size:16px;
+  color:black
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

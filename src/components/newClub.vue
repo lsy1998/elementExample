@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row>
+    <el-row style="margin: 10px 0 0 0">
       <el-col :span="4">
         <div style="color:white;">bfbcbc</div>
       </el-col>
@@ -25,11 +25,15 @@
           <el-col :span='4'>
             <el-button style="margin:50px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">为你推荐
             </el-button>
-            <el-divider content-position="left" @click="showDownloadFileList">医学图像下载</el-divider>
+            <el-button style="margin:10px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">最近帖子
+            </el-button>
+            <el-button style="margin:10px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">相关帖子
+            </el-button>
+            <!-- <el-divider content-position="left" @click="showDownloadFileList">医学图像下载</el-divider>
             <div style="width:80%;padding:5px 10px 5px 10px;">MRI</div>
-            <div style="width:80%;padding:5px 10px 5px 10px;">CT</div>
-            <el-divider content-position="left" style="color:rgb(2, 155, 98)">相关教程</el-divider>
-            <el-collapse accordion style="margin:0 40px;">
+            <div style="width:80%;padding:5px 10px 5px 10px;">CT</div> -->
+            <!-- <el-divider content-position="left" style="color:rgb(2, 155, 98)">相关教程</el-divider> -->
+            <!-- <el-collapse accordion style="margin:0 40px;">
               <el-collapse-item>
                 <template slot="title">图像几何变换</template>
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0"  @click="chooseMethod($event)" data-name='zjl'>最近邻插值法</div>
@@ -54,11 +58,11 @@
                 <div style="border-bottom:1px solid rgb(226, 228, 234);margin:3px 0 0 0">SIFT特征算法</div>
                 <div>HOG特征算法</div>
               </el-collapse-item>
-            </el-collapse>
+            </el-collapse> -->
             <el-divider content-position="left" @click="showOtherInfo">友情链接</el-divider>
             <img src="../assets/image/logo/logo-jssq.jpg" alt="" height="40px"  @click="jumpTo($event)" data-link='http://www.eepw.com.cn/tech/s/k/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86'>
             <el-row style="margin:0 40px">
-              <el-col :span='12'><img src="../assets/image/logo/csdn-logo.png" alt="" height="50px"  @click="jumpTojumpTo($event)" data-link='https://bbs.csdn.net/forums/VC_ImageProcessing'></el-col>
+               <el-col :span='12'><img src="../assets/image/logo/csdn-logo.png" alt="" height="50px" style="position:relative; right:30px"  @click="jumpTojumpTo($event)" data-link='https://bbs.csdn.net/forums/VC_ImageProcessing'></el-col>
               <el-col :span='12'><img src="../assets/image/logo/ituring.png" alt="" height="30px"  @click="jumpTojumpTo($event)" data-link='https://www.ituring.com.cn/tag/2998' style="margin:5px 0 0 0"></el-col>
             </el-row>
 

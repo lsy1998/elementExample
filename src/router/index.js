@@ -29,15 +29,84 @@ import regionGrow from '@/components/teach/regionGrow'
 import zjl from '@/components/teach/zjl'
 import bilinearInterpolation from '@/components/teach/bilinearInterpolation'
 import histogram from '@/components/teach/histogram'
+import downloadResource from '@/components/downloadResource'
+import course from '@/components/course'
+import zjlCourse from '@/components/introduce/zjlCourse'
+import bilinearInterpolationCourse from '@/components/introduce/bilinearInterpolationCourse'
+import cannyCourse from '@/components/introduce/cannyCourse'
+import LaplacianCourse from '@/components/introduce/LaplacianCourse'
+import OTSUCourse from '@/components/introduce/OTSUCourse'
+import regionGrowCourse from '@/components/introduce/regionGrowCourse'
+import histogramCourse from '@/components/introduce/histogramCourse'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/course',
+      name: 'course',
+      component: course,
+      children: [
+        {
+          path: 'zjlCourse',
+          name: 'zjlCourse',
+          component: zjlCourse
+        },
+        {
+          path: 'histogramCourse',
+          name: 'histogramCourse',
+          component: histogramCourse
+        },
+        {
+          path: 'regionGrowCourse',
+          name: 'regionGrowCourse',
+          component: regionGrowCourse
+        },
+        {
+          path: 'OTSUCourse',
+          name: 'OTSUCourse',
+          component: OTSUCourse
+        },
+        {
+          path: 'LaplacianCourse',
+          name: 'LaplacianCourse',
+          component: LaplacianCourse
+        },
+        {
+          path: 'cannyCourse',
+          name: 'cannyCourse',
+          component: cannyCourse
+        },
+        {
+          path: 'bilinearInterpolationCourse',
+          name: 'bilinearInterpolationCourse',
+          component: bilinearInterpolationCourse
+        }
+      ]
+    },
+    {
+      path: '/downloadResource',
+      name: 'downloadResource',
+      component: downloadResource,
+      children: [
+        {
+          path: 'downloadFileList',
+          name: 'downloadFileList',
+          component: downloadFileList
+        }
+      // {
+      //   path: 'otherInfo',
+      //   name: 'otherInfo',
+      //   component: otherInfo
+      // },
+      ]
     },
     {
       path: '/histogram',

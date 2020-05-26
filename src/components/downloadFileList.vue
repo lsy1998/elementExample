@@ -43,8 +43,11 @@ export default {
       this.$axios({
         method: 'get',
         url: 'http://47.115.131.98:39002/download',
+        // url: 'http://47.115.131.98:39002/download',
         params: {
-          path: $(el).attr('data-index')
+          // path: $(el).attr('data-index')
+          path: $(el).attr('data-index'),
+          name: $(el).attr('data-name')
         }
       }).then((res) => {
         const url = window.URL.createObjectURL(new Blob([res.data]))

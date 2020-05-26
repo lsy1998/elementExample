@@ -251,12 +251,12 @@
           </div>
 
           <div style="border-top:1px solid rgb(128, 128, 128);">
-            <div
+            <div @click="showDicomList"
               style="background-color:rgb(91, 91, 91);width:80px;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200);">
               文件列表</div>
           </div>
           <el-row style="border-top:1px solid rgb(128, 128, 128); font-size:14px; color:rgb(192, 192, 192);">
-            <div @click="showDicomList" style=";margin:10px 0 0 0;">前往<strong
+            <div @click="toClub" style=";margin:10px 0 0 0;">前往<strong
                 style="color:rgb(2, 155, 98);cursor:pointer">社区</strong>查看更多关于医学图像处理
             </div>
           </el-row>
@@ -284,11 +284,9 @@
             <div
               style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200);display:inline-block;float:left;">
               序列</div>
-            <div
-              style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0; color:rgb(200, 200, 200);display:inline-block;float:right;"
+            <div style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0; color:rgb(200, 200, 200);display:inline-block;float:right;"
               id="showMeun" @click="showMeun">
-              <router-link style=" text-decoration:none;" to="/personalPage"><i class="icon icon-uniE163"
-                  style="font-size:28px;color:rgb(200, 200, 200);"></i></router-link>
+              <i class="icon icon-uniE163" style="font-size:28px;color:rgb(200, 200, 200);"></i>
             </div>
           </div>
           <div style="margin:10px 0 0 0;clear:both;border-top:1px solid rgb(128, 128, 128);">
@@ -477,8 +475,11 @@ export default {
     showDicomList () {
       router.push({ path: '/dicomList' })
     },
+    toClub () {
+      router.push({ path: '/newClub' })
+    },
     showMeun () {
-      $('#meun').show()
+      router.go(-1)
     },
     addSpeed () {
       var _this = this
@@ -633,42 +634,42 @@ export default {
         cornerstone.displayImage(element, image);
         cornerstoneTools.addStackStateManager(element, ["stack"]);
         cornerstoneTools.addToolState(element, "stack", stack);
-        element.addEventListener('mousedown', function (e) {
-            let lastX = e.pageX;
-            let lastY = e.pageY;
-            const mouseButton = e.which;
+        // element.addEventListener('mousedown', function (e) {
+        //     let lastX = e.pageX;
+        //     let lastY = e.pageY;
+        //     const mouseButton = e.which;
 
-            function mouseMoveHandler(e) {
-                const deltaX = e.pageX - lastX;
-                const deltaY = e.pageY - lastY;
-                lastX = e.pageX;
-                lastY = e.pageY;
+        //     function mouseMoveHandler(e) {
+        //         const deltaX = e.pageX - lastX;
+        //         const deltaY = e.pageY - lastY;
+        //         lastX = e.pageX;
+        //         lastY = e.pageY;
 
-                if (mouseButton === 1) {
-                    let viewport = cornerstone.getViewport(element);
-                    viewport.voi.windowWidth += (deltaX / viewport.scale);
-                    viewport.voi.windowCenter += (deltaY / viewport.scale);
-                    cornerstone.setViewport(element, viewport);
-                } else if (mouseButton === 2) {
-                    let viewport = cornerstone.getViewport(element);
-                    viewport.translation.x += (deltaX / viewport.scale);
-                    viewport.translation.y += (deltaY / viewport.scale);
-                    cornerstone.setViewport(element, viewport);
-                } else if (mouseButton === 3) {
-                    let viewport = cornerstone.getViewport(element);
-                    viewport.scale += (deltaY / 100);
-                    cornerstone.setViewport(element, viewport);
-                }
-            }
+        //         if (mouseButton === 1) {
+        //             let viewport = cornerstone.getViewport(element);
+        //             viewport.voi.windowWidth += (deltaX / viewport.scale);
+        //             viewport.voi.windowCenter += (deltaY / viewport.scale);
+        //             cornerstone.setViewport(element, viewport);
+        //         } else if (mouseButton === 2) {
+        //             let viewport = cornerstone.getViewport(element);
+        //             viewport.translation.x += (deltaX / viewport.scale);
+        //             viewport.translation.y += (deltaY / viewport.scale);
+        //             cornerstone.setViewport(element, viewport);
+        //         } else if (mouseButton === 3) {
+        //             let viewport = cornerstone.getViewport(element);
+        //             viewport.scale += (deltaY / 100);
+        //             cornerstone.setViewport(element, viewport);
+        //         }
+        //     }
 
-            function mouseUpHandler() {
-                document.removeEventListener('mouseup', mouseUpHandler);
-                document.removeEventListener('mousemove', mouseMoveHandler);
-            }
+        //     function mouseUpHandler() {
+        //         document.removeEventListener('mouseup', mouseUpHandler);
+        //         document.removeEventListener('mousemove', mouseMoveHandler);
+        //     }
 
-            document.addEventListener('mousemove', mouseMoveHandler);
-            document.addEventListener('mouseup', mouseUpHandler);
-        });
+        //     document.addEventListener('mousemove', mouseMoveHandler);
+        //     document.addEventListener('mouseup', mouseUpHandler);
+        // });
       },
       function (err) {
         console.log(err);

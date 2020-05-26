@@ -81,6 +81,8 @@ export default {
         console.log(response.data)
         sessionStorage.userId = response.data.userId
         sessionStorage.userCount = this.ruleForm.userCount
+        this.$cookies.set('userCount', this.ruleForm.userCount, 60 * 60 * 24 * 7)
+        this.$cookies.set('userPassword', this.ruleForm.userPassword, 60 * 60 * 24 * 7)
         this.$router.push({
           path: '/personalPage',
           query: {
@@ -92,6 +94,10 @@ export default {
     }
   },
   mounted () {
+    if (this.$cookies.get('userCount') !== '') {
+      this.ruleForm.userCount = this.$cookies.get('userCount')
+      this.ruleForm.userPassword = this.$cookies.get('userPassword')
+    }
     $('#loginDiv').height($(window).height() - $('#meun').height() - 100)
     // alert($(window).height() - $('#meun').height())
     // resize()

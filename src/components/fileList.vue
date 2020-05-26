@@ -49,10 +49,16 @@ export default {
           name: row.fileName
         }
       }).then((res) => {
+        // const url = window.URL.createObjectURL(new Blob([res.data]))
+        // const link = document.createElement('a')
+        // link.href = url
+        // link.setAttribute('download', Buffer.from(row.fileName, 'base64').toString())
+        // document.body.appendChild(link)
+        // link.click()
         const url = window.URL.createObjectURL(new Blob([res.data]))
         const link = document.createElement('a')
         link.href = url
-        link.setAttribute('download', Buffer.from(row.fileName, 'base64').toString())
+        link.setAttribute('download', row.fileName)
         document.body.appendChild(link)
         link.click()
       })

@@ -9,10 +9,10 @@
           <el-col :span="6" style="height:200px;">
             <el-row>
               <input type="file" multiple @change="uploadHeadPic" v-show="showHeadPic" id="headPic">
-              <img :src="this.$store.state.headPicUrl" alt="" width="60%" height="60%"
+              <img :src="this.$store.state.headPicUrl" alt="" width="160px" height="160px"
                 style="margin:40px 8px 0 0;object-fit: cover;border-radius:5px;" @click="upload">
             </el-row>
-            <el-row style="margin:10px 0 0 20px;">
+            <!-- <el-row style="margin:10px 0 0 20px;">
               <el-col :span="4" style="color:white">brave</el-col>
               <el-col :span="6">关注</el-col>
               <el-col :span="5">粉丝</el-col>
@@ -23,10 +23,10 @@
               <el-col :span="6" style="font-size:12px;color:rgb(0, 154, 97)">2人</el-col>
               <el-col :span="5" style="font-size:12px;color:rgb(0, 154, 97)">12人</el-col>
               <el-col :span="9" style="color:white">happy</el-col>
-            </el-row>
+            </el-row> -->
           </el-col>
           <el-col :span="6">
-            <div style="margin:35px 0 0 0;font-size:24px;text-align:left">
+            <div style="margin:50px 0 0 0;font-size:24px;text-align:left">
               {{userName}}
               <i @click="addInfo" style="margin:0 0 0 10px;font-size:12px" >填写个人信息</i>
             </div>

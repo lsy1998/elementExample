@@ -3,7 +3,12 @@
     <el-row>
       <el-col :span="8" id='code' style="background-color:white;box-shadow:5px 0 3px -1px rgb(228, 228, 228);">
         <div style="color:black;margin:40px 45px 20px 45px;text-align:left">
-          最近邻插值法nearest_neighbor是最简单的灰度值插值。也称作零阶插值，就是令变换后像素的灰度值等于距它最近的输入像素的灰度值。</div>
+          区域生长是一种串行区域分割的图像分割方法。区域生长是指从某个像素出发，按照一定的准则，逐步加入邻近像素，当满足一定的条件时，区域生长终止。区域生长的好坏决定于1.初始点（种子点）的选取。2.生长准则。3.终止条件。区域生长是从某个或者某些像素点出发，最后得到整个区域，进而实现目标的提取。
+        </div>
+        <div style="color:black;margin:40px 45px 20px 45px;text-align:left">
+         区域生长的原理：<br>
+区域生长的基本思想是将具有相似性质的像素集合起来构成区域。具体先对每个需要分割的区域找一个种子像素作为生长起点，然后将种子像素和周围邻域中与种子像素有相同或相似性质的像素（根据某种事先确定的生长或相似准则来判定）合并到种子像素所在的区域中。将这些新像素当作新的种子继续上面的过程，直到没有满足条件的像素可被包括进来。这样一个区域就生长成了。
+        </div>
         <div style="margin:0px 45px 0px 40px;">
           <pre id="code" class="line-numbers"><code class="language-python">
         def Laplacian():
@@ -68,7 +73,7 @@ export default {
         data: {
           userCount: sessionStorage.userCount,
           num1: $('#num1').val()
-        //   num2: $('#num2').val()
+          //   num2: $('#num2').val()
         }
       }).then((res) => {
         console.log(res.data)
