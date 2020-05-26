@@ -20,6 +20,9 @@
           <el-menu-item class="talk" index="10" style="border:0;">
             <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 交流互动</span></router-link>
           </el-menu-item>
+          <el-menu-item class="talk" index="10" style="border:0;">
+            <router-link style=" text-decoration:none; font-size:16px" to="/viewer"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 新查看器</span></router-link>
+          </el-menu-item>
           <!-- <el-menu-item index="7" style="border:0;">
             <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"
               @select="handleSelect"></el-autocomplete>
@@ -112,7 +115,7 @@ export default {
       //     }
       //   })
       // }
-      if (to.name === 'newDemo') {
+      if (to.name === 'newDemo' || to.name === 'viewer') {
         $('#meun').hide()
       } else {
         $('#meun').show()

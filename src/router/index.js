@@ -38,6 +38,7 @@ import LaplacianCourse from '@/components/introduce/LaplacianCourse'
 import OTSUCourse from '@/components/introduce/OTSUCourse'
 import regionGrowCourse from '@/components/introduce/regionGrowCourse'
 import histogramCourse from '@/components/introduce/histogramCourse'
+import viewer from '@/components/viewer'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/viewer',
+      name: 'viewer',
+      component: viewer
     },
     {
       path: '/course',
