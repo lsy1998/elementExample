@@ -1,12 +1,13 @@
 <template>
   <div class="container">
+    <el-row style="height:30px; background-color:rgb(52, 52, 52)"></el-row>
     <el-row>
       <el-col :span="3" id="left">
         <div id="sideBar"
           style="height:400px;display:inline-block; background-color:white;width:100%;background-color:rgb(50, 50, 50);">
           <div style="background-color:rgb(37, 37, 37);border-top:1px solid rgb(128, 128, 128);">
             <div
-              style="background-color:rgb(91, 91, 91);width:80px;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200)">
+              style="background-color:rgb(50,50,50);width:80px;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98)">
               基本工具</div>
           </div>
           <div>
@@ -177,66 +178,88 @@
                 <div
                   style="width:90%;height:30px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
                   @click="activeButton('Angle')">
-                  <div style="color:rgb(192, 192, 192);margin:3px 0 10px 0;display:inline-block;">倍速</div>
+                  <div style="color:rgb(192, 192, 192);margin:3px 0 10px 0;display:inline-block;font-size:14px;">倍速</div>
                   <p
-                    style="display:inline-block;color:rgb(192, 192, 192);background-color:rgb(41, 41, 41);width:50%;margin:3px 0 0 0;height:20px;padding:4px 0 0 0;">
+                    style="display:inline-block;color:rgb(192, 192, 192);background-color:rgb(41, 41, 41);width:50%;margin:3px 0 0 0;height:20px;padding:4px 0 0 0;font-size:14px">
                     {{2-speed}}</p>
                 </div>
               </el-col>
             </el-row>
-            <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);">
+            <el-row style="background-color:rgb(50, 50, 50);border-buttom:1px solid rgb(128, 128, 128);">
               <el-col :span="8">
                 <div
                   style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
                   @click="invertDicom">
-                  <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                  <div class="el-icon-sort" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div><br>
                   <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">颜色反转</label>
                 </div>
               </el-col>
-
-              <el-col :span="4">
+              <el-col :span="8">
                 <div
                   style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
-                  @click="activeButton('Angle')">
-                  <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+                  @click="activeButton('CobbAngle')">
+                  <div class="el-icon-camera-solid" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div><br>
+                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">保存图片</label>
                 </div>
               </el-col>
-
-              <el-col :span="4">
+              <el-col :span="8">
                 <div
                   style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
-                  @click="activeButton('Angle')">
-                  <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+                  @click="activeButton('Eraser')">
+                  <div class="icon icon-dodo-redo" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
+                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">橡皮擦</label>
                 </div>
               </el-col>
-
-              <el-col :span="4">
+              <!-- <el-col :span="6">
                 <div
                   style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
-                  @click="activeButton('Angle')">
+                  @click="activeButton('Magnify')">
                   <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
+                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">放大镜</label>
                 </div>
+              </el-col> -->
+            </el-row>
+            <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);">
+               <el-col :span='1' style="color:rgb(50,50,50)">brave</el-col>
+              <el-col :span="6" >
+                <el-row style="margin:3px 0 0 0;border-top:1px solid rgb(37, 37, 37);">
+                  <el-col :span='14' style="padding:3px 0 0 0;font-size:12px;height:20px;background-color:rgb(50, 50, 50); color:rgb(192, 192, 192)">布局</el-col>
+                  <el-col :span='10'>
+                  <select style="padding:3px 0 0 0;font-size:12px;height:20px;background-color:rgb(50, 50, 50);border-radius:3px; color:rgb(192, 192, 192);width:90%" @change="layoutChange" id="layoutSelect">
+                  <option value="0">1x1</option>
+                  <option value="1">1x2</option>
+                  <option value="2">2x2</option>
+                </select>
+                  </el-col>
+                </el-row>
               </el-col>
-
-              <el-col :span="4">
-                <div
-                  style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
-                  @click="activeButton('Angle')">
-                  <div class="icon icon-dodo-angle" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">角度</label>
-                </div>
+              <el-col :span='2' style="color:rgb(50,50,50)">brave</el-col>
+              <el-col :span="14" >
+                <el-row
+              style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);padding:5px 0 5px 0;">
+              <el-col :span='8'>
+                <div style="color:rgb(192, 192, 192);font-size:12px;"> 伪彩色 </div>
+              </el-col>
+              <el-col :span='8'>
+                <select id="colormaps" @change="colormapChanged" style="width:100%;background-color:rgb(50, 50, 50);border-radius:3px; color:rgb(192, 192, 192);">
+                  <option value="">Select...</option>
+                </select>
+              </el-col>
+              <el-col :span='8'>
+                <button @click="resetViewport"
+                  style="color:rgb(192, 192, 192);font-size:12px; background-color:rgb(50,50,50); padding:0 5px; border:1px solid gray">
+                  重置 </button>
               </el-col>
             </el-row>
-            <el-row
+              </el-col>
+            </el-row>
+            <!-- <el-row
               style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);padding:5px 0 5px 0;">
               <el-col :span='6'>
                 <div style="color:rgb(192, 192, 192);font-size:12px;"> 伪彩色 </div>
               </el-col>
               <el-col :span='8'>
-                <select id="colormaps" @change="colormapChanged" style="width:100%;">
+                <select id="colormaps" @change="colormapChanged" style="width:100%;background-color:rgb(50, 50, 50);border-radius:3px; color:rgb(192, 192, 192);">
                   <option value="">Select...</option>
                 </select>
               </el-col>
@@ -245,17 +268,7 @@
                   style="color:rgb(192, 192, 192);font-size:12px; background-color:rgb(50,50,50); padding:0 5px; border:1px solid gray">
                   重置 </button>
               </el-col>
-            </el-row>
-            <el-row
-              style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);padding:5px 0 5px 0;">
-              <el-col :span='24'>
-                <select style="width:100%" @change="layoutChange" id="layoutSelect">
-                  <option value="1">1x2</option>
-                  <option value="2">2x2</option>
-                  <option value="3">2x3</option>
-                </select>
-              </el-col>
-            </el-row>
+            </el-row> -->
             <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);padding:5px 0 0 0;">
               <el-col :span="24">
                 <canvas id="colorbar" width="250px" height="20px"></canvas>
@@ -263,10 +276,19 @@
             </el-row>
           </div>
 
-          <div style="border-top:1px solid rgb(128, 128, 128);">
+          <div style="border-top:1px solid rgb(128, 128, 128);border-bottom:1px solid rgb(128, 128, 128);background-color:rgb(37, 37, 37)">
             <div @click="showDicomList"
-              style="background-color:rgb(91, 91, 91);width:80px;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200);">
+              style="background-color:rgb(50,50,50);width:80px;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98);">
               文件列表</div>
+          </div>
+          <div style="height:200px; overflow-y:scroll;" class="test-1">
+<el-row v-for="list in dicomList" :key="list" style="border: 1px solid black">
+            <el-row>
+              <el-col :span='12' style="color:rgb(192, 192, 192);font-size:12px;margin:6px 0 0 0; ">{{list[4]}}</el-col>
+              <el-col :span='8 ' style="color:rgb(192, 192, 192);font-size:12px;margin:4px 0 0 0; ">序列数：{{list[7]}}</el-col>
+              <el-col :span='4 '><el-button :data-name='list[4]' size="mini" style="font-size:14px;background-color:rgb(50, 50, 50); color:rgb(192, 192, 192);border:none" icon='el-icon-view'></el-button></el-col>
+            </el-row>
+          </el-row>
           </div>
           <el-row style="border-top:1px solid rgb(128, 128, 128); font-size:14px; color:rgb(192, 192, 192);">
             <div @click="toClub" style=";margin:10px 0 0 0;">前往<strong
@@ -283,58 +305,62 @@
       </el-col>
 
       <el-col :span="18" id="layoutBox">
-        <div style="position:relative; display:inline-block; border: 1px solid rgb(50, 50, 50);float:left" id="canvasDiv1">
-          <div id="resizeKnob"
+        <div style="position:relative; display:inline-block; border: 1px solid rgb(50, 50, 50);float:left; width:100%" id="canvasDiv1">
+          <!-- <div id="resizeKnob"
             style="position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background:red;cursor:se-resize">
-          </div>
-          <div id="dicomImage1" style="width:100%;height:900px" oncontextmenu="return false" onmousedown="return false">
+          </div> -->
+          <div @click="selectElement($event)" data-index='1' style="position: absolute;top:8px;left:5px;color:white; font-size:20px" class="el-icon-aim"></div>
+          <div id="dicomImage1" style="width:100%;height:900px;background-color:black" oncontextmenu="return false" onmousedown="return false">
           </div>
         </div>
-        <div style="position:relative; display:inline-block; border: 1px solid rgb(50, 50, 50);" id="canvasDiv2" v-show="canvasDiv2Show">
-          <div id="resizeKnob"  v-show="canvasDiv2Show"
+        <div  style="position:relative; display:inline-block; border: 1px solid rgb(50, 50, 50);" id="canvasDiv2" v-show="canvasDiv2Show">
+          <!-- <div id="resizeKnob"  v-show="canvasDiv2Show"
             style="position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background:red;cursor:se-resize">
-          </div>
-          <div id="dicomImage2" style="width:100%;height:900px" oncontextmenu="return false" onmousedown="return false">
+          </div> -->
+          <div @click="selectElement($event)" data-index='2' style="position: absolute;top:8px;left:5px;color:white; font-size:20px" class="el-icon-aim"></div>
+          <div id="dicomImage2" style="width:100%;height:900px;background-color:black" oncontextmenu="return false" onmousedown="return false">
           </div>
         </div>
-        <div style="position:relative; display:inline-block" id="canvasDiv3" v-show="canvasDiv3Show">
-          <div id="resizeKnob" v-show="canvasDiv3Show"
+        <div style="position:relative;  display:inline-block; border: 1px solid rgb(50, 50, 50); float:left;bottom:4px" id="canvasDiv3" v-show="canvasDiv3Show">
+          <!-- <div id="resizeKnob" v-show="canvasDiv3Show"
             style="position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background:red;cursor:se-resize">
-          </div>
-          <div id="dicomImage3" style="width:100%;height:900px" oncontextmenu="return false" onmousedown="return false">
+          </div> -->
+          <div @click="selectElement($event)" data-index='3' style="position: absolute;top:8px;left:5px;color:white; font-size:20px" class="el-icon-aim"></div>
+          <div id="dicomImage3" style="width:100%;height:900px;background-color:black" oncontextmenu="return false" onmousedown="return false">
           </div>
         </div>
-        <div style="position:relative; display:inline-block" id="canvasDiv4" v-show="canvasDiv4Show">
-          <div id="resizeKnob" v-show="canvasDiv4Show"
+        <div style="position:relative;  display:inline-block; border: 1px solid rgb(50, 50, 50);bottom:4px" id="canvasDiv4" v-show="canvasDiv4Show">
+          <!-- <div id="resizeKnob" v-show="canvasDiv4Show"
             style="position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background:red;cursor:se-resize">
-          </div>
-          <div id="dicomImage4" style="width:100%;height:900px" oncontextmenu="return false" onmousedown="return false">
+          </div> -->
+          <div @click="selectElement($event)" data-index='4' style="position: absolute;top:8px;left:5px;color:white; font-size:20px" class="el-icon-aim"></div>
+          <div id="dicomImage4" style="width:100%;height:900px;background-color:black" oncontextmenu="return false" onmousedown="return false">
           </div>
         </div>
       </el-col>
       <el-col :span="3" id="right">
-        <div style="overflow-y:scroll;height:900px; background-color:rgb(50, 50, 50);" id="rightSideBar">
+        <div style="overflow-y:scroll;height:900px; background-color:rgb(37, 37, 37);" id="rightSideBar">
           <div style="background-color:rgb(37, 37, 37);border-bottom:1px solid rgb(128, 128, 128);">
-            <div
-              style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0;color:rgb(200, 200, 200);display:inline-block;float:left;">
-              序列</div>
-            <div
-              style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0; color:rgb(200, 200, 200);display:inline-block;float:right;"
-              id="showMeun" @click="showMeun">
+            <div style="background-color:rgb(50,50,50);width:30%;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98);display:inline-block;float:left;">序列</div>
+            <div style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0; color:rgb(200, 200, 200);display:inline-block;float:right;" id="showMeun" @click="showMeun">
               <i class="icon icon-uniE163" style="font-size:28px;color:rgb(200, 200, 200);"></i>
             </div>
           </div>
-          <div style="margin:10px 0 0 0;clear:both;border-top:1px solid rgb(128, 128, 128);">
+          <div v-show="showSerial1" style="margin:10px 0 0 0;clear:both;border-top:1px solid rgb(128, 128, 128);">
             <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
-            <div id="canvas" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div id="canvas1" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
           </div>
-          <div style="margin:10px 0 0 0;">
-            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
-            <div id="canvas" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+          <div v-show="showSerial2" style="margin:10px 0 0 0;">
+            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列2</div>
+            <div id="canvas2" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
           </div>
-          <div style="margin:10px 0 0 0;">
-            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
-            <div id="canvas" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+          <div v-show="showSerial3" style="margin:10px 0 0 0;">
+            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列3</div>
+            <div id="canvas3" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+          </div>
+          <div v-show="showSerial4" style="margin:10px 0 0 0;">
+            <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列4</div>
+            <div id="canvas4" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
           </div>
         </div>
       </el-col>
@@ -362,6 +388,18 @@ export default {
   name: 'viewer',
   data () {
     return {
+      result: '',
+      dicomList: '',
+      serial1: [],
+      serial2: [],
+      serial3: [],
+      serial4: [],
+      length1: 1,
+      length2: 1,
+      showSerial1: true,
+      showSerial2: false,
+      showSerial3: false,
+      showSerial4: false,
       canvasDiv4Show: false,
       canvasDiv3Show: false,
       canvasDiv2Show: false,
@@ -370,7 +408,10 @@ export default {
       play: true,
       imageIds: [],
       imageIds1: [],
+      imageIds2: [],
+      imageIds3: [],
       element: {},
+      currentElement: '',
       crruentDicom: 0,
       drawer: true,
       direction: 'rtl',
@@ -395,19 +436,131 @@ export default {
     }
   },
   methods: {
+    selectElement (e) {
+      switch ($(e.currentTarget).attr('data-index')) {
+        case '1':
+          // console.log(1)
+          this.currentElement = document.getElementById('dicomImage1')
+          break
+        case '2':
+          this.currentElement = document.getElementById('dicomImage2')
+          break
+        case '3':
+          this.currentElement = document.getElementById('dicomImage3')
+          break
+        case '4':
+          this.currentElement = document.getElementById('dicomImage4')
+          break
+        default:
+          break
+      }
+      var el = e.currentTarget
+      // this.currentElement = el
+      console.log(this.currentElement)
+      // console.log($(el).next())
+      $(el).parent().css('border', '1px solid red')
+      $(el).parent().siblings().css('border', '1px solid rgb(50, 50, 50)')
+    },
+    loadSerial () {
+      let element = document.getElementById('canvas1')
+      let element1 = document.getElementById('canvas2')
+      let element2 = document.getElementById('canvas3')
+      let element3 = document.getElementById('canvas4')
+      alert(this.length1)
+      switch (this.length1) {
+        case 1:
+          cornerstone.enable(element)
+          this.loadDicom(element, this.serial1)
+          break
+        case 2:
+          this.showSerial2 = true
+          cornerstone.enable(element)
+          this.loadDicom(element, this.serial1)
+          cornerstone.enable(element1)
+          this.loadDicom(element1, this.serial2)
+          break
+        case 3:
+          cornerstone.enable(element)
+          this.loadDicom(element, this.serial1)
+          cornerstone.enable(element1)
+          this.loadDicom(element1, this.serial2)
+          cornerstone.enable(element2)
+          this.loadDicom(element2, this.serial3)
+          this.showSerial2 = true
+          this.showSerial3 = true
+          break
+        case 4:
+          cornerstone.enable(element)
+          this.loadDicom(element, this.serial1)
+          cornerstone.enable(element1)
+          this.loadDicom(element1, this.serial2)
+          cornerstone.enable(element2)
+          this.loadDicom(element2, this.serial3)
+          cornerstone.enable(element3)
+          this.loadDicom(element3, this.serial4)
+          this.showSerial2 = true
+          this.showSerial3 = true
+          this.showSerial4 = true
+          break
+        default:
+          break
+      }
+    },
     layoutChange () {
       var value1 = document.getElementById('layoutSelect').value
-      console.log(value1)
+
       var height = $(window).height()
       var width = $(window).width() - $('#right').width() - $('#left').width()
+
       let element = document.getElementById('dicomImage1')
       let element1 = document.getElementById('dicomImage2')
-      cornerstone.enable(element)
-      cornerstone.enable(element1)
+      let element2 = document.getElementById('dicomImage3')
+      let element3 = document.getElementById('dicomImage4')
+
+      // cornerstone.enable(element)
+      // cornerstone.enable(element1)
+      // cornerstone.enable(element2)
+      // cornerstone.enable(element3)
+
+      // let image = ''
+      // let image1 = ''
+      // let image2 = ''
+      // let image3 = ''
+      console.log(value1)
       switch (value1) {
+        case '0':
+          // this.showDicomList()
+
+          this.canvasDiv2Show = false
+          this.canvasDiv3Show = false
+          this.canvasDiv4Show = false
+
+          element.style.width = width + 'px'
+          element.style.height = height + 'px'
+          $('#canvasDiv1').height(height)
+          $('#canvasDiv1').width(width)
+          element1.style.width = width + 'px'
+          element1.style.height = height + 'px'
+          $('#canvasDiv2').height(height)
+          $('#canvasDiv2').width(width)
+
+          this.loadDicom(element, this.serial1)
+
+          // image = cornerstone.getImage(element)
+
+          // image.rowPixelSpacing = 2
+          // image.columnPixelSpacing = 2
+
+          cornerstone.resize(element)
+          break
         case '1':
+          // this.showDicomList()
+
           console.log('1x2')
-          console.log(width)
+
+          this.canvasDiv3Show = false
+          this.canvasDiv4Show = false
+
           element.style.width = width / 2 - 2 + 'px'
           element.style.height = height + 'px'
           $('#canvasDiv1').height(height)
@@ -416,25 +569,75 @@ export default {
           element1.style.height = height + 'px'
           $('#canvasDiv2').height(height)
           $('#canvasDiv2').width(width / 2 - 2)
-          this.canvasDiv2Show = true
-          this.loadDicom(element1)
-          this.canvasDiv2Show = true
-          this.loadDicom(element1)
 
+          this.canvasDiv2Show = true
+          // this.canvasDiv2Show = true
+          // this.loadDicom(element1, this.serial2)
+          // cornerstone.resize(element)
+          // cornerstone.resize(element1)
+          // image = cornerstone.getImage(element)
+          // image1 = cornerstone.getImage(element1)
+
+          // image.rowPixelSpacing = 2
+          // image.columnPixelSpacing = 2
+          // image1.rowPixelSpacing = 2
+          // image1.columnPixelSpacing = 2
+          if (this.serial1.length > 0) {
+            cornerstone.enable(element)
+            this.loadDicom(element, this.serial1)
+          }
+          if (this.serial2.length > 0) {
+            cornerstone.enable(element1)
+            this.loadDicom(element1, this.serial2)
+          }
           cornerstone.resize(element)
           cornerstone.resize(element1)
           break
         case '2':
           console.log('2x2')
-          console.log(width)
-          element.style.width = width / 2 + 'px'
-          element.style.height = height / 2 + 'px'
+
+          element.style.width = width / 2 - 2 + 'px'
+          element.style.height = height / 2 - 2 + 'px'
           $('#canvasDiv1').height(height / 2 - 2)
           $('#canvasDiv1').width(width / 2 - 2)
+          element1.style.width = width / 2 - 2 + 'px'
+          element1.style.height = height / 2 - 2 + 'px'
+          $('#canvasDiv2').height(height / 2 - 2)
+          $('#canvasDiv2').width(width / 2 - 2)
+          element2.style.width = width / 2 - 2 + 'px'
+          element2.style.height = height / 2 + 'px'
+          $('#canvasDiv3').height(height / 2)
+          $('#canvasDiv3').width(width / 2 - 2)
+          element3.style.width = width / 2 - 2 + 'px'
+          element3.style.height = height / 2 + 'px'
+          $('#canvasDiv4').height(height / 2)
+          $('#canvasDiv4').width(width / 2 - 2)
+
+          this.canvasDiv2Show = true
+          this.canvasDiv3Show = true
+          this.canvasDiv4Show = true
+
+          if (this.serial1.length > 0) {
+            cornerstone.enable(element)
+            this.loadDicom(element, this.serial1)
+          }
+          if (this.serial2.length > 0) {
+            cornerstone.enable(element1)
+            this.loadDicom(element1, this.serial2)
+          }
+          if (this.serial3.length > 0) {
+            cornerstone.enable(element2)
+            this.loadDicom(element2, this.serial3)
+          }
+          if (this.serial4.length > 0) {
+            cornerstone.enable(element3)
+            this.loadDicom(element3, this.serial4)
+          }
+
           cornerstone.resize(element)
-          break
-        case '3':
-          console.log('2x3')
+          cornerstone.resize(element1)
+          cornerstone.resize(element2)
+          cornerstone.resize(element3)
           break
         default:
       }
@@ -540,14 +743,157 @@ export default {
       addOption('custom', 'Custom')
     },
     invertDicom () {
-      var element = document.getElementById('dicomImage1')
+      // var element = document.getElementById('dicomImage1')
+      console.log(this.currentElement)
+      var element = this.currentElement
+      cornerstone.enable(element)
       let viewport = cornerstone.getViewport(element)
       console.log(viewport)
       viewport.invert = !viewport.invert
       cornerstone.setViewport(element, viewport)
     },
     showDicomList () {
-      router.push({ path: '/dicomList' })
+      let i = 0
+      let j = 0
+      let k = 0
+      let l = 0
+      this.$axios({
+        url: 'http://localhost:5000/getLIDC',
+        method: 'post',
+        data: {
+          name: 'LIDC-IDRI-0003'
+        }
+      }).then((res) => {
+        console.log(res.data.result)
+        // console.log(res.data)
+        this.length1 = res.data.result.length
+        for (i = 0; i < res.data.result.length - 1; i++) {
+          for (j = 0; j < res.data.result.length - i - 1; j++) {
+            if (res.data.result[j] < res.data.result[j + 1]) {
+              var temp = res.data.result[j]
+              res.data.result[j] = res.data.result[j + 1]
+              res.data.result[j + 1] = temp
+            }
+          }
+        }
+        switch (res.data.result.length) {
+          case 1:
+            this.serial1 = []
+            console.log(1)
+            // this.serial1 = res.data.result[0]
+            for (i = 0; i < res.data.result[0].length; i++) {
+              if (res.data.result[0][i][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[0][i][0])
+              } else {
+                this.serial1.push(res.data.result[0][i][0])
+              }
+            }
+            console.log(this.serial1)
+            break
+          case 2:
+            console.log(2)
+
+            this.serial1 = []
+            this.serial2 = []
+
+            for (j = 0; j < res.data.result[0].length; j++) {
+              if (res.data.result[0][j][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[0][j][0])
+              } else {
+                this.serial1.push(res.data.result[0][j][0])
+              }
+            }
+            for (k = 0; k < res.data.result[1].length; k++) {
+              if (res.data.result[1][k][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[1][k][0])
+              } else {
+                this.serial2.push(res.data.result[1][k][0])
+              }
+            }
+
+            console.log(this.serial1)
+            console.log(this.serial2)
+            break
+          case 3:
+            console.log(3)
+
+            this.serial1 = []
+            this.serial2 = []
+            this.serial3 = []
+
+            for (i = 0; i < res.data.result[0].length; i++) {
+              if (res.data.result[0][i][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[0][i][0])
+              } else {
+                this.serial1.push(res.data.result[0][i][0])
+              }
+            }
+            for (j = 0; j < res.data.result[0].length; j++) {
+              if (res.data.result[0][j][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[0][j][0])
+              } else {
+                this.serial2.push(res.data.result[0][j][0])
+              }
+            }
+            for (k = 0; k < res.data.result[1].length; k++) {
+              if (res.data.result[1][k][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[1][k][0])
+              } else {
+                this.serial3.push(res.data.result[1][k][0])
+              }
+            }
+
+            console.log(this.serial1)
+            console.log(this.serial2)
+            console.log(this.serial3)
+            break
+          case 4:
+            console.log(4)
+
+            this.serial1 = []
+            this.serial2 = []
+            this.serial3 = []
+            this.serial4 = []
+
+            for (i = 0; i < res.data.result[0].length; i++) {
+              if (res.data.result[0][i][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[0][i][0])
+              } else {
+                this.serial1.push(res.data.result[0][i][0])
+              }
+            }
+            for (j = 0; j < res.data.result[0].length; j++) {
+              if (res.data.result[0][j][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[0][j][0])
+              } else {
+                this.serial2.push(res.data.result[0][j][0])
+              }
+            }
+            for (k = 0; k < res.data.result[1].length; k++) {
+              if (res.data.result[1][k][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[1][k][0])
+              } else {
+                this.serial3.push(res.data.result[1][k][0])
+              }
+            }
+            for (l = 0; l < res.data.result[1].length; l++) {
+              if (res.data.result[1][l][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[1][l][0])
+              } else {
+                this.serial3.push(res.data.result[1][l][0])
+              }
+            }
+
+            console.log(this.serial1)
+            console.log(this.serial2)
+            console.log(this.serial3)
+            console.log(this.serial4)
+            break
+          default:
+            break
+        }
+        this.loadSerial()
+      })
     },
     toClub () {
       router.push({ path: '/newClub' })
@@ -573,7 +919,8 @@ export default {
     },
     playDicom () {
       const _this = this
-      const element = document.getElementById('dicomImage1')
+      // const element = document.getElementById('dicomImage1')
+      const element = this.currentElement
       $('#app').css('background-color', 'blue;')
       cornerstone.enable(element)
       if (_this._data.play) {
@@ -610,15 +957,18 @@ export default {
       // setTimeout(play, 100)
       /* eslint-disable */
     },
+
     resize (newRect) {
       console.log(newRect);
       var i = document.getElementById("dicomImage1").childNodes;
       i[9].style.height = newRect.height + "px";
       i[9].style.width = newRect.width + "px";
     },
+
     handleOpen (key, keyPath) {
       console.log(key, keyPath);
     },
+
     handleClose (key, keyPath) {
       console.log(key, keyPath);
     },
@@ -630,7 +980,7 @@ export default {
       cornerstoneTools.addTool(tool);
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
       alert(`active${toolName}`);
-      const element = document.getElementById("dicomImage1");
+      const element = this.currentElement
       console.log(element);
       cornerstoneTools[`setToolActive`](toolName, {
         mouseButtonMask: 1
@@ -642,47 +992,82 @@ export default {
         }
       }
     },
-    loadDicom (element) {
-        var _this = this
+    loadDicom (element, imageIds) {
+      var _this = this
     //   cornerstone.enable(element);
       cornerstoneTools.init();
       cornerstone.enable(element);
-    //   cornerstoneTools.setToolActiveForElement(
-    //     element,
-    //     `StackScrollMouseWheelTool`
-    //   );
-      for (var i = 1; i < 362; i++) {
-        let str = i + "";
-        _this._data.imageIds1.push(
-          "wadouri:http://localhost:8080/static/series-000001/image-000" +
-          str.padStart(3, "0") +
-          ".dcm"
-        );
-      }
-    //   const toolName = "StackScrollMouseWheel";
-    //   const stack = {
-    //     currentImageIdIndex: 0,
-    //     imageIds: _this._data.imageIds1
-    //   };
-      cornerstone.loadImage(_this._data.imageIds1[_this._data.crruentDicom]).then(
+      cornerstoneTools.setToolActiveForElement(
+        element,
+        `StackScrollMouseWheelTool`
+      );
+      // for (var i = 1; i < 362; i++) {
+      //   let str = i + "";
+      //   imageIds.push(
+      //     "wadouri:http://localhost:8080/static/series-000001/image-000" +
+      //     str.padStart(3, "0") +
+      //     ".dcm"
+      //   );
+      // }
+      const toolName = "StackScrollMouseWheel";
+      const stack = {
+        currentImageIdIndex: 0,
+        imageIds: imageIds
+      };
+      cornerstone.loadImage(imageIds[_this._data.crruentDicom]).then(
         function (image) {
           cornerstone.displayImage(element, image);
-        //   cornerstoneTools.addStackStateManager(element, ["stack"]);
-        //   cornerstoneTools.addToolState(element, "stack", stack);
+          cornerstoneTools.addStackStateManager(element, ["stack"]);
+          cornerstoneTools.addToolState(element, "stack", stack);
         },
         function (err) {
           console.log(err);
         }
       );
-    //   const apiTool = cornerstoneTools[`${toolName}Tool`];
-    //   cornerstoneTools.addTool(apiTool);
-    //   cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
+      const apiTool = cornerstoneTools[`${toolName}Tool`];
+      cornerstoneTools.addTool(apiTool);
+      cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
+    },
+
+    loadDicom1 (element, imageIds) {
+      var _this = this
+    //   cornerstone.enable(element);
+      cornerstoneTools.init();
+      cornerstone.enable(element);
+      cornerstoneTools.setToolActiveForElement(
+        element,
+        `StackScrollMouseWheelTool`
+      );
+      for (var i = 1; i < 362; i++) {
+        let str = i + "";
+        imageIds.push(
+          "wadouri:http://localhost:8080/static/series-000001/image-000" +
+          str.padStart(3, "0") +
+          ".dcm"
+        );
+      }
+      const toolName = "StackScrollMouseWheel";
+      const stack = {
+        currentImageIdIndex: 0,
+        imageIds: imageIds
+      };
+      cornerstone.loadImage(imageIds[_this._data.crruentDicom]).then(
+        function (image) {
+          cornerstone.displayImage(element, image);
+          cornerstoneTools.addStackStateManager(element, ["stack"]);
+          cornerstoneTools.addToolState(element, "stack", stack);
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+      const apiTool = cornerstoneTools[`${toolName}Tool`];
+      cornerstoneTools.addTool(apiTool);
+      cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
     }
   },
   mounted () {
-    // $('#meun').hide()
     const _this = this;
-    // _this._data.element = document.getElementById("dicomImage");
     this.element = document.getElementById("dicomImage1");
     $("#sideBar").height($(window).height());
     $("#rightSideBar").height($(window).height());
@@ -697,7 +1082,7 @@ export default {
       element,
       `StackScrollMouseWheelTool`
     );
-    // const imageIds = []
+    const imageIds = []
     for (var i = 1; i < 362; i++) {
       let str = i + "";
       _this._data.imageIds.push(
@@ -727,45 +1112,52 @@ export default {
     cornerstoneTools.addTool(apiTool);
     cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
 
-    function doResize (width, height) {
-      if (width < 100) {
-        width = 100;
-      }
-      if (height < 100) {
-        height = 100;
-      }
+this.$axios({
+  url: 'http://localhost:5000/getLIDCList',
+  method: 'get',
+}).then((res) => {
+  console.log(res.data.result)
+  this.dicomList = res.data.result
+})
+    // function doResize (width, height) {
+    //   if (width < 100) {
+    //     width = 100;
+    //   }
+    //   if (height < 100) {
+    //     height = 100;
+    //   }
 
-      element.style.width = width + "px";
-      element.style.height = height + "px";
-      cornerstone.resize(element);
-    }
+    //   element.style.width = width + "px";
+    //   element.style.height = height + "px";
+    //   cornerstone.resize(element);
+    // }
 
-    var child = document.getElementById("dicomImage1").childNodes;
-    child[9].style.height = $(window).height();
-    document
-      .getElementById("resizeKnob")
-      .addEventListener("mousedown", function (e) {
-        const initWidth = element.clientWidth;
-        const initHeight = element.clientHeight;
-        const startX = e.clientX;
-        const startY = e.clientY;
-        function dragResize (e) {
-          // alert(222)
-          const x = e.clientX - startX;
-          const y = e.clientY - startY;
-          const w = initWidth + x;
-          const h = initHeight + y;
-          doResize(w, h);
-        }
-        document.addEventListener("mousemove", dragResize);
-        document.addEventListener("mouseup", function (e) {
-          // alert(111)
-          /* eslint-disable */
-          document.removeEventListener("mouseup", this);
-          /* eslint-enable */
-          document.removeEventListener('mousemove', dragResize)
-        })
-      })
+    // var child = document.getElementById("dicomImage1").childNodes;
+    // child[9].style.height = $(window).height();
+    // document
+    //   .getElementById("resizeKnob")
+    //   .addEventListener("mousedown", function (e) {
+    //     const initWidth = element.clientWidth;
+    //     const initHeight = element.clientHeight;
+    //     const startX = e.clientX;
+    //     const startY = e.clientY;
+    //     function dragResize (e) {
+    //       // alert(222)
+    //       const x = e.clientX - startX;
+    //       const y = e.clientY - startY;
+    //       const w = initWidth + x;
+    //       const h = initHeight + y;
+    //       doResize(w, h);
+    //     }
+    //     document.addEventListener("mousemove", dragResize);
+    //     document.addEventListener("mouseup", function (e) {
+    //       // alert(111)
+    //       /* eslint-disable */
+    //       document.removeEventListener("mouseup", this);
+    //       /* eslint-enable */
+    //       document.removeEventListener('mousemove', dragResize)
+    //     })
+    //   })
   }
 }
 </script>
@@ -785,5 +1177,22 @@ li {
 }
 a {
   color: #42b983;
+}
+.bg {
+  border: 1px solid black;
+}
+.test-1::-webkit-scrollbar {
+  width: 2px;
+  height: 1px;
+}
+.test-1::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgb(50.50.50);
+}
+.test-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: rgb(50.50.50);
 }
 </style>

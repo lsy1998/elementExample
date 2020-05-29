@@ -9,6 +9,9 @@
          区域生长的原理：<br>
 区域生长的基本思想是将具有相似性质的像素集合起来构成区域。具体先对每个需要分割的区域找一个种子像素作为生长起点，然后将种子像素和周围邻域中与种子像素有相同或相似性质的像素（根据某种事先确定的生长或相似准则来判定）合并到种子像素所在的区域中。将这些新像素当作新的种子继续上面的过程，直到没有满足条件的像素可被包括进来。这样一个区域就生长成了。
         </div>
+        <div style="color:black;margin:40px 45px 20px 45px;text-align:left">
+         区域生长实现的步骤如下：
+         </div>
         <div style="margin:0px 45px 0px 40px;">
           <pre id="code" class="line-numbers"><code class="language-python">
         def Laplacian():

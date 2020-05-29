@@ -9,6 +9,7 @@
 import {Chart} from 'highcharts-vue'
 import Highcharts from 'highcharts'
 import histogram from 'highcharts/modules/histogram-bellcurve'
+import dicomParser from 'dicom-parser'
 histogram(Highcharts)
 // import Highcahrts from 'highcharts'
 export default {
@@ -72,6 +73,37 @@ export default {
   },
   mounted () {
     this.init()
+
+    if (window.FileReader) {
+      var reader = new FileReader()
+      reader.onload = function (file) {
+        var arrayBuffer = reader.result
+        // Here we have the file data as an ArrayBuffer.  dicomParser requires as input a
+        // Uint8Array so we create that here
+        var byteArray = new Uint8Array(arrayBuffer)
+        var kb = byteArray.length / 1024
+        var mb = kb / 1024
+        var byteStr = mb > 1 ? mb.toFixed(3) + ' MB' : kb.toFixed(0) + ' KB'
+        console.log(byteStr)
+        var dataSet = dicomParser.parseDicom(byteArray/*, options */)
+        var studyInstanceUid = dataSet.string('x0020000d')
+        console.log(studyInstanceUid)
+        var pixelDataElement = dataSet.elements.x7fe00010
+        var pixelData = new Uint16Array(dataSet.byteArray.buffer, pixelDataElement.dataOffset, pixelDataElement.length)
+        console.log(pixelData)
+        // setTimeout(function () {
+        // var dataSet
+        // try {
+        //   // var start = new Date().getTime()
+        //   dataSet = dicomParser.parseDicom(byteArray)
+        // } catch (err) {
+        // }
+        // }, 10)
+      }
+    // add your code here
+    } else {
+      alert('Not supported by your browser!')
+    }
   }
 
 }
