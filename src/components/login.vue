@@ -16,7 +16,8 @@
       <el-input show-password  v-model="ruleForm.userPassword" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 0px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input>
       </el-tooltip>
       </el-form-item>
-      <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;" @click="login">登录</el-button>
+      <el-button style="margin:20px 0 0 5px;width:80px; background-color:rgba(19, 130, 2142,0);border:none;color:white; position:relative; right:86px; bottom:30px;">记住密码</el-button><el-button style="margin:30px 0 0 5px;width:80px; background-color:rgba(19, 130, 2142, 0);border:none;color:white;position:relative; left:64px; bottom:30px;" @click="forgetPassword">忘记密码？</el-button>
+      <el-button style="margin:0px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;position:relative; bottom:30px;" @click="login">登录</el-button>
       </el-form>
     </div>
   </div>
@@ -61,6 +62,9 @@ export default {
     }
   },
   methods: {
+    forgetPassword () {
+      this.$router.push({path: '/changePassword'})
+    },
     // change (e) {
     //   console.log(this.$refs.hello.html)
     //   // this.$refs.hello.$forceUpdate()

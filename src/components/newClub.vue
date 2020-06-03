@@ -68,12 +68,12 @@
 
             <div style="height:900px;"></div>
           </el-col>
-          <el-col :span='16'>
-            <div style="margin:50px;">
+          <el-col :span='20'>
+            <div style="margin:50px;height:700px;overflow-y:scroll" class="test-1">
               <router-view />
             </div>
           </el-col>
-          <el-col :span='4'>
+          <!-- <el-col :span='4'>
             <div style="margin:50px 0 0 0; color:rgb(2, 155, 98);display:inline-block;">活跃用户</div>
             <div style="margin:50px 0 0 0; color:rgb(2, 155, 98);display:inline-block;float:right;">更多<i
                 class="el-icon-d-arrow-right"></i></div>
@@ -84,7 +84,7 @@
               </el-col>
             </el-row>
             <activeUser></activeUser>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-col>
       <el-col :span="4">
@@ -143,4 +143,21 @@ export default {
    .el-divider__text {
       color:rgb(2, 155, 98)
    }
+   .bg {
+  border: 1px solid white;
+}
+.test-1::-webkit-scrollbar {
+  width: 2px;
+  height: 1px;
+}
+.test-1::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
+  background: white;
+}
+.test-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: white;
+}
 </style>

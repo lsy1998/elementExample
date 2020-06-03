@@ -114,7 +114,7 @@ export default {
     $('#courseBox').height($(window).height() - $('#meun').height() - 43)
     $('#courseContent').height($(window).height() - $('#meun').height() - 43)
     this.$router.push({ path: `/course/zjlCourse` })
-    $('#zjl').addClass('courseItem2')
+    // $('#zjl').addClass('courseItem2')
     // router.push({ path: '/newClub/clubNewPost' })
     // $('.el-divider__text is-left').css('color', 'rgb(2, 155, 98)')
   }

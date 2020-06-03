@@ -152,7 +152,7 @@
                 </div>
               </el-col>
             </el-row>
-            <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);">
+            <el-row style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);border-bottom:1px solid rgb(128, 128, 128);">
               <el-col :span="4">
                 <div
                   style="width:90%;height:30px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
@@ -236,7 +236,7 @@
               <el-col :span='2' style="color:rgb(50,50,50)">brave</el-col>
               <el-col :span="14" >
                 <el-row
-              style="background-color:rgb(50, 50, 50);border-top:1px solid rgb(128, 128, 128);padding:5px 0 5px 0;">
+              style="background-color:rgb(50, 50, 50);padding:5px 0 5px 0;">
               <el-col :span='8'>
                 <div style="color:rgb(192, 192, 192);font-size:12px;"> 伪彩色 </div>
               </el-col>
@@ -341,7 +341,7 @@
       <el-col :span="3" id="right">
         <div style="overflow-y:scroll;height:900px; background-color:rgb(37, 37, 37);" id="rightSideBar">
           <div style="background-color:rgb(37, 37, 37);border-bottom:1px solid rgb(128, 128, 128);">
-            <div style="background-color:rgb(50,50,50);width:30%;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98);display:inline-block;float:left;">序列</div>
+            <div style="background-color:rgb(50,50,50);width:30%;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98);display:inline-block;float:left;border-top:1px solid rgb(128, 128, 128);">序列</div>
             <div style="background-color:rgb(91, 91, 91);width:30%;height:32px;padding:10px 0 0 0; color:rgb(200, 200, 200);display:inline-block;float:right;" id="showMeun" @click="showMeun">
               <i class="icon icon-uniE163" style="font-size:28px;color:rgb(200, 200, 200);"></i>
             </div>
@@ -458,7 +458,7 @@ export default {
       // this.currentElement = el
       console.log(this.currentElement)
       // console.log($(el).next())
-      $(el).parent().css('border', '1px solid red')
+      $(el).parent().css('border', '1px solid rgb(245, 166, 35)')
       $(el).parent().siblings().css('border', '1px solid rgb(50, 50, 50)')
     },
     loadSerial () {

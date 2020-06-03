@@ -47,8 +47,7 @@
             <div style="height:20%;display:inline-block; width:100%">
               <div class="el-icon-star-off"
                 style="font-size:20px;float:left;margin:0 0 0 10px;display:inline-block;color:rgb(2, 155, 98)">
-                <div
-                  style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
+                <div style="font-size:14px;display:inline-block;margin:0 0 0 5px;color:rgb(2, 155, 98);position:relative;bottom:2px;">
                   x7
                 </div>
               </div>

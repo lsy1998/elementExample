@@ -1,45 +1,57 @@
 <template>
-<div  @resize="resize" id='registeDiv' style="">
-<div style="width:1000px;height:530px;margin:100px auto; ">
-    <div style="width:590px;height:530px;display:inline-block;">
-        <img style="display:inline-block;vertical-align:top;margin:0px 0 0 0;height:100%" src="../assets/image/a08ef81d577c4642f5faa9bb3055a4da_2_3_art.png" alt="">
-  </div>
-    <div style="width:405px;display:inline-block;height:530px;vertical-align:top;background:#52A0FD;background:-webkit-linear-gradient(left,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);background:linear-gradient(to right,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);position:relative;right:10px;">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
-      <el-form-item style="width:150px;margin:0 0 0 55px;" prop="userCount">
-        <el-tooltip class="item" effect="dark" content="请输入11位手机号码" placement="right-end">
-        <el-input clearable v-model="ruleForm.userCount" ref='hello' type="text"  placeholder="请输入用户名" style="margin:110px 0 0 0px; width:300px;" ><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
-        </el-tooltip>
-      </el-form-item>
-      <el-form-item style="width:150px;margin:0 0 0 55px;"  prop="userPassword">
-        <el-tooltip  effect="dark" content="请输入您的密码" placement="right-end">
-      <el-input show-password  v-model="ruleForm.userPassword" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 0px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input>
-      </el-tooltip>
-      </el-form-item>
-      <el-form-item style="width:150px;margin:0 0 0 55px;"  prop="checkUserPassword">
-      <el-tooltip class="item" effect="dark" content="请确认您的密码" placement="right-end">
-      <el-input show-password  v-model="ruleForm.checkUserPassword" ref='hello' type="password" placeholder="请输入密码" style="margin:30px 0 0 0px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock" ></i></el-input>
-      </el-tooltip>
-      </el-form-item>
-      <el-row style="margin:30px 0 0 0">
-        <el-col :span='11'>
-          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="checkNum">
-           <!-- <el-tooltip class="item" effect="dark" content="请输入11位手机号码" placement="right-end"> -->
-           <el-input  v-model="ruleForm.checkNum" ref='hello' placeholder="请输入验证码" style="margin:0px 0 0 0px;width:160px;"></el-input>
-           <!-- </el-tooltip> -->
-           </el-form-item>
-        </el-col>
+  <div @resize="resize" id='registeDiv' style="">
+    <div style="width:1000px;height:530px;margin:100px auto; ">
+      <div style="width:590px;height:530px;display:inline-block;">
+        <img style="display:inline-block;vertical-align:top;margin:0px 0 0 0;height:100%"
+          src="../assets/image/a08ef81d577c4642f5faa9bb3055a4da_2_3_art.png" alt="">
+      </div>
+      <div
+        style="width:405px;display:inline-block;height:530px;vertical-align:top;background:#52A0FD;background:-webkit-linear-gradient(left,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);background:linear-gradient(to right,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);position:relative;right:10px;">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="userCount">
+            <el-tooltip class="item" effect="dark" content="请输入11位手机号码" placement="right-end">
+              <el-input clearable v-model="ruleForm.userCount" ref='hello' type="text" placeholder="请输入用户名"
+                style="margin:110px 0 0 0px; width:300px;"><i slot="prefix" class="el-input__icon el-icon-user"></i>
+              </el-input>
+            </el-tooltip>
+          </el-form-item>
+          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="userPassword">
+            <el-tooltip effect="dark" content="请输入您的密码" placement="right-end">
+              <el-input show-password v-model="ruleForm.userPassword" ref='hello' type="password" placeholder="请输入密码"
+                style="margin:30px 0 0 0px;width:300px;"><i slot="prefix" class="el-input__icon el-icon-lock"></i>
+              </el-input>
+            </el-tooltip>
+          </el-form-item>
+          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="checkUserPassword">
+            <el-tooltip class="item" effect="dark" content="请确认您的密码" placement="right-end">
+              <el-input show-password v-model="ruleForm.checkUserPassword" ref='hello' type="password"
+                placeholder="请输入密码" style="margin:30px 0 0 0px;width:300px;"><i slot="prefix"
+                  class="el-input__icon el-icon-lock"></i></el-input>
+            </el-tooltip>
+          </el-form-item>
+          <el-row style="margin:30px 0 0 0">
+            <el-col :span='11'>
+              <el-form-item style="width:150px;margin:0 0 0 55px;" prop="checkNum">
+                <!-- <el-tooltip class="item" effect="dark" content="请输入11位手机号码" placement="right-end"> -->
+                <el-input v-model="ruleForm.checkNum" ref='hello' placeholder="请输入验证码"
+                  style="margin:0px 0 0 0px;width:160px;"></el-input>
+                <!-- </el-tooltip> -->
+              </el-form-item>
+            </el-col>
 
-        <el-col :span='13'>
-          <el-button style="margin:0 0 0 5px;background-color:rgb(19, 130, 255);color:white" @click="getCheckNum">获取验证码</el-button>
-        </el-col>
-      </el-row>
-      <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;" @click="registe">注册</el-button>
-      </el-form>
-      <!-- <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;" @click="moban">模板</el-button> -->
+            <el-col :span='13'>
+              <el-button style="margin:0 0 0 5px;background-color:rgb(19, 130, 255);color:white;border:none;" @click="getCheckNum">
+                获取验证码</el-button>
+            </el-col>
+          </el-row>
+          <el-button
+            style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
+            @click="registe">注册</el-button>
+        </el-form>
+        <!-- <el-button style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;" @click="moban">模板</el-button> -->
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -197,5 +209,8 @@ export default {
 </script>
 <style scoped>
 /* @import '../assets/iconfont/iconfont.css' */
-  ::-ms-clear, ::-ms-reveal{display: none;}
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
 </style>

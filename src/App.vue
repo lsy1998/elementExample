@@ -18,7 +18,7 @@
             <router-link class="downloadFile2" style=" text-decoration:none; font-size:16px" to="/downloadResource"><span class="meunItem downloadFile1" @click="toggleMeunItem($event)"> 资源下载</span></router-link>
           </el-menu-item>
           <el-menu-item class="talk" index="10" style="border:0;">
-            <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 交流互动</span></router-link>
+            <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 社区交流</span></router-link>
           </el-menu-item>
           <el-menu-item class="talk" index="10" style="border:0;">
             <router-link style=" text-decoration:none; font-size:16px" to="/viewer"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 新查看器</span></router-link>
