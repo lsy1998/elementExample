@@ -8,11 +8,11 @@
           <el-menu-item class="index" index="1" style="border:0;">
             <router-link  style=" text-decoration:none; font-size:16px" to="/index"><span class="meunItem index1" @click="toggleMeunItem($event)" > 首页</span></router-link>
           </el-menu-item>
+          <el-menu-item class="viewer"  @click="demo1" index="4" style="border:0;">
+            <router-link style=" text-decoration:none; font-size:16px" to="/viewer"> <span class="meunItem viewer1" @click="toggleMeunItem($event)" > 在线处理平台</span></router-link>
+          </el-menu-item>
           <el-menu-item class="course" index="3" style="border:0;">
             <router-link  style=" text-decoration:none; font-size:16px" to="/course" > <span class="meunItem course1" @click="toggleMeunItem($event)"> 教程学习</span></router-link>
-          </el-menu-item>
-          <el-menu-item class="viewer"  @click="demo1" index="4" style="border:0;">
-            <router-link style=" text-decoration:none; font-size:16px" to="/newDemo"> <span class="meunItem viewer1" @click="toggleMeunItem($event)" > 图像查看器</span></router-link>
           </el-menu-item>
           <el-menu-item class="downloadFile" index="9" style="border:0;">
             <router-link class="downloadFile2" style=" text-decoration:none; font-size:16px" to="/downloadResource"><span class="meunItem downloadFile1" @click="toggleMeunItem($event)"> 资源下载</span></router-link>
@@ -20,9 +20,9 @@
           <el-menu-item class="talk" index="10" style="border:0;">
             <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 社区交流</span></router-link>
           </el-menu-item>
-          <el-menu-item class="talk" index="10" style="border:0;">
+          <!-- <el-menu-item class="talk" index="10" style="border:0;">
             <router-link style=" text-decoration:none; font-size:16px" to="/viewer"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 新查看器</span></router-link>
-          </el-menu-item>
+          </el-menu-item> -->
           <!-- <el-menu-item index="7" style="border:0;">
             <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"
               @select="handleSelect"></el-autocomplete>

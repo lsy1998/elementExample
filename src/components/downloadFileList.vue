@@ -1,10 +1,10 @@
 
 <template>
 <div style="width:100%;height:100%;">
-<div v-for="file in files" :key="file" style="width:100%;height:100%;background-color:white; margin:20px">
+<div v-for="file in files" :key="file" style="width:100%;height:100%;background-color:white; margin:30px 20px 30px 20px">
       <el-row>
           <el-col :span='18'>
-              <div style="margin:20px 0 0 20px;font-size:16px; height:60px; text-align:left">{{file.fileDesc}}</div>
+              <div style="margin:20px 0 0 20px;font-size:15px; height:60px; text-align:left;line-height:1.5rem;color:black">{{file.fileDesc}}</div>
               <el-row style="margin:10px 0 0 0">
                   <el-col :span='9'>
                       <div style="margin:10px 0 0 20px;float:left;font-size:14px;color:rgb(2, 155, 98)">{{file.userName}}</div>
@@ -18,7 +18,7 @@
               </el-row>
           </el-col>
           <el-col :span='6'>
-              <div style="width:100%; height:100px; font-size:100px; margin:20px 0 0 0; color:rgb(2, 155, 98)" class="iconfont icon-geshi_yasuobaozip"></div>
+              <div style="width:100%; height:100px; font-size:100px; margin:20px 0 0 -20px; color:rgb(2, 155, 98)" class="iconfont icon-geshi_yasuobaozip"></div>
           </el-col>
           <!-- <el-col></el-col> -->
       </el-row>

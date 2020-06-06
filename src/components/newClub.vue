@@ -23,12 +23,12 @@
       <el-col :span="16">
         <el-row>
           <el-col :span='4'>
-            <el-button style="margin:50px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">为你推荐
+            <el-button style="margin:50px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">热门帖子
             </el-button>
             <el-button style="margin:10px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">最近帖子
             </el-button>
-            <el-button style="margin:10px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">相关帖子
-            </el-button>
+            <!-- <el-button style="margin:10px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">相关帖子
+            </el-button> -->
             <!-- <el-divider content-position="left" @click="showDownloadFileList">医学图像下载</el-divider>
             <div style="width:80%;padding:5px 10px 5px 10px;">MRI</div>
             <div style="width:80%;padding:5px 10px 5px 10px;">CT</div> -->
@@ -59,32 +59,39 @@
                 <div>HOG特征算法</div>
               </el-collapse-item>
             </el-collapse> -->
-            <el-divider content-position="left" @click="showOtherInfo">友情链接</el-divider>
+            <div style="height:900px;"></div>
+          </el-col>
+          <el-col :span='16'>
+            <!-- <div style="margin:-20px 50px 50px 50px;height:700px;overflow-y:scroll" class="test-1"> -->
+            <div style="margin:-20px 50px 50px 50px;" class="test-1">
+              <router-view />
+            </div>
+          </el-col>
+          <el-col :span='4'>
+            <el-row>
+              <el-col :span='5' style="color:white">brave</el-col>
+              <el-col :span='19'>
+                <div style="width:100%;height:2px;"></div>
+              </el-col>
+            </el-row>
+            <el-row style="border-radius:2px; background-color:rgb(2, 155, 98);margin:30px 0 0 0">
+              <el-col :span="18">
+                <el-button
+                  style="margin:0px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;border:none;border-right:1px solid white;border-radius:3px 0px 0px 3px;">发布帖子
+                </el-button>
+              </el-col>
+              <el-col :span="6">
+                <div style="margin:0px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white; font-size:16px;border:none;order-radius:0px 3px 3px 0px;"><i class="el-icon-position" style="font-size:24px;margin-top:7px"></i>
+                </div>
+              </el-col>
+            </el-row>
+            <el-divider content-position="center" @click="showOtherInfo">友情链接</el-divider>
             <img src="../assets/image/logo/logo-jssq.jpg" alt="" height="40px"  @click="jumpTo($event)" data-link='http://www.eepw.com.cn/tech/s/k/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86'>
             <el-row style="margin:0 40px">
                <el-col :span='12'><img src="../assets/image/logo/csdn-logo.png" alt="" height="50px" style="position:relative; right:30px"  @click="jumpTojumpTo($event)" data-link='https://bbs.csdn.net/forums/VC_ImageProcessing'></el-col>
               <el-col :span='12'><img src="../assets/image/logo/ituring.png" alt="" height="30px"  @click="jumpTojumpTo($event)" data-link='https://www.ituring.com.cn/tag/2998' style="margin:5px 0 0 0"></el-col>
             </el-row>
-
-            <div style="height:900px;"></div>
           </el-col>
-          <el-col :span='20'>
-            <div style="margin:50px;height:700px;overflow-y:scroll" class="test-1">
-              <router-view />
-            </div>
-          </el-col>
-          <!-- <el-col :span='4'>
-            <div style="margin:50px 0 0 0; color:rgb(2, 155, 98);display:inline-block;">活跃用户</div>
-            <div style="margin:50px 0 0 0; color:rgb(2, 155, 98);display:inline-block;float:right;">更多<i
-                class="el-icon-d-arrow-right"></i></div>
-            <el-row>
-              <el-col :span='5' style="color:white">brave</el-col>
-              <el-col :span='19'>
-                <div style="width:100%;height:2px;border-bottom:1px solid rgb(2,155,98)"></div>
-              </el-col>
-            </el-row>
-            <activeUser></activeUser>
-          </el-col> -->
         </el-row>
       </el-col>
       <el-col :span="4">
@@ -131,6 +138,9 @@ export default {
   },
   mounted () {
     router.push({ path: '/newClub/clubNewPost' })
+    $('.el-divider__text').css('font-size', '16px')
+    // $('.el-divider').css('margin', '23px 0 24px 0')
+    $('.el-divider').css('height', '2px')
     // $('.el-divider__text is-left').css('color', 'rgb(2, 155, 98)')
   }
 }

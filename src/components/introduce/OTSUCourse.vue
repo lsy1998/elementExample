@@ -22,9 +22,7 @@ u = w0 * u0 + w1 * u1 (1)
 g = w0*(u - u0)^2 + w1*(u - u1)^2 (2)
 将(1)代入(2)得：
 g = w0 * w1 * (u0 - u1)^2
-————————————————
-版权声明：本文为CSDN博主「爬金字塔的人」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/u012771236/java/article/details/44975831
+
         </code></pre>
       </div>
       <img src="https://img-blog.csdn.net/20140319213031953?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3VuYm95aXJpcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="">
