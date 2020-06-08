@@ -1,6 +1,6 @@
 
 <template>
-  <div style="width:100%;">
+  <div style="width:100%;margin:30px 0 0 0">
 <div v-for="artical in articals" :key="artical" style="width:100%; margin:30px 0 0 0">
     <el-row>
         <el-col :span='20'>

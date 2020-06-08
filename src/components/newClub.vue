@@ -74,7 +74,7 @@
                 <div style="width:100%;height:2px;"></div>
               </el-col>
             </el-row>
-            <el-row style="border-radius:2px; background-color:rgb(2, 155, 98);margin:30px 0 0 0">
+            <el-row style="border-radius:2px; background-color:rgb(2, 155, 98);margin:33px 0 0 0">
               <el-col :span="18">
                 <el-button
                   style="margin:0px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;border:none;border-right:1px solid white;border-radius:3px 0px 0px 3px;">发布帖子
@@ -137,11 +137,18 @@ export default {
     }
   },
   mounted () {
-    router.push({ path: '/newClub/clubNewPost' })
-    $('.el-divider__text').css('font-size', '16px')
-    // $('.el-divider').css('margin', '23px 0 24px 0')
-    $('.el-divider').css('height', '2px')
+    if (sessionStorage.isLogin !== 'true') {
+      alert('请先登录！')
+      console.log(this.$router.currentRoute.fullPath)
+      sessionStorage.preRoute = this.$router.currentRoute.fullPath
+      this.$router.push({path: '/login'})
+    } else {
+      router.push({ path: '/newClub/clubNewPost' })
+      $('.el-divider__text').css('font-size', '16px')
+      // $('.el-divider').css('margin', '23px 0 24px 0')
+      $('.el-divider').css('height', '2px')
     // $('.el-divider__text is-left').css('color', 'rgb(2, 155, 98)')
+    }
   }
 }
 </script>

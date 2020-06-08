@@ -40,7 +40,7 @@
             </el-col>
 
             <el-col :span='13'>
-              <el-button style="margin:0 0 0 5px;background-color:rgb(19, 130, 255);color:white;border:none;" @click="getCheckNum">
+              <el-button  id="checkcode" style="margin:0 0 0 5px;background-color:rgb(19, 130, 255);color:white;border:none;" @click="getCheckNum">
                 获取验证码</el-button>
             </el-col>
           </el-row>
@@ -73,7 +73,9 @@ export default {
       }
     }
     return {
+      counterNum: 60,
       userPassword: '',
+      num: '',
       userCount: '',
       ruleForm: {
         userPassword: '',
@@ -101,6 +103,42 @@ export default {
     }
   },
   methods: {
+    getCheckNum (e) {
+      for (var i = 0; i < 6; i++) {
+        this.num = ''
+        this.num += Math.floor(Math.random() * 10)
+      }
+      this.$cookies.set('checkNum', `${this.num}`, 60)
+      alert(this.num)
+      var str = `【大龙科技】您的验证码是${this.num}。如非本人操作，请忽略本短信`
+      axios({
+        method: 'GET',
+        // url: 'http://zwp.market.alicloudapi.com/sms/tmplist',
+        url: 'http://zwp.market.alicloudapi.com/sms/sendv2?mobile=' + this.ruleForm.userCount + '&content=' + str,
+        headers: {
+          'Authorization': 'APPCODE dd1193b23b4142afa88f0527ff9391e3'
+        }
+      }).then((response) => {
+        // console.log(response.data)
+        this.settime()
+        // this.sendCode(e)
+      })
+    },
+    settime () {
+      if (this.counterNum === 0) {
+        $('#checkcode').removeAttr('disabled')
+        $('#checkcode').html('获取验证码')
+        this.counterNum = 60
+        return
+      } else {
+        $('#checkcode').attr('disabled', true)
+        $('#checkcode').html(`重新发送${this.counterNum}`)
+        this.counterNum--
+      }
+      setTimeout(() => {
+        this.settime()
+      }, 1000)
+    },
     change (e) {
       console.log(this.$refs.hello.html)
       // this.$refs.hello.$forceUpdate()

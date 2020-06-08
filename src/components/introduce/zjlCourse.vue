@@ -27,7 +27,7 @@
         image1 = NN_interpolation(image, image.shape[0]*<input id="num1" ref="num1" v-model="num1" type="text" style="width:20px" value="1">, image.shape[1]*<input id="num2" ref="num2" v-model="num2" style="width:20px" value="1" type="text" >)
         </code></pre>
       </div>
-      <el-button style="background-color:rgb(2, 155, 98); color:white;float:left;margin:0px 0px 0 40px">在线示例 <i class="el-icon-video-play"></i></el-button>
+      <el-button @click="jump" style="background-color:rgb(2, 155, 98); color:white;float:left;margin:0px 0px 0 40px">在线示例 <i class="el-icon-video-play"></i></el-button>
       <el-button style="background-color:rgb(2, 155, 98); color:white;float:right;margin:0 45px 0 0">下一个 <i class="el-icon-arrow-right"></i></el-button>
     </el-row>
   </div>
@@ -41,6 +41,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    jump () {
+      this.$router.push({path: '/zjl'})
     }
   },
   mounted () {

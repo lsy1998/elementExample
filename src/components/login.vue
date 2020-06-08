@@ -83,16 +83,39 @@ export default {
         }
       }).then((response) => {
         console.log(response.data)
+        sessionStorage.isLogin = true
         sessionStorage.userId = response.data.userId
         sessionStorage.userCount = this.ruleForm.userCount
         this.$cookies.set('userCount', this.ruleForm.userCount, 60 * 60 * 24 * 7)
         this.$cookies.set('userPassword', this.ruleForm.userPassword, 60 * 60 * 24 * 7)
-        this.$router.push({
-          path: '/personalPage',
-          query: {
-            userCount: this.ruleForm.userCount
+
+        axios({
+          method: 'post',
+          url: 'http://47.115.131.98:39002/getUserInfo',
+          data: {
+            userId: response.data.userId
           }
+        }).then((response) => {
+          console.log(response.data)
+          sessionStorage.headPicUrl = response.data.userInfo[0].userImg
+          this.$store.dispatch('commitHeadPicUrl', response.data.userInfo[0].userImg)
         })
+
+        console.log(sessionStorage.preRoute)
+        if (sessionStorage.preRoute === null || sessionStorage.preRoute === undefined) {
+          // console.log()
+          // alert(111)
+          this.$router.push({
+            path: '/personalPage',
+            query: {
+              userCount: this.ruleForm.userCount
+            }
+          })
+        } else {
+          console.log(sessionStorage.preRoute)
+          this.$router.push({path: `${sessionStorage.preRoute}`})
+        }
+
         // console.log(sessionStorage.userId)
       })
     }

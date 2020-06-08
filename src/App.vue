@@ -75,8 +75,13 @@ export default {
     //   $(el).addClass('meunItem')
     // },
     toPersonalPage () {
-      alert(111)
-      this.$router.push({path: '/personalPage'})
+      if (sessionStorage.isLogin !== 'true') {
+        alert('请先登录！')
+        this.$router.push({path: '/login'})
+      } else {
+        this.$router.push({path: '/personalPage'})
+      }
+      // alert(111)
     },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
@@ -96,6 +101,7 @@ export default {
     }
   },
   mounted () {
+    sessionStorage.isLogin = false
     router.push({ path: '/index' })
     $('body').css('background-color', 'white')
     console.log(md5(`${111}545464`))

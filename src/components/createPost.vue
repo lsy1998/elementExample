@@ -109,6 +109,10 @@ export default {
           }
         }).then((result) => {
           console.log(result)
+          if (result.data.code === 200) {
+            alert('发布成功！')
+            this.$router.push({path: '/personalPage'})
+          }
           // console.log(url)
         })
       }

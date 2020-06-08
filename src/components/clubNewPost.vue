@@ -101,7 +101,7 @@ export default {
         method: 'post',
         url: 'http://47.115.131.98:39002/getAllPost',
         data: {
-          userId: sessionStorage.userId,
+          userId: 2,
           headPicUrl: ''
         }
       }).then((response) => {

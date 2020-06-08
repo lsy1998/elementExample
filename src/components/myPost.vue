@@ -50,6 +50,7 @@ export default {
   name: 'myPost',
   data () {
     return {
+      headPicUrl: '',
       posts: []
     }
   },
@@ -69,10 +70,10 @@ export default {
         method: 'post',
         url: 'http://47.115.131.98:39002/getAllPost',
         data: {
-          userId: sessionStorage.userId,
-          headPicUrl: ''
+          userId: sessionStorage.userId
         }
       }).then((response) => {
+        this.headPicUrl = sessionStorage.headPicUrl
         console.log(response)
         for (var i = 0; i < response.data.post.length; i++) {
           var imgReg = /<img.*?(?:>|\/>)/gi
