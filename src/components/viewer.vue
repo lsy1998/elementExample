@@ -197,7 +197,7 @@
               <el-col :span="8">
                 <div
                   style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
-                  @click="activeButton('CobbAngle')">
+                  @click="savaCanvas('CobbAngle')">
                   <div class="el-icon-camera-solid" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div><br>
                   <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">保存图片</label>
                 </div>
@@ -205,9 +205,9 @@
               <el-col :span="8">
                 <div
                   style="width:90%;height:60px;display:inline-block;background-color:rgb(50, 50, 50);margin:2px 2px;border:1px solid rgb(37, 37, 37);border-radius:3px;"
-                  @click="activeButton('Eraser')">
+                  @click="jumpToVTK">
                   <div class="icon icon-dodo-redo" style="color:rgb(192, 192, 192);margin:10px 0 10px 0;"></div>
-                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">橡皮擦</label>
+                  <label style="color:rgb(192, 192, 192);margin:10px 0 0 0;font-size:12px;">3维重建</label>
                 </div>
               </el-col>
               <!-- <el-col :span="6">
@@ -277,16 +277,15 @@
           </div>
 
           <div style="border-top:1px solid rgb(128, 128, 128);border-bottom:1px solid rgb(128, 128, 128);background-color:rgb(37, 37, 37)">
-            <div @click="showDicomList"
-              style="background-color:rgb(50,50,50);width:80px;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98);">
+            <div style="background-color:rgb(50,50,50);width:80px;height:32px;padding:10px 0 0 0;color:rgb(2, 155, 98);">
               文件列表</div>
           </div>
           <div style="height:200px; overflow-y:scroll;" class="test-1">
-<el-row v-for="list in dicomList" :key="list" style="border: 1px solid black">
+<el-row v-for="(list, i) in dicomList" :key="list" style="border: 1px solid black">
             <el-row>
               <el-col :span='12' style="color:rgb(192, 192, 192);font-size:12px;margin:6px 0 0 0; ">{{list[4]}}</el-col>
-              <el-col :span='8 ' style="color:rgb(192, 192, 192);font-size:12px;margin:4px 0 0 0; ">序列数：{{list[7]}}</el-col>
-              <el-col :span='4 '><el-button :data-name='list[4]' size="mini" style="font-size:14px;background-color:rgb(50, 50, 50); color:rgb(192, 192, 192);border:none" icon='el-icon-view'></el-button></el-col>
+              <el-col :span='8' style="color:rgb(192, 192, 192);font-size:12px;margin:4px 0 0 0; ">序列数：{{list[7]}}</el-col>
+              <el-col :span='4'><el-button :data-filename='list[4]' @click="changeDicom($event)" :data-name='i' size="mini" style="font-size:14px;background-color:rgb(50, 50, 50); color:rgb(192, 192, 192);border:none" icon='el-icon-view'></el-button></el-col>
             </el-row>
           </el-row>
           </div>
@@ -348,19 +347,19 @@
           </div>
           <div v-show="showSerial1" style="margin:10px 0 0 0;clear:both;border-top:1px solid rgb(128, 128, 128);">
             <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列1</div>
-            <div id="canvas1" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div id="canvas1" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px" @dblclick="canvasLoadDicom('1')"></div>
           </div>
           <div v-show="showSerial2" style="margin:10px 0 0 0;">
             <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列2</div>
-            <div id="canvas2" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div id="canvas2" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px" @dblclick="canvasLoadDicom('2')"></div>
           </div>
           <div v-show="showSerial3" style="margin:10px 0 0 0;">
             <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列3</div>
-            <div id="canvas3" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div id="canvas3" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px" @dblclick="canvasLoadDicom('3')"></div>
           </div>
           <div v-show="showSerial4" style="margin:10px 0 0 0;">
             <div style="color:rgb(192, 192, 192);margin:0 0 5px 0;">序列4</div>
-            <div id="canvas4" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px"></div>
+            <div id="canvas4" style="background-color:black;width:90%;height:100px;margin:0 0 0 10px" @dblclick="canvasLoadDicom('4')"></div>
           </div>
         </div>
       </el-col>
@@ -411,7 +410,9 @@ export default {
       imageIds2: [],
       imageIds3: [],
       element: {},
+      currentVTK: '',
       currentElement: '',
+      currentCanvas: '',
       crruentDicom: 0,
       drawer: true,
       direction: 'rtl',
@@ -432,24 +433,68 @@ export default {
         Probe: 'activeButton',
         RectangleRoi: 'activeButton',
         Brush: 'activeButton'
-      }
+      },
+      strWindowFeatures: 'width=800,height=800,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true'
     }
   },
   methods: {
+    canvasLoadDicom (value) {
+      if (this.currentElement === null || this.currentElement === '' || this.currentElement === undefined) {
+        alert('请先选中画布！')
+      } else {
+        if (value === '1') {
+          this.loadDicom(this.currentElement, this.serial1)
+        }
+        if (value === '2') {
+          this.loadDicom(this.currentElement, this.serial2)
+        }
+        if (value === '3') {
+          this.loadDicom(this.currentElement, this.serial3)
+        }
+        if (value === '4') {
+          this.loadDicom(this.currentElement, this.serial4)
+        }
+      }
+    },
+    jumpToVTK () {
+      window.open('../static/index.html', '3D', this.strWindowFeatures)
+    },
+    savaCanvas () {
+      if (sessionStorage.currentCanvas === '' || sessionStorage.currentCanvas === 'undefined' || sessionStorage.currentCanvas === undefined) {
+        alert('请先选中画布！')
+      } else {
+        var MIME_TYPE = 'image/png'
+        var canvasPic = document.getElementById(`${sessionStorage.currentCanvas}`).getElementsByTagName('canvas')
+        console.log(canvasPic)
+        var imgURL = canvasPic[0].toDataURL(MIME_TYPE)
+        var dlLink = document.createElement('a')
+        dlLink.download = '画布.png'
+        dlLink.href = imgURL
+        dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':')
+        document.body.appendChild(dlLink)
+        dlLink.click()
+        document.body.removeChild(dlLink)
+      }
+    },
     selectElement (e) {
       switch ($(e.currentTarget).attr('data-index')) {
         case '1':
           // console.log(1)
           this.currentElement = document.getElementById('dicomImage1')
+          sessionStorage.currentCanvas = 'dicomImage1'
+          // sessionStorage.currentCanvas = document.getElementById('canvas1')
           break
         case '2':
           this.currentElement = document.getElementById('dicomImage2')
+          sessionStorage.currentCanvas = 'dicomImage2'
           break
         case '3':
           this.currentElement = document.getElementById('dicomImage3')
+          sessionStorage.currentCanvas = 'dicomImage3'
           break
         case '4':
           this.currentElement = document.getElementById('dicomImage4')
+          sessionStorage.currentCanvas = 'dicomImage4'
           break
         default:
           break
@@ -466,37 +511,32 @@ export default {
       let element1 = document.getElementById('canvas2')
       let element2 = document.getElementById('canvas3')
       let element3 = document.getElementById('canvas4')
-      alert(this.length1)
+      cornerstone.enable(element)
+      cornerstone.enable(element1)
+      cornerstone.enable(element2)
+      cornerstone.enable(element3)
+      // alert(this.length1)
       switch (this.length1) {
         case 1:
           cornerstone.enable(element)
           this.loadDicom(element, this.serial1)
           break
         case 2:
-          this.showSerial2 = true
-          cornerstone.enable(element)
           this.loadDicom(element, this.serial1)
-          cornerstone.enable(element1)
           this.loadDicom(element1, this.serial2)
+          this.showSerial2 = true
           break
         case 3:
-          cornerstone.enable(element)
           this.loadDicom(element, this.serial1)
-          cornerstone.enable(element1)
           this.loadDicom(element1, this.serial2)
-          cornerstone.enable(element2)
           this.loadDicom(element2, this.serial3)
           this.showSerial2 = true
           this.showSerial3 = true
           break
         case 4:
-          cornerstone.enable(element)
           this.loadDicom(element, this.serial1)
-          cornerstone.enable(element1)
           this.loadDicom(element1, this.serial2)
-          cornerstone.enable(element2)
           this.loadDicom(element2, this.serial3)
-          cornerstone.enable(element3)
           this.loadDicom(element3, this.serial4)
           this.showSerial2 = true
           this.showSerial3 = true
@@ -693,7 +733,7 @@ export default {
       let viewport = cornerstone.getViewport(this.element)
       if (typeof (viewport.colormap) === 'undefined') {
         // console.log('')
-        alert('undefined')
+        // alert('undefined')
       } else {
         console.log(viewport)
         console.log(viewport.colormap)
@@ -752,16 +792,30 @@ export default {
       viewport.invert = !viewport.invert
       cornerstone.setViewport(element, viewport)
     },
-    showDicomList () {
+    changeDicom (event) {
       let i = 0
       let j = 0
       let k = 0
       let l = 0
+      let el1 = document.getElementById('dicomImage1')
+      let el2 = document.getElementById('dicomImage2')
+      let el3 = document.getElementById('dicomImage3')
+      let el4 = document.getElementById('dicomImage4')
+      var el = event.currentTarget
+      var filename = $(el).attr('data-filename')
+      sessionStorage.currentVTK = parseInt($(el).attr('data-name')) + 1
+      alert(sessionStorage.currentVTK)
+      $(el).css('background-color', 'black')
+      $(el).parent().parent().parent().css('background-color', 'black')
+      $(el).parent().parent().parent().siblings().css('background-color', 'rgb(50,50,50)')
+      $(el).parent().parent().parent().siblings().children().children().children().css('background-color', 'rgb(50,50,50)')
+      console.log(filename)
+
       this.$axios({
-        url: 'http://localhost:5000/getLIDC',
+        url: 'http://47.115.131.98:888/getLIDC',
         method: 'post',
         data: {
-          name: 'LIDC-IDRI-0003'
+          name: filename
         }
       }).then((res) => {
         console.log(res.data.result)
@@ -788,6 +842,10 @@ export default {
                 this.serial1.push(res.data.result[0][i][0])
               }
             }
+            this.loadDicom(el1, this.serial1)
+            // this.loadDicom(el2, [])
+            // this.loadDicom(el3, [])
+            // this.loadDicom(el4, [])
             console.log(this.serial1)
             break
           case 2:
@@ -810,7 +868,10 @@ export default {
                 this.serial2.push(res.data.result[1][k][0])
               }
             }
-
+            this.loadDicom(el1, this.serial1)
+            this.loadDicom(el2, this.serial2)
+            // this.loadDicom(el3, [])
+            // this.loadDicom(el4, [])
             console.log(this.serial1)
             console.log(this.serial2)
             break
@@ -828,21 +889,24 @@ export default {
                 this.serial1.push(res.data.result[0][i][0])
               }
             }
-            for (j = 0; j < res.data.result[0].length; j++) {
-              if (res.data.result[0][j][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[0][j][0])
+            for (j = 0; j < res.data.result[1].length; j++) {
+              if (res.data.result[1][j][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[1][j][0])
               } else {
-                this.serial2.push(res.data.result[0][j][0])
+                this.serial2.push(res.data.result[1][j][0])
               }
             }
-            for (k = 0; k < res.data.result[1].length; k++) {
-              if (res.data.result[1][k][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[1][k][0])
+            for (k = 0; k < res.data.result[2].length; k++) {
+              if (res.data.result[2][k][0].indexOf('xml') >= 0) {
+                console.log(res.data.result[2][k][0])
               } else {
-                this.serial3.push(res.data.result[1][k][0])
+                this.serial3.push(res.data.result[2][k][0])
               }
             }
-
+            this.loadDicom(el1, this.serial1)
+            this.loadDicom(el2, this.serial2)
+            this.loadDicom(el3, this.serial3)
+            // this.loadDicom(el4, [])
             console.log(this.serial1)
             console.log(this.serial2)
             console.log(this.serial3)
@@ -883,7 +947,10 @@ export default {
                 this.serial3.push(res.data.result[1][l][0])
               }
             }
-
+            this.loadDicom(el1, this.serial1)
+            this.loadDicom(el2, this.serial2)
+            this.loadDicom(el3, this.serial3)
+            this.loadDicom(el4, this.serial4)
             console.log(this.serial1)
             console.log(this.serial2)
             console.log(this.serial3)
@@ -1017,6 +1084,8 @@ export default {
       cornerstone.loadImage(imageIds[_this._data.crruentDicom]).then(
         function (image) {
           cornerstone.displayImage(element, image);
+          cornerstone.resize(element);
+          cornerstone.resize(element);
           cornerstoneTools.addStackStateManager(element, ["stack"]);
           cornerstoneTools.addToolState(element, "stack", stack);
         },
@@ -1027,6 +1096,8 @@ export default {
       const apiTool = cornerstoneTools[`${toolName}Tool`];
       cornerstoneTools.addTool(apiTool);
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
+      cornerstone.resize(element);
+      cornerstone.resize(element);
     },
 
     loadDicom1 (element, imageIds) {
@@ -1068,13 +1139,16 @@ export default {
   },
   mounted () {
     const _this = this;
+    sessionStorage.currentVTK = 'test.vtk'
     this.element = document.getElementById("dicomImage1");
+    var element1 = document.getElementById("canvas1");
     $("#sideBar").height($(window).height());
     $("#rightSideBar").height($(window).height());
     $("#dicomImage1").height($(window).height());
     $("#canvasDiv").height($(window).height());
     var element = _this._data.element;
     cornerstone.enable(element);
+    cornerstone.enable(element1);
     this.fillColormapsList()
     cornerstoneTools.init();
     cornerstone.enable(element);
@@ -1083,14 +1157,15 @@ export default {
       `StackScrollMouseWheelTool`
     );
     const imageIds = []
-    for (var i = 1; i < 362; i++) {
+    for (var i = 1; i < 236; i++) {
       let str = i + "";
       _this._data.imageIds.push(
-        "wadouri:http://localhost:8080/static/series-000001/image-000" +
+        "wadouri:http://localhost:8080/static/sample/000" +
         str.padStart(3, "0") +
         ".dcm"
       );
     }
+    this.serial1 = _this._data.imageIds
     // console.log(imageIds)
     const toolName = "StackScrollMouseWheel";
     const stack = {
@@ -1100,6 +1175,7 @@ export default {
     cornerstone.loadImage(_this._data.imageIds[_this._data.crruentDicom]).then(
       function (image) {
         cornerstone.displayImage(element, image);
+        cornerstone.displayImage(element1, image);
         cornerstoneTools.addStackStateManager(element, ["stack"]);
         cornerstoneTools.addToolState(element, "stack", stack);
       },
@@ -1113,7 +1189,7 @@ export default {
     cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
 
 this.$axios({
-  url: 'http://localhost:5000/getLIDCList',
+  url: 'http://47.115.131.98:888/getLIDCList',
   method: 'get',
 }).then((res) => {
   console.log(res.data.result)

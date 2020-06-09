@@ -21,6 +21,13 @@
             <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 社区交流</span></router-link>
           </el-menu-item>
           <!-- <el-menu-item class="talk" index="10" style="border:0;">
+            <router-link style=" text-decoration:none; font-size:16px" to="/threeD"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 3D</span></router-link>
+            <a href="../static/index.html" title="100素材网" target="_blank">Welcome</a>
+          </el-menu-item> -->
+          <el-menu-item class="talk" index="10" style="border:0;">
+            <span class="meunItem talk1" @click="jump3D"> 3D</span>
+          </el-menu-item>
+          <!-- <el-menu-item class="talk" index="10" style="border:0;">
             <router-link style=" text-decoration:none; font-size:16px" to="/viewer"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 新查看器</span></router-link>
           </el-menu-item> -->
           <!-- <el-menu-item index="7" style="border:0;">
@@ -56,6 +63,7 @@ export default {
   data () {
     return {
       color: '',
+      strWindowFeatures: 'width=1000,height=500,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true',
       activeIndex: '1',
       activeIndex2: '1',
       circleUrl:
@@ -67,6 +75,11 @@ export default {
     }
   },
   methods: {
+    jump3D () {
+      window.open('../static/index.html', 'B_page', this.strWindowFeatures)
+      // window.open('../static/index.html', '_blank')
+      // window.location.href = '../static/index.html'
+    },
     // toggleMeunItem (e) {
     //   var el = e.currentTarget
     //   $(el).addClass('meunItem1')

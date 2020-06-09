@@ -25,16 +25,18 @@
         <el-row>
           <el-col :span='5' id="courseBox" style="overflow-y:scroll" class="test-1">
             <!-- <el-divider content-position="left" @click="showDownloadFileList" style="font-size:18px">图像几何变换</el-divider> -->
-            <div style=" margin:10px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像几何变换<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
-
+            <div style=" margin:10px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像处理基础<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='histogram'>灰度直方图</div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='histogramJhh'>直方图均衡化</div>
+            <!-- <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='histogramGdh'>直方图规定化</div> -->
             <div id="zjl" class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='zjl'>最近邻插值法</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='bilinearInterpolation'>双线性插值法</div>
 
-            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像增强<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
+            <!-- <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像增强<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
 
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='canny'>傅里叶变换</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">离散余弦变换</div>
-            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">小波变换</div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">小波变换</div> -->
 
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像分割<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
 
@@ -43,14 +45,26 @@
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='OTSU'>OTSU大津阈值分割</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='regionGrow'>区域生长算法</div>
 
-            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">特征提取<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
+            <!-- <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">特征提取<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
 
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='histogram'>PCA算法</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">LDA算法</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">LBP特征</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">灰度共生矩阵算法</div>
             <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">SIFT特征算法</div>
-            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">HOG特征算法</div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default">HOG特征算法</div> -->
+
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像融合<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='laplaceJzt'>金字塔分解法实现医学图像融合</div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='smallWave'>小波变换实现医学图像融合</div>
+
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">图像配准<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='SSDA'>SSDA序贯相似性实现医学图像配准</div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='Fly'>傅里叶变换实现医学图像配准</div>
+
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;padding:0 0 0 0px;font-size:18px; color:rgb(2, 155, 98)">3维重建<i class="el-icon-arrow-down" style="float:right;margin:0 10px 0 0"></i></div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='RC'>RC算法实现医学图像三维重建</div>
+            <div class="courseItem" style=" margin:30px 0 0 0;text-align:left;cursor:default" @click="chooseMethod($event)" data-name='MC'>MC算法实现医学图像三维重建</div>
           </el-col>
           <el-col :span='19' style="overflow-y:scroll; " id="courseContent" class="test-1">
               <router-view style=""/>

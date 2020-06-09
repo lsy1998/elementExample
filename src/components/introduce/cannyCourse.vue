@@ -17,26 +17,26 @@
       <div style="color:black;margin:10px 45px 0px 45px;text-align:left;text-indent:2em">
         3. 图像中给定的边缘应只被标记一次，并且在可能的情况下，图像的噪声不应产生假的边缘。
       </div>
-      <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:2em">
+      <div style="color:black;margin:10px 45px 20px 45px;text-align:left;text-indent:2em">
         为了满足这些要求，Canny使用了变分法。Canny检测器中的最优函数使用四个指数项的和来描述，它可以由高斯函数的一阶导数来近似。
       </div>
-      <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:2em">
+      <div style="color:black;margin:10px 45px 20px 45px;text-align:left;text-indent:2em">
         在目前常用的边缘检测方法中，Canny边缘检测算法是具有严格定义的，可以提供良好可靠检测的方法之一。由于它具有满足边缘检测的三个标准和实现过程简单的优势，成为边缘检测最流行的算法之一。
       </div>
-      <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:2em">
+      <div style="color:black;margin:10px 45px 0px 45px;text-align:left;text-indent:2em">
         Canny边缘检测算法可以分为以下5个步骤：
       </div>
       <div style="color:black;margin:10px 45px 0px 45px;text-align:left;text-indent:2em">
         1. 使用高斯滤波器，以平滑图像，滤除噪声。
       </div>
-      <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:4em">
+      <div style="color:black;margin:10px 45px 0px 45px;text-align:left;text-indent:4em">
         首先生成二维高斯分布矩阵：
       </div>
-      <img src="https://images2017.cnblogs.com/blog/1055519/201712/1055519-20171209113727167-95281661.png" alt="">
-      <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:4em">
+      <img src="../../assets/image/canny1.png" alt="">
+      <div style="color:black;margin:20px 45px 0px 45px;text-align:left;text-indent:4em">
         然后与灰度图像进行卷积实现滤波：
       </div>
-      <img src="https://images2017.cnblogs.com/blog/1055519/201712/1055519-20171209113805277-849122456.png" alt="">
+      <img src="../../assets/image/canny2.png" alt="">
       <div style="color:black;margin:10px 45px 0px 45px;text-align:left;text-indent:2em">
         2. 计算图像中每个像素点的梯度强度和方向。
       </div>
@@ -44,12 +44,12 @@
         求变化率时，对于一元函数，即求导；对于二元函数，求偏导。 数字图像处理中，用一阶有限差分近似求取灰度值的梯度值(变化率)。
         (即：使差商(Δf/Δx)近似取代微商(∂f/∂x)。求灰度的变化率，分别取x和y方向上相邻像素做差，代替求取x和y 方向一阶偏导) 。
       </div>
-      <img src="https://images2017.cnblogs.com/blog/1055519/201712/1055519-20171209114023527-901395595.png" alt="">
+      <img src="../../assets/image/canny3.png" alt="">
       <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:2em">
         其中f为图像灰度值，P代表X方向梯度幅值，Q代表Y方向 梯度幅值，M是该点幅值，Θ是梯度方向，也就是角度。
         注：图像梯度方向与边缘方向互相垂直：
       </div>
-      <img src="https://images2017.cnblogs.com/blog/1055519/201712/1055519-20171209114129355-1447164606.png" alt="">
+      <img src="../../assets/image/canny4.png" alt="">
       <div style="color:black;margin:10px 45px 0px 45px;text-align:left;text-indent:2em">
         3. 应用非极大值（Non-Maximum Suppression）抑制，以消除边缘检测带来的杂散响应。
       </div>

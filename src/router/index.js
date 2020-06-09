@@ -39,6 +39,15 @@ import OTSUCourse from '@/components/introduce/OTSUCourse'
 import regionGrowCourse from '@/components/introduce/regionGrowCourse'
 import histogramCourse from '@/components/introduce/histogramCourse'
 import viewer from '@/components/viewer'
+import threeD from '@/components/threeD'
+import histogramJhhCourse from '@/components/introduce/histogramJhhCourse'
+import histogramGdhCourse from '@/components/introduce/histogramGdhCourse'
+import laplaceJztCourse from '@/components/introduce/laplaceJztCourse'
+import smallWaveCourse from '@/components/introduce/smallWaveCourse'
+import SSDACourse from '@/components/introduce/SSDACourse'
+import FlyCourse from '@/components/introduce/FlyCourse'
+import RCCourse from '@/components/introduce/RCCourse'
+import MCCourse from '@/components/introduce/MCCourse'
 
 Vue.use(Router)
 
@@ -49,6 +58,11 @@ export default new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/threeD',
+      name: 'threeD',
+      component: threeD
     },
     {
       path: '/viewer',
@@ -64,6 +78,46 @@ export default new Router({
           path: 'zjlCourse',
           name: 'zjlCourse',
           component: zjlCourse
+        },
+        {
+          path: 'RCCourse',
+          name: 'RCCourse',
+          component: RCCourse
+        },
+        {
+          path: 'MCCourse',
+          name: 'MCCourse',
+          component: MCCourse
+        },
+        {
+          path: 'FlyCourse',
+          name: 'FlyCourse',
+          component: FlyCourse
+        },
+        {
+          path: 'SSDACourse',
+          name: 'SSDACourse',
+          component: SSDACourse
+        },
+        {
+          path: 'smallWaveCourse',
+          name: 'smallWaveCourse',
+          component: smallWaveCourse
+        },
+        {
+          path: 'laplaceJztCourse',
+          name: 'laplaceJztCourse',
+          component: laplaceJztCourse
+        },
+        {
+          path: 'histogramJhhCourse',
+          name: 'histogramJhhCourse',
+          component: histogramJhhCourse
+        },
+        {
+          path: 'histogramGdhCourse',
+          name: 'histogramGdhCourse',
+          component: histogramGdhCourse
         },
         {
           path: 'histogramCourse',

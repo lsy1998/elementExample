@@ -15,7 +15,7 @@ f(x,y)=b1+b2x+b3y+b4xy。其中b1,b2,b3,b4是相关的系数。关于其的计�
       <div style="color:black;margin:10px 45px 20px 45px;text-align:left; text-indent:2em">
  如图，已知Q12，Q22，Q11，Q21，但是要插值的点为P点，这就要用双线性插值了，首先在x轴方向上，对R1和R2两个点进行插值，这个很简单，然后根据R1和R2对P点进行插值，这就是所谓的双线性插值。
 </div>
-<img src="http://images.cnitblog.com/blog/362399/201403/281607508919268.png" alt="">
+<img src="../../assets/image/bli.png" alt="">
       <div style="margin:0px 45px 0px 40px;">
         <pre id="code" class="line-numbers"><code class="language-python">
         def bilinear_interpolation(img, out_dim):

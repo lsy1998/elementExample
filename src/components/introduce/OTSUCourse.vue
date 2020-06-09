@@ -25,7 +25,6 @@ g = w0 * w1 * (u0 - u1)^2
 
         </code></pre>
       </div>
-      <img src="https://img-blog.csdn.net/20140319213031953?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3VuYm95aXJpcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="">
       <div style="color:black;margin:20px 45px 20px 45px;text-align:left;text-indent:2em">
         采用遍历的方法，遍历所有阈值，当g最大时，该阈值就是我们所求的认为最合适的阈值了。
 偷偷告诉你，opencv有自带的使用大津法阈值化的方法，如下：
