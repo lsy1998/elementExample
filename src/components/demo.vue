@@ -62,7 +62,7 @@
           id="wadoURL"
           style="width: 35%;"
           placeholder="Enter WADO URL"
-          value="http://47.115.131.98:39002/dicomPic/1/000001.dcm"
+          value="https://graduation-project.lishangying.site/dicomPic/1/000001.dcm"
         />
         <el-button type="button" id="downloadAndView">加载Dicom</el-button>
       </div>
@@ -149,7 +149,7 @@ export default {
       for (var i = 1; i < 362; i++) {
         let str = i + ''
         imageIds.push(
-          'wadouri:http://47.115.131.98:39002/dicomPic/1/000' +
+          'wadouri:https://graduation-project.lishangying.site/dicomPic/1/000' +
             str.padStart(3, '0') +
             '.dcm'
         )

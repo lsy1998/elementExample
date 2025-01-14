@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    baseUrl: 'http://47.115.131.98:39002/',
+    baseUrl: 'https://graduation-project.lishangying.site/',
     headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
     userName: '',
     userSchool: '',

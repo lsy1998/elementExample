@@ -42,8 +42,8 @@ export default {
       console.log($(el).attr('data-name'))
       this.$axios({
         method: 'get',
-        url: 'http://47.115.131.98:39002/download',
-        // url: 'http://47.115.131.98:39002/download',
+        url: 'https://graduation-project.lishangying.site/download',
+        // url: 'https://graduation-project.lishangying.site/download',
         params: {
           // path: $(el).attr('data-index')
           path: $(el).attr('data-index'),
@@ -62,7 +62,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: 'http://47.115.131.98:39002/getAllFileList'
+      url: 'https://graduation-project.lishangying.site/getAllFileList'
     }).then((res) => {
       this.files = res.data.data
     })

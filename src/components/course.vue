@@ -94,7 +94,7 @@ export default {
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-      imgList: ['http://47.115.131.98:39002/lunbo/dc.jpg', 'http://47.115.131.98:39002/lunbo/26.png']
+      imgList: ['https://graduation-project.lishangying.site/lunbo/dc.jpg', 'https://graduation-project.lishangying.site/lunbo/26.png']
     }
   },
   methods: {

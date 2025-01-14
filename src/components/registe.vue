@@ -91,30 +91,31 @@ export default {
         userPassword: [
           { required: true, message: '内容不能为空', trigger: 'blur' }
           // { min: 11, max: 11, message: '请输入11位手机号码', trigger: 'change' }
-        ],
-        checkNum: [
-          { required: true, message: '内容不能为空', trigger: 'blur' },
-          { min: 6, max: 6, message: '请输入6位验证码', trigger: 'change' }
         ]
+        // ,
+        // checkNum: [
+        //   { required: true, message: '内容不能为空', trigger: 'blur' },
+        //   { min: 6, max: 6, message: '请输入6位验证码', trigger: 'change' }
+        // ]
       }
     }
   },
   methods: {
-    moban () {
-      axios({
-        method: 'POST',
-        url: 'http://zwp.market.alicloudapi.com/sms/edittemplete',
-        headers: {
-          'Authorization': 'APPCODE dd1193b23b4142afa88f0527ff9391e3'
-        },
-        data: {
-          content: '您的验证码是#code#。如非本人操作，请忽略本短信',
-          signature: '【大龙科技】'
-        }
-      }).then(function (response) {
-        console.log(response.data)
-      })
-    },
+    // moban () {
+    //   axios({
+    //     method: 'POST',
+    //     url: 'http://zwp.market.alicloudapi.com/sms/edittemplete',
+    //     headers: {
+    //       'Authorization': 'APPCODE dd1193b23b4142afa88f0527ff9391e3'
+    //     },
+    //     data: {
+    //       content: '您的验证码是#code#。如非本人操作，请忽略本短信',
+    //       signature: '【大龙科技】'
+    //     }
+    //   }).then(function (response) {
+    //     console.log(response.data)
+    //   })
+    // },
     settime () {
       if (this.counterNum === 0) {
         $('#checkcode').removeAttr('disabled')
@@ -162,7 +163,7 @@ export default {
       // var _this = this
       axios({
         method: 'post',
-        url: 'http://47.115.131.98:39002/addUser',
+        url: 'https://graduation-project.lishangying.site/addUser',
         data: {
           userCount: this.ruleForm.userCount,
           userPassword: md5(`${this.ruleForm.userPassword}545464`)

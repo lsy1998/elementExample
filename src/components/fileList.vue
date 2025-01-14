@@ -43,7 +43,7 @@ export default {
       console.log(row.filePath)
       this.$axios({
         method: 'get',
-        url: 'http://47.115.131.98:39002/download',
+        url: 'https://graduation-project.lishangying.site/download',
         params: {
           path: row.filePath,
           name: row.fileName
@@ -78,7 +78,7 @@ export default {
     alert(111)
     axios({
       method: 'post',
-      url: 'http://47.115.131.98:39002/getFileList',
+      url: 'https://graduation-project.lishangying.site/getFileList',
       data: {
         userId: sessionStorage.userId
       }

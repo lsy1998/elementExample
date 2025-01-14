@@ -52,7 +52,7 @@ export default {
       // }
       axios({
         method: 'post',
-        url: 'http://47.115.131.98:39002/addUserInfo',
+        url: 'https://graduation-project.lishangying.site/addUserInfo',
         data: {
           userName: _this._data.userName,
           userGender: 1,

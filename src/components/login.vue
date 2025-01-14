@@ -76,7 +76,7 @@ export default {
       // var _this = this
       axios({
         method: 'post',
-        url: 'http://47.115.131.98:39002/login',
+        url: 'https://graduation-project.lishangying.site/login',
         data: {
           userCount: this.ruleForm.userCount,
           userPassword: md5(`${this.ruleForm.userPassword}545464`)
@@ -91,7 +91,7 @@ export default {
 
         axios({
           method: 'post',
-          url: 'http://47.115.131.98:39002/getUserInfo',
+          url: 'https://graduation-project.lishangying.site/getUserInfo',
           data: {
             userId: response.data.userId
           }

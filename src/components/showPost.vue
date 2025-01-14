@@ -393,7 +393,7 @@ export default {
     getPost () {
       this.$axios({
         method: 'post',
-        url: 'http://47.115.131.98:39002/getPost',
+        url: 'https://graduation-project.lishangying.site/getPost',
         data: {
           postId: sessionStorage.postId
         }
@@ -409,7 +409,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: 'http://47.115.131.98:39002/getUserInfo',
+      url: 'https://graduation-project.lishangying.site/getUserInfo',
       data: {
         userId: sessionStorage.userId
       }
@@ -424,7 +424,7 @@ export default {
     // $('#commentDiv').height($(window).height() - $('#meun').height() - 900)
     // this.$axios({
     //   method: 'post',
-    //   url: 'http://47.115.131.98:39002/getPost',
+    //   url: 'https://graduation-project.lishangying.site/getPost',
     //   data: {
     //     userId: sessionStorage.userId
     //   }

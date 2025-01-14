@@ -151,7 +151,7 @@ export default {
       var _this = this
       axios({
         method: 'post',
-        url: 'http://47.115.131.98:39002/changePassword',
+        url: 'https://graduation-project.lishangying.site/changePassword',
         data: {
           userCount: _this._data.userCount,
           userPassword: md5(`${_this._data.userPassword}545464`)

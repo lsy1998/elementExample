@@ -256,11 +256,9 @@ export default {
       _this._data.showPostDiv = data
     },
     upload () {
-      alert(111)
       $('#headPic').click()
     },
     uploadHeadPic (e) {
-      alert(222)
       var _this = this
       var files = e.target.files
       _this._data.headPicUrl = URL.createObjectURL(files[0])
@@ -272,49 +270,18 @@ export default {
       for (var value of formData.values()) {
         console.log(value)
       }
-      var url = 'http://47.115.131.98:888/upload'
-      // var url = 'http://127.0.0.1:5000/upload'
-      // var headers = {
-      //   'Content-Type': 'application/x-www-form-urlencoded'
-      // }
-      // const instance = axios.create({
-      //   withCredentials: true // 如果发送请求的时候需要带上token 验证之类的也可以写在这个对象里
-      // })
+      var url = 'https://graduation-project.lishangying.site/uploadHeadPic'
       axios.post(url, formData).then((response) => {
         this.headPicUrl = response.data.path
-        // this.headPicUrl = 'http://47.115.131.98:39002/headPic/6.jpg'
         this.$store.dispatch('commitHeadPicUrl', response.data.path)
         console.log(response.data)
       })
-      // var json = {
-      //   'token': sessionStorage.token,
-      //   'userId': result.data.content.list[i].userId
-      // }
-      // var jsondata
-      // jsondata = JSON.stringify(json)
-      // console.log('-发送请求数据:')
-      // console.log(json)
-      // $.ajax({
-      //   async: false,
-      //   type: 'POST',
-      //   url: url,
-      //   data: formData,
-      //   processData: false,
-      //   contentType: false,
-      //   success: function (result) {
-      //     console.log('-返回结果: ')
-      //     console.log(result)
-      //     if (result.code === 200) {
-      //     } else {
-      //     }
-      //   }
-      // })
     },
     // getAllPost () {
     //   // alert(222)
     //   this.$axios({
     //     method: 'post',
-    //     url: 'http://47.115.131.98:39002/getAllPost',
+    //     url: 'https://graduation-project.lishangying.site/getAllPost',
     //     data: {
     //       userId: sessionStorage.userId
     //     }
@@ -358,8 +325,6 @@ export default {
     }
   },
   mounted () {
-    alert(this.$route.query.userCount)
-    // console.log(router.query.userCount)
     $('#personalPageDiv').height($(window).height() - $('#meun').height())
     console.log(this.$store.state.baseUrl)
     var _this = this
@@ -371,26 +336,26 @@ export default {
 
     axios({
       method: 'post',
-      url: 'http://47.115.131.98:39002/getUserInfo',
+      url: 'https://graduation-project.lishangying.site/getUserInfo',
       data: {
         userId: sessionStorage.userId
       }
     }).then((response) => {
       console.log(response.data)
-      this.headPicUrl = response.data.userInfo[0].userImg
-      sessionStorage.headPicUrl = response.data.userInfo[0].userImg
-      this.$store.dispatch('commitHeadPicUrl', response.data.userInfo[0].userImg)
-      this.$store.dispatch('commitUserName', response.data.userInfo[0].userName)
-      this.$store.dispatch('commitUserJob', response.data.userInfo[0].userJob)
-      this.$store.dispatch('commitUserCompany', response.data.userInfo[0].userCompany)
+      this.headPicUrl = response.data.userInfo.userImg
+      sessionStorage.headPicUrl = response.data.userInfo.userImg
+      this.$store.dispatch('commitHeadPicUrl', response.data.userInfo.userImg)
+      this.$store.dispatch('commitUserName', response.data.userInfo.userName)
+      this.$store.dispatch('commitUserJob', response.data.userInfo.userJob)
+      this.$store.dispatch('commitUserCompany', response.data.userInfo.userCompany)
       // this.$store.dispatch('commitUserPage', response.data.userInfo[0].userPage)
-      this.$store.dispatch('commitUserSchool', response.data.userInfo[0].userSchool)
-      this._data.userName = response.data.userInfo[0].userName
-      this._data.userJob = response.data.userInfo[0].userJob
-      this._data.userCompany = response.data.userInfo[0].userCompany
-      this._data.userPage = response.data.userInfo[0].userPage
-      this._data.userSchool = response.data.userInfo[0].userSchool
-      this._data.userCount = response.data.userInfo[0].userCount
+      this.$store.dispatch('commitUserSchool', response.data.userInfo.userSchool)
+      this._data.userName = response.data.userInfo.userName
+      this._data.userJob = response.data.userInfo.userJob
+      this._data.userCompany = response.data.userInfo.userCompany
+      this._data.userPage = response.data.userInfo.userPage
+      this._data.userSchool = response.data.userInfo.userSchool
+      this._data.userCount = response.data.userInfo.userCount
       // this._data.ciyunList.push([response.data.userInfo[0].userName, 20])
       // this._data.ciyunList.push([response.data.userInfo[0].userName, 10])
       // this._data.ciyunList.push([response.data.userInfo[0].userName, 15])

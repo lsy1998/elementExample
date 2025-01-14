@@ -22,13 +22,13 @@
       <el-col :span="16">
         <div id="yanshiPic">
           <el-button style="float:right; background-color:rgb(45, 45, 45);color:white;margin:5px 0 0 0">示例图片</el-button>
-          <img style="" src="http://47.115.131.98:39002/jiaocheng/bgc.png" width="50%" alt="">
+          <img style="" src="https://graduation-project.lishangying.site/jiaocheng/bgc.png" width="50%" alt="">
         </div>
         <div id="resultPic"
           style="overflow:hidden;box-shadow:0 -5px 3px -1px rgb(228, 228, 228);overflow-x:scroll;overflow-y:scroll">
           <el-button style="float:right; background-color:rgb(45, 45, 45);color:white;margin:5px 0 0 0;">运行结果
           </el-button>
-          <img style="" id="image" src="http://47.115.131.98:39002/jiaocheng/bgc.png" width="50%" alt="hhaha">
+          <img style="" id="image" src="https://graduation-project.lishangying.site/jiaocheng/bgc.png" width="50%" alt="hhaha">
         </div>
       </el-col>
     </el-row>
@@ -74,7 +74,7 @@ export default {
         console.log(res.data)
         alert(123)
         // $('#image').css('width', '100%')
-        $('#image').attr('src', 'http://47.115.131.98:39002/jiaocheng/' + res.data.picUrl + '?' + new Date().getTime())
+        $('#image').attr('src', 'https://graduation-project.lishangying.site/jiaocheng/' + res.data.picUrl + '?' + new Date().getTime())
       })
     }
   },

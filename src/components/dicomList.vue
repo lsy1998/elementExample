@@ -50,7 +50,7 @@ export default {
   mounted () {
     $('#dicomListDiv').width($(window).width())
     $('#dicomListDiv').height($(window).height())
-    axios.get('http://47.115.131.98:39002/getDicomList')
+    axios.get('https://graduation-project.lishangying.site/getDicomList')
       .then((response) => {
         console.log(response.data)
         this.tableData = response.data.dicomList

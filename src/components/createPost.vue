@@ -54,7 +54,7 @@ export default {
     },
     $imgDel (pos) {
       console.log(pos)
-      var pic = pos[0].split('http://47.115.131.98:39002/MDPic/')
+      var pic = pos[0].split('https://graduation-project.lishangying.site/MDPic/')
       console.log(pic)
       console.log(pic[1])
       this.$axios({
@@ -100,7 +100,7 @@ export default {
         alert('请输入标题')
       } else {
         this.$axios({
-          url: 'http://47.115.131.98:39002/uploadPost',
+          url: 'https://graduation-project.lishangying.site/uploadPost',
           method: 'post',
           data: {
             userId: sessionStorage.userId,

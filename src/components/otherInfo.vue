@@ -29,7 +29,7 @@ export default {
     // alert(112)
     this.$axios({
       method: 'post',
-      url: 'http://47.115.131.98:39002/getOtherInfo'
+      url: 'https://graduation-project.lishangying.site/getOtherInfo'
     }).then((res) => {
     //   alert(111)
       console.log(res.data)
