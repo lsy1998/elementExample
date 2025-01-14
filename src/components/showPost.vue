@@ -399,9 +399,9 @@ export default {
         }
       }).then((response) => {
         console.log(response.data)
-        sessionStorage.post = response.data.post[0].postValue
-        this.post = response.data.post[0].postValue
-        this.title = response.data.post[0].postTitle
+        sessionStorage.post = response.data.post.postValue
+        this.post = response.data.post.postValue
+        this.title = response.data.post.postTitle
       })
       //   return sessionStorage.post
     }
@@ -414,7 +414,7 @@ export default {
         userId: sessionStorage.userId
       }
     }).then((response) => {
-      sessionStorage.userName = response.data.userInfo[0].userName
+      sessionStorage.userName = response.data.userInfo.userName
     })
     this.headPic = sessionStorage.headPicUrl
     this.checkSupport()

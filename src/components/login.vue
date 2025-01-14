@@ -97,8 +97,8 @@ export default {
           }
         }).then((response) => {
           console.log(response.data)
-          sessionStorage.headPicUrl = response.data.userInfo[0].userImg
-          this.$store.dispatch('commitHeadPicUrl', response.data.userInfo[0].userImg)
+          sessionStorage.headPicUrl = response.data.userInfo.userImg
+          this.$store.dispatch('commitHeadPicUrl', response.data.userInfo.userImg)
         })
 
         console.log(sessionStorage.preRoute)

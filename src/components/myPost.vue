@@ -1,7 +1,7 @@
 
 <template>
   <div style="" id="postDiv">
-    <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId' :key='post'
+    <div v-for="post in posts" @click="showPost($event)" :data-index='post.postId' :key='post.postId'
       style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;" :class="{'postHeight':post.postHeight, 'postHeight1':post.postHeight1 }">
       <el-row style="height:100%">
         <el-col :span="post.leftSpan" style="height:100%;">
@@ -83,8 +83,8 @@ export default {
             response.data.post[i].postHeight = false
             response.data.post[i].postHeight1 = true
             response.data.post[i].postContentHeight = false
-            response.data.post[i].leftSpan = '18'
-            response.data.post[i].rightSpan = '6'
+            response.data.post[i].leftSpan = 18
+            response.data.post[i].rightSpan = 6
             for (var a = 0; a < arr.length; a++) {
               var src = arr[a].match(srcReg)
               if (src[1]) {
@@ -96,8 +96,8 @@ export default {
             response.data.post[i].postHeight = true
             response.data.post[i].postHeight1 = false
             response.data.post[i].postContentHeight = true
-            response.data.post[i].leftSpan = '24'
-            response.data.post[i].rightSpan = '0'
+            response.data.post[i].leftSpan = 24
+            response.data.post[i].rightSpan = 0
           }
           response.data.post[i].postValue = response.data.post[i].postValue.replace(/<[^>]+>/g, '').replace(/↵/g, '')
         }
