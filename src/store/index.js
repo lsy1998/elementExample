@@ -3,55 +3,40 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
-    baseUrl: 'https://graduation-project.lishangying.site/',
-    headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-    userName: '',
-    userSchool: '',
-    userJob: '',
-    userCompany: ''
+    isLogin: false,
+    userInfo: {
+      userId: '',
+      userCount: '',
+      headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png' // 默认头像
+    }
   },
   mutations: {
-    changeBaseUrl (state, n) {
-      state.baseUrl = state.baseUrl + n
+    SET_LOGIN_STATE (state, isLogin) {
+      state.isLogin = isLogin
+      sessionStorage.isLogin = isLogin ? 'true' : 'false'
     },
-    changeHeadPicUrl (state, n) {
-      state.headPicUrl = n
+    SET_USER_INFO (state, userInfo) {
+      state.userInfo = {...state.userInfo, ...userInfo}
     },
-    changeUserName (state, n) {
-      state.userName = n
-    },
-    changeUserSchool (state, n) {
-      state.userSchool = n
-    },
-    changeUserJob (state, n) {
-      state.userJob = n
-    },
-    changeUserCompany (state, n) {
-      state.userCompany = n
+    RESET_USER_INFO (state) {
+      state.userInfo = {
+        userId: '',
+        userCount: '',
+        headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+      }
     }
   },
   actions: {
-    commitBaseUrl (context, n) {
-      context.commit('changeBaseUrl', n)
+    login ({ commit }, userInfo) {
+      commit('SET_LOGIN_STATE', true)
+      commit('SET_USER_INFO', userInfo)
     },
-    commitHeadPicUrl (context, n) {
-      context.commit('changeHeadPicUrl', n)
-    },
-    commitUserName (context, n) {
-      context.commit('changeUserName', n)
-    },
-    commitUserSchool (context, n) {
-      context.commit('changeUserSchool', n)
-    },
-    commitUserJob (context, n) {
-      context.commit('changeUserJob', n)
-    },
-    commitUserCompany (context, n) {
-      context.commit('changeUserCompany', n)
+    logout ({ commit }) {
+      commit('SET_LOGIN_STATE', false)
+      commit('RESET_USER_INFO')
+      sessionStorage.clear()
     }
   }
 })
-
-export default store

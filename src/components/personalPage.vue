@@ -9,7 +9,7 @@
           <el-col :span="6" style="height:200px;">
             <el-row>
               <input type="file" multiple @change="uploadHeadPic" v-show="showHeadPic" id="headPic">
-              <img :src="this.$store.state.headPicUrl" alt="" width="160px" height="160px"
+              <img :src="$store.state.userInfo.headPicUrl" alt="" width="160px" height="160px"
                 style="margin:40px 8px 0 0;object-fit: cover;border-radius:5px;" @click="upload">
             </el-row>
             <!-- <el-row style="margin:10px 0 0 20px;">
@@ -27,20 +27,20 @@
           </el-col>
           <el-col :span="6">
             <div style="margin:50px 0 0 0;font-size:24px;text-align:left">
-              {{userName}}
-              <i @click="addInfo" style="margin:0 0 0 10px;font-size:12px" >填写个人信息</i>
+              {{userInfo.userName}}
+              <i @click="addInfo" style="margin:0 0 0 10px;font-size:12px">填写个人信息</i>
             </div>
             <div style="margin:12px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              毕业院校：{{userSchool}}
+              毕业院校：{{userInfo.userSchool}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              目前从事行业：{{userJob}}
+              目前从事行业：{{userInfo.userJob}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              所在公司/组织名称：{{userCompany}}
+              所在公司/组织名称：{{userInfo.userCompany}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              个人网站主页：{{userPage}}
+              个人网站主页：{{userInfo.userPage}}
             </div>
           </el-col>
           <el-col :span="12">
@@ -91,9 +91,8 @@
               </el-button>
             </el-row> -->
           </el-col>
-          <el-col :span="18">
+          <el-col :span="18" id="lsy" style="padding: 0 0;">
             <router-view />
-            <!-- <addInfo v-show="showAddInfo" @showM="showPostDivM"></addInfo> -->
           </el-col>
           <!-- <el-col :span='6'>
                 <div style="color:white;background-color:white;height:200px;color:white;">sad</div>
@@ -129,6 +128,7 @@ import Js2WordCloud from 'js2wordcloud'
 import $ from 'jquery'
 import axios from 'axios'
 import router from '../router'
+// import PostSkeleton from './PostSkeleton.vue'
 // import addInfo from './addInfo'
 // import store from '../store'
 export default {
@@ -136,6 +136,9 @@ export default {
   name: 'personalPage',
   // components: {
   //   addInfo
+  // },
+  // components: {
+  //   PostSkeleton
   // },
   data () {
     return {
@@ -159,8 +162,15 @@ export default {
       fileDesc: '',
       ciyunList: [],
       num: 2,
-      dialogFormVisible: false
-      // fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }]
+      dialogFormVisible: false,
+      userInfo: {
+        userName: '',
+        userJob: '',
+        userCompany: '',
+        userPage: '',
+        userSchool: '',
+        userCount: ''
+      }
     }
   },
   methods: {
@@ -247,138 +257,111 @@ export default {
       $('#headPic').click()
     },
     uploadHeadPic (e) {
-      var _this = this
-      var files = e.target.files
-      _this._data.headPicUrl = URL.createObjectURL(files[0])
-      var formData = new FormData()
-      // formData重复的往一个值添加数据并不会被覆盖掉，可以全部接收到，可以通过formData.getAll('files')来查看所有插入的数据
+      const files = e.target.files
+      const formData = new FormData()
       formData.append('file', files[0])
       formData.append('userId', sessionStorage.userId)
-      //console.log(formData)
-      for (var value of formData.values()) {
-        //console.log(value)
+
+      axios.post('https://graduation-project.lishangying.site/uploadHeadPic', formData)
+        .then((response) => {
+          // 更新 Vuex store 中的头像
+          this.$store.commit('SET_USER_INFO', {
+            headPicUrl: response.data.path
+          })
+        })
+    },
+    async getUserInfo () {
+      try {
+        const response = await axios({
+          method: 'post',
+          url: 'https://graduation-project.lishangying.site/getUserInfo',
+          data: {
+            userId: sessionStorage.userId
+          }
+        })
+
+        const userInfo = response.data.userInfo
+        
+        // 更新本地数据
+        this.userInfo = {
+          userName: userInfo.userName,
+          userJob: userInfo.userJob,
+          userCompany: userInfo.userCompany,
+          userPage: userInfo.userPage,
+          userSchool: userInfo.userSchool,
+          userCount: userInfo.userCount
+        }
+
+        // 更新 Vuex store
+        this.$store.commit('SET_USER_INFO', {
+          headPicUrl: userInfo.userImg,
+          ...this.userInfo
+        })
+
+        // 等待 DOM 更新后再更新词云
+        this.$nextTick(() => {
+          this.updateWordCloud()
+        })
+      } catch (error) {
+        console.error('获取用户信息失败:', error)
+        this.$message.error('获取用户信息失败')
       }
-      var url = 'https://graduation-project.lishangying.site/uploadHeadPic'
-      axios.post(url, formData).then((response) => {
-        this.headPicUrl = response.data.path
-        this.$store.dispatch('commitHeadPicUrl', response.data.path)
-        //console.log(response.data)
+    },
+
+    updateWordCloud() {
+      // 确保 DOM 元素已经加载
+      this.$nextTick(() => {
+        const wordCloudDiv = document.getElementById('wordCloudDiv')
+        if (!wordCloudDiv) {
+          console.warn('wordCloudDiv not found')
+          return
+        }
+
+        const wc = new Js2WordCloud(wordCloudDiv)
+        const wd = $('#wordCloudDiv').width()
+        if (!wd) {
+          console.warn('wordCloudDiv width is 0')
+          return
+        }
+
+        $('#wordCloudDiv canvas').width(wd)
+        $('#wordCloudDiv canvas').css('border-radius', '5px')
+
+        wc.setOption({
+          maxFontSize: 30,
+          minFontSize: 10,
+          backgroundColor: 'rgb(246, 246, 246)',
+          tooltip: {
+            show: true,
+            backgroundColor: 'rgba(2, 155, 98, 0.701961)'
+          },
+          list: [
+            [this.userInfo.userName || '', 20],
+            [this.userInfo.userName || '', 10],
+            [this.userInfo.userSchool || '', 20],
+            [this.userInfo.userCompany || '', 20],
+            [this.userInfo.userName || '', 30],
+            [this.userInfo.userJob || '', 10],
+            [this.userInfo.userJob || '', 20],
+            [this.userInfo.userCompany || '', 30],
+            [this.userInfo.userCompany || '', 20],
+            [this.userInfo.userSchool || '', 30],
+            [this.userInfo.userName || '', 30]
+          ].filter(item => item[0]), // 过滤掉空值
+          color: 'rgb(2, 155, 98)'
+        })
       })
     },
-    // getAllPost () {
-    //   // alert(222)
-    //   this.$axios({
-    //     method: 'post',
-    //     url: 'https://graduation-project.lishangying.site/getAllPost',
-    //     data: {
-    //       userId: sessionStorage.userId
-    //     }
-    //   }).then((response) => {
-    //     //console.log(response)
-    //     // //console.log(response.data.post[0].postValue.replace(/\s*/g, '').replace(/<[^>]+>/g, '').replace(/↵/g, '').replace(/[\r\n]/g, ''))
-    //     for (var i = 0; i < response.data.post.length; i++) {
-    //       // var reg = /<img\s+.*?src=(?:'(.+?)'|"(.+?)")\s*.*?(?:>|\/>)/igm
-    //       // var reg = <img\b[^<>]*?\bsrc[\\s\t\r\n]*=[\\s\t\r\n]*[""']?[\\s\t\r\n]*(?<imgUrl>[^\\s\t\r\n""'<>]*)[^<>]*?/?[\\s\t\r\n]*>
-    //       var imgReg = /<img.*?(?:>|\/>)/gi
-    //       // 匹配src属性
-    //       var srcReg = /src=[\\'\\"]?([^\\'\\"]*)[\\'\\"]?/i
-    //       var arr = response.data.post[i].postValue.match(imgReg)
-    //       // //console.log('所有已成功匹配图片的数组：' + arr)
-    //       if (arr != null) {
-    //         for (var a = 0; a < arr.length; a++) {
-    //           var src = arr[a].match(srcReg)
-    //           // 获取图片地址
-    //           if (src[1]) {
-    //             response.data.post[i].postUrl = src[1]
-    //             //console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
-    //           }
-
-    //           // 当然你也可以替换src属性
-    //           // if (src[0]) {
-    //           //   var t = src[0].replace(/src/i, 'href')
-    //           //   //console.log(t)
-    //           // }
-    //         }
-    //       }
-    //       response.data.post[i].postValue = response.data.post[i].postValue.replace(/<[^>]+>/g, '').replace(/↵/g, '')
-    //       //  Regex regImg = new Regex(@"<img\b[^<>]*?\bsrc[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>", RegexOptions.IgnoreCase)
-    //       //  var r= /<img[^>]+?src=(/"|/')([^/'/"]+)/1/i
-    //     }
-    //     this.posts = response.data.post
-    //     // var res =con.replace(/<[^>]+>/g, "");
-    //   })
-    // },
     uploadPost () {
       router.push({ path: '/post' })
     }
   },
-  mounted () {
+  async mounted () {
     $('#personalPageDiv').height($(window).height() - $('#meun').height())
-    //console.log(this.$store.state.baseUrl)
-    var _this = this
-    _this._data.showPostDiv = true
-    var wc = new Js2WordCloud(document.getElementById('wordCloudDiv'))
-    var wd = $('#wordCloudDiv').width()
-    $('#wordCloudDiv canvas').width(wd)
-    $('#wordCloudDiv canvas').css('border-radius', '5px')
-
-    axios({
-      method: 'post',
-      url: 'https://graduation-project.lishangying.site/getUserInfo',
-      data: {
-        userId: sessionStorage.userId
-      }
-    }).then((response) => {
-      //console.log(response.data)
-      this.headPicUrl = response.data.userInfo.userImg
-      sessionStorage.headPicUrl = response.data.userInfo.userImg
-      this.$store.dispatch('commitHeadPicUrl', response.data.userInfo.userImg)
-      this.$store.dispatch('commitUserName', response.data.userInfo.userName)
-      this.$store.dispatch('commitUserJob', response.data.userInfo.userJob)
-      this.$store.dispatch('commitUserCompany', response.data.userInfo.userCompany)
-      // this.$store.dispatch('commitUserPage', response.data.userInfo[0].userPage)
-      this.$store.dispatch('commitUserSchool', response.data.userInfo.userSchool)
-      this._data.userName = response.data.userInfo.userName
-      this._data.userJob = response.data.userInfo.userJob
-      this._data.userCompany = response.data.userInfo.userCompany
-      this._data.userPage = response.data.userInfo.userPage
-      this._data.userSchool = response.data.userInfo.userSchool
-      this._data.userCount = response.data.userInfo.userCount
-      // this._data.ciyunList.push([response.data.userInfo[0].userName, 20])
-      // this._data.ciyunList.push([response.data.userInfo[0].userName, 10])
-      // this._data.ciyunList.push([response.data.userInfo[0].userName, 15])
-      // this._data.ciyunList.push([response.data.userInfo[0].userJob, 10])
-      // this._data.ciyunList.push([response.data.userInfo[0].userJob, 5])
-      // this._data.ciyunList.push([response.data.userInfo[0].userJob, 15])
-      // this._data.ciyunList.push([response.data.userInfo[0].userCompany, 15])
-      // this._data.ciyunList.push([response.data.userInfo[0].userSchool, 15])
-      // this._data.ciyunList.push([response.data.userInfo[0].userCompany, 10])
-      // this._data.ciyunList.push([response.data.userInfo[0].userSchool, 20])
-      // //console.log(this._data.ciyunList)
-      wc.setOption({
-        maxFontSize: 30,
-        minFontSize: 10,
-        backgroundColor: 'rgb(246, 246, 246)',
-        tooltip: {
-          show: true,
-          backgroundColor: 'rgba(2, 155, 98, 0.701961)'
-        },
-        list: [
-          [this.$store.state.userName, 20],
-          [this.$store.state.userName, 10],
-          [this.$store.state.userSchool, 20],
-          [this.$store.state.userCompany, 20],
-          [this.$store.state.userName, 30],
-          [this.$store.state.userJob, 10],
-          [this.$store.state.userJob, 20],
-          [this.$store.state.userCompany, 30],
-          [this.$store.state.userCompany, 20],
-          [this.$store.state.userSchool, 30],
-          [this.$store.state.userName, 30]
-        ],
-        color: 'rgb(2, 155, 98)'
-      })
-    })
+    this._data.showPostDiv = true
+    
+    await this.getUserInfo()
+    
     this.$router.push({
       path: '/personalPage/myPost',
       query: {
@@ -391,4 +374,22 @@ export default {
 
 <style scoped>
 @import "../assets/iconfont/iconfont.css";
+
+/* 确保骨架屏容器有足够的高度和合适的样式 */
+.el-col-18 {
+  min-height: 400px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* 添加过渡效果 */
+.post-skeleton-enter-active,
+.post-skeleton-leave-active {
+  transition: opacity 0.3s;
+}
+
+.post-skeleton-enter,
+.post-skeleton-leave-to {
+  opacity: 0;
+}
 </style>

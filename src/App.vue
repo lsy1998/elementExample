@@ -35,18 +35,25 @@
             <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"
               @select="handleSelect"></el-autocomplete>
           </el-menu-item> -->
-          <el-menu-item index="8" style="border:0;float:right;"  @click="toPersonalPage">
-            <template slot="title">
-              <el-avatar shape="square" :size="30" :src="this.$store.state.headPicUrl"></el-avatar>
-            </template>
+          <el-menu-item index="8" style="border:0;float:right;">
+            <el-dropdown v-if="$store.state.isLogin" @command="handleCommand" trigger="hover">
+              <span class="el-dropdown-link">
+                <el-avatar shape="square" :size="30" :src="$store.state.userInfo.headPicUrl"></el-avatar>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="personal">个人中心</el-dropdown-item>
+                <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <el-avatar v-else shape="square" :size="30" :src="$store.state.userInfo.headPicUrl"></el-avatar>
           </el-menu-item>
-          <el-menu-item index="6" style="border:0;float:right;">
+          <el-menu-item index="6" style="border:0;float:right;" v-if="!$store.state.isLogin">
             <el-button style="text-decoration:none;background-color:rgb(2, 155, 98); color:white;">
-              <router-link style=" text-decoration:none;  font-size:14px" to="/registe">免费注册</router-link>
+              <router-link style="text-decoration:none; font-size:14px" to="/registe">免费注册</router-link>
             </el-button>
           </el-menu-item>
-          <el-menu-item index="5" style="border:0;float:right;">
-            <router-link style=" text-decoration:none;  font-size:14px" to="/login">立即登录</router-link>
+          <el-menu-item index="5" style="border:0;float:right;" v-if="!$store.state.isLogin">
+            <router-link style="text-decoration:none; font-size:14px" to="/login">立即登录</router-link>
           </el-menu-item>
         </el-menu>
       </el-col>
@@ -72,7 +79,8 @@ export default {
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
       sizeList: ['medium'],
-      state: ''
+      state: '',
+      isLogin: false
     }
   },
   methods: {
@@ -104,10 +112,27 @@ export default {
     },
     querySearchAsync () {
 
+    },
+    handleCommand (command) {
+      if (command === 'logout') {
+        this.$store.dispatch('logout')
+        this.$router.push('/login')
+      } else if (command === 'personal') {
+        this.$router.push('/personalPage')
+      }
     }
   },
   mounted () {
-    sessionStorage.isLogin = false
+    // 页面刷新时恢复登录状态
+    if (sessionStorage.isLogin === 'true') {
+      this.$store.dispatch('login', {
+        userId: sessionStorage.userId,
+        userCount: sessionStorage.userCount,
+        headPicUrl: sessionStorage.headPicUrl
+      })
+    }
+    console.log('Mounted - Login status:', this.isLogin)
+    console.log('sessionStorage.isLogin:', sessionStorage.isLogin)
     router.push({ path: '/index' })
     $('body').css('background-color', 'white')
   },
@@ -172,6 +197,15 @@ export default {
         // $('#course').addClass('meunItem')
         // $('.course').click()
       }
+    },
+    'sessionStorage.isLogin': {
+      deep: true,
+      immediate: true,
+      handler () {
+        console.log('Watch - sessionStorage.isLogin changed:', sessionStorage.isLogin)
+        this.isLogin = sessionStorage.isLogin === 'true'
+        console.log('Watch - isLogin updated:', this.isLogin)
+      }
     }
   }
 }
@@ -222,5 +256,12 @@ export default {
 }
 .el-menu--popup {
   width: 100px;
+}
+.el-dropdown-menu {
+  z-index: 9999;
+}
+
+.el-dropdown {
+  cursor: pointer;
 }
 </style>

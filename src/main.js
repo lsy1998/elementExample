@@ -19,17 +19,7 @@ import 'mavon-editor/dist/css/index.css'
 import './assets/css/prism.css'
 import cookies from 'vue-cookies'
 import HighchartsVue from 'highcharts-vue'
-// import './assets/prism.js'
-// use
-// import CKEditor from 'ckeditor4-vue'
-// import cornerstoneWadoImageLoader from 'cornerstone-wado-image-loader'
-// import cornerstoneTools from 'cornerstone-tools'
-// import hammer from 'hammerjs'
-// import cornerstoneMath from 'cornerstone-math'
 
-// import './assets/iconfont/iconfont.css'
-// require('./assets/fontIcon/icon.css')
-// require('./assets/cornerstoneToolFont/icon.css')
 require('./assets/fonteditor/icon.css')
 require('./assets/mycss.css')
 require('./assets/animinate.css')
