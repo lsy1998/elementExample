@@ -52,15 +52,15 @@ export default {
   methods: {
     fetchData () {
       // this.timer = setTimeout(() => {
-      //   console.log(111)
+      //   //console.log(111)
       //   // prism.highlightAll() // 这里加定时器让它后执行，不然没效果
       // }, 0)
     },
     submit () {
-      //   console.log($('#num1').val())
-      //   console.log($('#num2').val())
-      //   console.log(this.$refs.num1.value)
-      //   console.log(this.$refs.num2.value)
+      //   //console.log($('#num1').val())
+      //   //console.log($('#num2').val())
+      //   //console.log(this.$refs.num1.value)
+      //   //console.log(this.$refs.num2.value)
       alert(12)
       this.$axios({
         url: 'http://47.115.131.98:888/Laplacian',
@@ -71,7 +71,7 @@ export default {
         //   num2: $('#num2').val()
         }
       }).then((res) => {
-        console.log(res.data)
+        //console.log(res.data)
         alert(123)
         // $('#image').css('width', '100%')
         $('#image').attr('src', 'https://graduation-project.lishangying.site/jiaocheng/' + res.data.picUrl + '?' + new Date().getTime())
@@ -80,7 +80,7 @@ export default {
   },
   mounted () {
     // $('#num1').on('input', () => {
-    //   console.log('你按了一下111')
+    //   //console.log('你按了一下111')
     // })
     // prism.highlightAll()
     // alert(1233)
@@ -109,5 +109,5 @@ export default {
 }
 // alert(234)
 // highlightAll()
-// console.log(prism)
+// //console.log(prism)
 </script>

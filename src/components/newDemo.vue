@@ -359,7 +359,7 @@ export default {
     resetViewport () {
       var element = document.getElementById('dicomImage')
       let viewport = cornerstone.getViewport(element)
-      // console.log(viewport)
+      // //console.log(viewport)
       var colormap = cornerstone.colors.getColormap('gray')
       viewport.colormap = colormap
       cornerstone.setViewport(element, viewport)
@@ -411,34 +411,34 @@ export default {
       // var element = document.getElementById('dicomImage')
       let viewport = cornerstone.getViewport(this.element)
       if (typeof (viewport.colormap) === 'undefined') {
-        // console.log('')
+        // //console.log('')
         alert('undefined')
       } else {
-        console.log(viewport)
-        console.log(viewport.colormap)
+        //console.log(viewport)
+        //console.log(viewport.colormap)
       }
 
       const colormapId = document.getElementById('colormaps').value
       let colormap = ''
       if (colormapId === '') {
-        console.log(1)
+        //console.log(1)
         return
       } else if (colormapId === 'custom') {
         colormap = this.getCustomLookupTable()
-        console.log(2)
+        //console.log(2)
       } else {
-        console.log(3)
+        //console.log(3)
         colormap = cornerstone.colors.getColormap(colormapId)
       }
       // var viewport1 = viewport
       viewport.colormap = colormap
-      console.log(viewport)
-      console.log(viewport.colormap)
-      console.log(viewport.colormap.getId())
+      //console.log(viewport)
+      //console.log(viewport.colormap)
+      //console.log(viewport.colormap.getId())
       // if (viewport1 === viewport) {
-      //   console.log('hhhh')
+      //   //console.log('hhhh')
       // } else {
-      //   console.log('kkkk')
+      //   //console.log('kkkk')
       // }
       cornerstone.setViewport(this.element, viewport)
       cornerstone.updateImage(this.element, true)
@@ -468,7 +468,7 @@ export default {
     invertDicom () {
       var element = document.getElementById('dicomImage')
       let viewport = cornerstone.getViewport(element)
-      console.log(viewport)
+      //console.log(viewport)
       viewport.invert = !viewport.invert
       cornerstone.setViewport(element, viewport)
     },
@@ -528,52 +528,52 @@ export default {
           .then(
             function (image) {
               // alert('开始播放')
-              // console.log(_this._data.imageIds[_this._data.crruentDicom])
+              // //console.log(_this._data.imageIds[_this._data.crruentDicom])
               cornerstone.displayImage(element, image)
-              // console.log(image)
+              // //console.log(image)
               // _this._data.crruentDicom++
-              // console.log(_this._data.crruentDicom)
+              // //console.log(_this._data.crruentDicom)
               // cornerstoneTools.addStackStateManager(element, ['stack'])
               // cornerstoneTools.addToolState(element, 'stack', stack)
             },
             function (err) {
-              console.log(err)
+              //console.log(err)
             }
           )
         _this._data.time = setTimeout(play, 100 * _this._data.speed)
-        console.log(_this._data.speed)
+        //console.log(_this._data.speed)
       }
       /* eslint-disable */
       // setTimeout(play, 100)
       /* eslint-disable */
     },
     resize (newRect) {
-      console.log(newRect);
+      //console.log(newRect);
       var i = document.getElementById("dicomImage").childNodes;
       i[9].style.height = newRect.height + "px";
       i[9].style.width = newRect.width + "px";
     },
     handleOpen (key, keyPath) {
-      console.log(key, keyPath);
+      //console.log(key, keyPath);
     },
     handleClose (key, keyPath) {
-      console.log(key, keyPath);
+      //console.log(key, keyPath);
     },
 
     activeButton (toolName) {
       const _this = this;
-      console.log(_this._data.tools.ArrowAnnotate);
+      //console.log(_this._data.tools.ArrowAnnotate);
       const tool = cornerstoneTools[`${toolName}Tool`];
       cornerstoneTools.addTool(tool);
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
       alert(`active${toolName}`);
       const element = document.getElementById("dicomImage");
-      console.log(element);
+      //console.log(element);
       cornerstoneTools[`setToolActive`](toolName, {
         mouseButtonMask: 1
       });
       for (let tool in _this._data.tools) {
-        console.log(tool + "---" + _this._data.tools[tool]);
+        //console.log(tool + "---" + _this._data.tools[tool]);
         if (tool === toolName) {
           _this._data.tools[tool] = "disableButton";
         }
@@ -623,7 +623,7 @@ export default {
         ".dcm"
       );
     }
-    // console.log(imageIds)
+    // //console.log(imageIds)
     const toolName = "StackScrollMouseWheel";
     const stack = {
       currentImageIdIndex: 0,
@@ -672,7 +672,7 @@ export default {
         // });
       },
       function (err) {
-        console.log(err);
+        //console.log(err);
       }
     );
 

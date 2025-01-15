@@ -88,12 +88,12 @@ export default {
   methods: {
     showPost (event) {
       // alert(111)
-      // console.log(e.target)
+      // //console.log(e.target)
       var el = event.currentTarget
-      console.log($(el).attr('data-index'))
+      //console.log($(el).attr('data-index'))
       sessionStorage.postId = $(el).attr('data-index')
       // alert('当前对象的内容：' + el.innerHTML)
-      // console.log(this)
+      // //console.log(this)
       router.push({ path: '/showPost' })
     },
     getAllPost () {
@@ -105,7 +105,7 @@ export default {
           headPicUrl: ''
         }
       }).then((response) => {
-        console.log(response)
+        //console.log(response)
         for (var i = 0; i < response.data.post.length; i++) {
           var imgReg = /<img.*?(?:>|\/>)/gi
           var srcReg = /src=[\\'\\"]?([^\\'\\"]*)[\\'\\"]?/i
@@ -117,7 +117,7 @@ export default {
               var src = arr[a].match(srcReg)
               if (src[1]) {
                 response.data.post[i].postUrl = src[1]
-                console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
+                //console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
               }
             }
           } else {

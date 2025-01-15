@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div>
     <el-row style="margin: 10px 0 0 0">
@@ -116,7 +117,7 @@ export default {
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-      imgList: ['https://graduation-project.lishangying.site/lunbo/dc.jpg', 'https://graduation-project.lishangying.site/lunbo/26.png']
+      imgList: ['https://graduation-project.lishangying.site/lunbo/lunbo1.png', 'https://graduation-project.lishangying.site/lunbo/lunbo2.png']
     }
   },
   methods: {
@@ -125,7 +126,7 @@ export default {
     },
     jumpTo (e) {
       // $(e.tatget).attr('data-link')
-      console.log($(e.currentTarget).attr('data-link'))
+      //console.log($(e.currentTarget).attr('data-link'))
       window.location.href = $(e.currentTarget).attr('data-link')
     },
     showOtherInfo () {
@@ -137,9 +138,11 @@ export default {
     }
   },
   mounted () {
+    debugger
+    console.log(sessionStorage.isLogin)
     if (sessionStorage.isLogin !== 'true') {
       alert('请先登录！')
-      console.log(this.$router.currentRoute.fullPath)
+      //console.log(this.$router.currentRoute.fullPath)
       sessionStorage.preRoute = this.$router.currentRoute.fullPath
       this.$router.push({path: '/login'})
     } else {

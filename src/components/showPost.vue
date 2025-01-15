@@ -40,7 +40,7 @@
             </el-col>
           </el-row>
           <div id="commentDiv" style="overflow-y:scroll; height:800px; margin:20px;" class="test-1">
-            <div v-for="comment in comments" :key='comment' style="margin:10px 0 0 0">
+            <div v-for="comment in comments" :key='comment.commentId' style="margin:10px 0 0 0">
               <el-row>
                 <el-col :span='3'>
                   <el-avatar shape="square" :src="comment.headPic"></el-avatar>
@@ -62,7 +62,7 @@
                 </el-col>
                 <el-col :span='21'
                   style="padding: 0 50px 0 0; text-align:left; background-color:rgb(248, 249, 250); padding: 10px 10px;font-size:14px;">
-                  {{comment.replyContent}}
+                  {{comment.commentContent}}
                 </el-col>
                 <el-row>
                   <el-col :span='3' style="color:white">brave</el-col>
@@ -115,89 +115,12 @@
                     <el-row>
                       <el-col :span='24'
                         style="padding: 0 50px 0 0; text-align:left; background-color:rgb(248, 249, 250); padding: 10px 10px;font-size:14px;">
-                        {{re.replyCommentContent}}
+                        {{re.replyContent}}
                       </el-col>
                     </el-row>
                     </el-col>
                   </el-row>
             </div>
-            <!-- <div style="margin:10px 0 0 0">
-              <el-row>
-                <el-col :span='3'>
-                  <el-avatar shape="square" :src="squareUrl"></el-avatar>
-                </el-col>
-                <el-col :span='21'>
-                  <el-row>
-                    <el-col :span='6' style="margin:10px 0 0 0; text-align:left; font-size:14px;">
-                      <div style="">李商隐</div>
-                    </el-col>
-                    <el-col :span='9' style="color:white">brave</el-col>
-                    <el-col :span='9' style="margin:15px 0 0 0; font-size:14px;"></el-col>
-                  </el-row>
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span='3' style="color:white"> -->
-                  <!-- <div style="color:">happy</div> -->
-                  <!-- happy
-                </el-col>
-                <el-col :span='21'
-                  style="padding: 0 50px 0 0; text-align:left; background-color:rgb(248, 249, 250); padding: 10px 10px;font-size:14px;">
-                  我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span='3' style="color:white">lsy</el-col>
-                <el-col :span='21'>
-                  <el-row>
-                    <el-col :span='3'>
-                      <div @click="replyCommentDiv($event)">
-                        <div class="el-icon-chat-line-round" style="font-size:16px;display:inline-block"></div>
-                        <div style="display:inline-block;font-size:14px">回复</div>
-                      </div>
-                    </el-col>
-                    <el-col :span='17' style="color:white">brave</el-col>
-                    <el-col :span='4' style="font-size:12px;padding:5px 0 0 0;">2020:02:02</el-col>
-                  </el-row>
-                  <el-row style="margin:10px 0 0 0" v-show="replyComment">
-                    <el-col :span='3'>
-                      <el-avatar></el-avatar>
-                    </el-col>
-                    <el-col :span='13'>
-                      <el-input type="text" v-model="ReplyCommentContent"></el-input>
-                    </el-col>
-                    <el-col :span='4'>
-                      <el-button :data-beReplyedUserName='comment.userName' :data-beReplyedUserId='comment.userId' data-replyId='2' @click="addReplyComment($event)">发布</el-button>
-                    </el-col>
-                    <el-col :span='4'>
-                      <el-button @click="cancleReplyComment">取消</el-button>
-                    </el-col>
-                  </el-row> -->
-                  <!-- <el-row style="margin:10px">
-                    <el-row>
-                      <el-col :span='2'>
-                        <el-avatar shape="square" :src="squareUrl" :size='25'></el-avatar>
-                      </el-col>
-                      <el-col :span='21'>
-                        <el-row>
-                          <el-col :span='6' style="margin:5px 0 0 0; text-align:left; font-size:12px;">
-                            <div style="">李商隐</div>
-                          </el-col>
-                          <el-col :span='9' style="color:white">brave</el-col>
-                          <el-col :span='9' style="margin:15px 0 0 0; font-size:14px;"></el-col>
-                        </el-row>
-                      </el-col>
-                    </el-row>
-                    <el-row>
-                      <el-col :span='24'
-                        style="padding: 0 50px 0 0; text-align:left; background-color:rgb(248, 249, 250); padding: 10px 10px;font-size:14px;">
-                        我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行我看行
-                      </el-col>
-                    </el-row>
-                  </el-row> -->
-                <!-- </el-col>
-              </el-row>
-            </div> -->
           </div>
         </div>
       </div>
@@ -236,10 +159,10 @@ export default {
     addReplyComment (event) {
       // alert(111)
       var el = event.currentTarget
-      console.log($(el).attr('data-replyId'))
-      console.log(this.ReplyCommentContent)
+      //console.log($(el).attr('data-replyId'))
+      //console.log(this.ReplyCommentContent)
       this.$axios({
-        url: 'http://47.115.131.98:888/replyComment',
+        url: 'https://graduation-project.lishangying.site/replyComment',
         method: 'post',
         data: {
           commentId: $(el).attr('data-replyId'),
@@ -251,7 +174,7 @@ export default {
           postId: sessionStorage.postId
         }
       }).then((res) => {
-        console.log(res)
+        //console.log(res)
         if (res.data.result === 1) {
           $(el).parent().prev().children('#replyCommentContent').val('')
           $(el).parent().parent().hide()
@@ -270,14 +193,14 @@ export default {
       if ($('#support').attr('data-support') === 'true') {
         this.$axios({
           method: 'post',
-          url: 'http://47.115.131.98:888/cancleSupport',
+          url: 'https://graduation-project.lishangying.site/cancleSupport',
           data: {
             postId: sessionStorage.postId,
             userId: sessionStorage.userId
             // replyContent: this.commentContent
           }
         }).then((response) => {
-          console.log(response.data)
+          //console.log(response.data)
           if (response.data.code === 200 && response.data.result === 1) {
             $('#support').css('color', 'black')
             $('#support').attr('data-support', 'false')
@@ -286,14 +209,14 @@ export default {
       } else {
         this.$axios({
           method: 'post',
-          url: 'http://47.115.131.98:888/addSupport',
+          url: 'https://graduation-project.lishangying.site/addSupport',
           data: {
             postId: sessionStorage.postId,
             userId: sessionStorage.userId
             // replyContent: this.commentContent
           }
         }).then((response) => {
-          console.log(response.data)
+          //console.log(response.data)
           if (response.data.code === 200 && response.data.result === 1) {
             $('#support').css('color', 'red')
             $('#support').attr('data-support', 'true')
@@ -304,14 +227,14 @@ export default {
     checkSupport () {
       this.$axios({
         method: 'post',
-        url: 'http://47.115.131.98:888/checkSupport',
+        url: 'https://graduation-project.lishangying.site/checkSupport',
         data: {
           postId: sessionStorage.postId,
           userId: sessionStorage.userId
           // replyContent: this.commentContent
         }
       }).then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
         if (response.data.code === 200 && response.data.result === 1) {
           $('#support').css('color', 'red')
           $('#support').attr('data-support', 'true')
@@ -333,14 +256,14 @@ export default {
     getComment () {
       this.$axios({
         method: 'post',
-        url: 'http://47.115.131.98:888/getComment',
+        url: 'https://graduation-project.lishangying.site/getComment',
         data: {
           postId: sessionStorage.postId
           // userId: sessionStorage.userId,
           // replyContent: this.commentContent
         }
       }).then((response) => {
-        console.log(response.data.result)
+        //console.log(response.data.result)
         if (response.data.code === 200) {
           // var replys = this.comments
           for (var i = 0; i < response.data.result.length; i++) {
@@ -348,16 +271,16 @@ export default {
               response.data.result[i].reply[z].date = this.GMTToStr(response.data.result[i].reply[z].date)
             }
             response.data.result[i].replyDate = this.GMTToStr(response.data.result[i].replyDate)
-            console.log(response.data.result[i].replyDate)
+            //console.log(response.data.result[i].replyDate)
           }
           var temp = []
           // alert(temp.length)
           for (var j = response.data.result.length - 1; j >= 0; j--) {
             temp.push(response.data.result[j])
             // response.data.result[response.data.result.length - i].replyDate = this.GMTToStr(response.data.result[i].replyDate)
-            // console.log(response.data.result[i].replyDate)
+            // //console.log(response.data.result[i].replyDate)
           }
-          // console.log(temp)
+          // //console.log(temp)
           this.comments = temp
         }
       })
@@ -365,14 +288,14 @@ export default {
     addComment () {
       this.$axios({
         method: 'post',
-        url: 'http://47.115.131.98:888/addComment',
+        url: 'https://graduation-project.lishangying.site/addComment',
         data: {
           postId: sessionStorage.postId,
           userId: sessionStorage.userId,
           replyContent: this.commentContent
         }
       }).then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
         if (response.data.code === 200) {
           this.commentContent = ''
           this.getComment()
@@ -398,7 +321,7 @@ export default {
           postId: sessionStorage.postId
         }
       }).then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
         sessionStorage.post = response.data.post.postValue
         this.post = response.data.post.postValue
         this.title = response.data.post.postTitle
@@ -429,11 +352,11 @@ export default {
     //     userId: sessionStorage.userId
     //   }
     // }).then(function (response) {
-    //   console.log(response.data)
+    //   //console.log(response.data)
     //   this.post = response.data.post[0].postValue
     //   // sessionStorage.userId = response.data.userId
     //   // router.push({ path: '/personalPage' })
-    //   // console.log(sessionStorage.userId)
+    //   // //console.log(sessionStorage.userId)
     // })
   }
 }

@@ -34,7 +34,6 @@ import md from '../../README.md'
 import $ from 'jquery'
 // import Axios from 'axios'
 // import marked from 'marked'
-console.log(md)
 export default {
   name: 'createPost',
   data () {
@@ -53,10 +52,10 @@ export default {
       $('.fa-mavon-floppy-o').click()
     },
     $imgDel (pos) {
-      console.log(pos)
+      //console.log(pos)
       var pic = pos[0].split('https://graduation-project.lishangying.site/MDPic/')
-      console.log(pic)
-      console.log(pic[1])
+      //console.log(pic)
+      //console.log(pic[1])
       this.$axios({
         url: 'http://47.115.131.98:888/deleteMDPic',
         method: 'post',
@@ -66,7 +65,7 @@ export default {
           fileName: pic[1]
         }
       }).then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
       })
     },
     // 将图片上传到服务器，返回地址替换到md中
@@ -82,7 +81,7 @@ export default {
         headers: { 'Content-Type': 'multipart/form-data' }
       }).then((url) => {
         this.$refs.md.$img2Url(pos, url.data.picUrl)
-        console.log(url)
+        //console.log(url)
       })
     },
     // 所有操作都会被解析重新渲染
@@ -91,8 +90,8 @@ export default {
     },
     // 提交
     submit () {
-      console.log(this.content)
-      console.log(this.html)
+      //console.log(this.content)
+      //console.log(this.html)
       this.$message.success('提交成功，已打印至控制台！')
     },
     saveMD (value, render) {
@@ -108,12 +107,12 @@ export default {
             postTitle: this.title
           }
         }).then((result) => {
-          console.log(result)
+          //console.log(result)
           if (result.data.code === 200) {
             alert('发布成功！')
             this.$router.push({path: '/personalPage'})
           }
-          // console.log(url)
+          // //console.log(url)
         })
       }
     }

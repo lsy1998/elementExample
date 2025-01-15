@@ -63,10 +63,10 @@ export default {
           userId: sessionStorage.userId
         }
       }).then(function (response) {
-        console.log(response.data)
+        //console.log(response.data)
         // sessionStorage.userId = response.data.userId
         // router.push({ path: '/personalPage' })
-        // console.log(sessionStorage.userId)
+        // //console.log(sessionStorage.userId)
       })
     }
   },

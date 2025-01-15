@@ -1,7 +1,7 @@
 
 <template>
 <div style="width:100%;height:100%;">
-<div v-for="file in files" :key="file" style="width:100%;height:100%;background-color:white; margin:30px 20px 30px 20px">
+<div v-for="file in files" :key="file.fileId" style="width:100%;height:100%;background-color:white; margin:30px 20px 30px 20px">
       <el-row>
           <el-col :span='18'>
               <div style="margin:20px 0 0 20px;font-size:15px; height:60px; text-align:left;line-height:1.5rem;color:black">{{file.fileDesc}}</div>
@@ -38,8 +38,8 @@ export default {
   methods: {
     downloadFile (event) {
       var el = event.currentTarget
-      console.log($(el).attr('data-index'))
-      console.log($(el).attr('data-name'))
+      //console.log($(el).attr('data-index'))
+      //console.log($(el).attr('data-name'))
       this.$axios({
         method: 'get',
         url: 'https://graduation-project.lishangying.site/download',

@@ -154,7 +154,7 @@ export default {
             '.dcm'
         )
       }
-      // console.log(imageIds)
+      // //console.log(imageIds)
       const toolName = 'StackScrollMouseWheel'
       const stack = {
         currentImageIdIndex: 0,
@@ -168,7 +168,7 @@ export default {
           cornerstoneTools.addToolState(element, 'stack', stack)
         },
         function (err) {
-          console.log(err)
+          //console.log(err)
         }
       )
 
@@ -179,14 +179,14 @@ export default {
     // disableButton (toolName) {
     //   const _this = this
     //   for (let tool in _this._data.tools) {
-    //     console.log(tool + '---' + _this._data.tools[tool])
+    //     //console.log(tool + '---' + _this._data.tools[tool])
     //     if (tool === toolName) {
     //       _this._data.tools[tool] = 'activeButton'
     //     }
     //   }
     //   alert(`disable${toolName}`)
     //   const element = document.getElementById('dicomImage')
-    //   console.log(element)
+    //   //console.log(element)
     //   cornerstoneTools[`setToolDisabled`](toolName, {
     //     mouseButtonMask: 1
     //   })
@@ -194,18 +194,18 @@ export default {
     // },
     activeButton (toolName) {
       const _this = this
-      console.log(_this._data.tools.ArrowAnnotate)
+      //console.log(_this._data.tools.ArrowAnnotate)
       const tool = cornerstoneTools[`${toolName}Tool`]
       cornerstoneTools.addTool(tool)
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 })
       alert(`active${toolName}`)
       const element = document.getElementById('dicomImage')
-      console.log(element)
+      //console.log(element)
       cornerstoneTools[`setToolActive`](toolName, {
         mouseButtonMask: 1
       })
       for (let tool in _this._data.tools) {
-        console.log(tool + '---' + _this._data.tools[tool])
+        //console.log(tool + '---' + _this._data.tools[tool])
         if (tool === toolName) {
           _this._data.tools[tool] = 'disableButton'
         }
@@ -213,7 +213,7 @@ export default {
     }
     // activeArrowAnnotate () {
     //   const element = document.getElementById('dicomImage')
-    //   console.log(element)
+    //   //console.log(element)
     //   cornerstoneTools[`setToolDisabled`]('StackScrollMouseWheel', {
     //     mouseButtonMask: 1
     //   })

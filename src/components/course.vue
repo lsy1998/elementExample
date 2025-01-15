@@ -109,7 +109,7 @@ export default {
     },
     jumpTo (e) {
       // $(e.tatget).attr('data-link')
-      console.log($(e.currentTarget).attr('data-link'))
+      //console.log($(e.currentTarget).attr('data-link'))
       window.location.href = $(e.currentTarget).attr('data-link')
     },
     showOtherInfo () {

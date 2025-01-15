@@ -113,7 +113,7 @@ export default {
     //       signature: '【大龙科技】'
     //     }
     //   }).then(function (response) {
-    //     console.log(response.data)
+    //     //console.log(response.data)
     //   })
     // },
     settime () {
@@ -147,13 +147,13 @@ export default {
           'Authorization': 'APPCODE dd1193b23b4142afa88f0527ff9391e3'
         }
       }).then((response) => {
-        // console.log(response.data)
+        // //console.log(response.data)
         this.settime()
         // this.sendCode(e)
       })
     },
     // change (e) {
-    //   console.log(this.$refs.hello.html)
+    //   //console.log(this.$refs.hello.html)
     //   // this.$refs.hello.$forceUpdate()
     // },
     resize () {
@@ -169,17 +169,17 @@ export default {
           userPassword: md5(`${this.ruleForm.userPassword}545464`)
         }
       }).then(function (response) {
-        console.log(response.data)
+        //console.log(response.data)
       })
       // axios.post('http://localhost:8081/addUser', {
       //   userCount: _this._data.userCount,
       //   userPassword: _this._data.userPassword
       // })
       //   .then(function (response) {
-      //     console.log(response)
+      //     //console.log(response)
       //   })
       //   .catch(function (error) {
-      //     console.log(error)
+      //     //console.log(error)
       //   })
       // $.ajax({
       //   async: false,
@@ -188,8 +188,8 @@ export default {
       //   dataType: 'json',
       //   contentType: 'application/json;charset=UTF-8',
       //   success: function (result) {
-      //     console.log('-返回结果: ')
-      //     console.log(result)
+      //     //console.log('-返回结果: ')
+      //     //console.log(result)
       //     if (result.code === 200) {
       //     } else {
       //     }
@@ -201,8 +201,8 @@ export default {
       // }
       // // var jsondata
       // // jsondata = JSON.stringify(json)
-      // console.log('-发送请求数据:')
-      // console.log(json)
+      // //console.log('-发送请求数据:')
+      // //console.log(json)
       // $.ajax({
       //   async: false,
       //   type: 'POST',
@@ -211,8 +211,8 @@ export default {
       //   dataType: 'json',
       //   contentType: 'application/json;charset=UTF-8',
       //   success: function (result) {
-      //     console.log('-返回结果: ')
-      //     console.log(result)
+      //     //console.log('-返回结果: ')
+      //     //console.log(result)
       //     if (result.code === 200) {
       //     } else {
       //     }

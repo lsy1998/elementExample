@@ -40,8 +40,8 @@ export default {
   },
   methods: {
     handleEdit (index, row) {
-      console.log(index, row)
-      // console.log()
+      //console.log(index, row)
+      // //console.log()
       // alert(row.dicomId)
       // alert(row.dicomPath)
       // alert(row.dicomLength)
@@ -52,7 +52,7 @@ export default {
     $('#dicomListDiv').height($(window).height())
     axios.get('https://graduation-project.lishangying.site/getDicomList')
       .then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
         this.tableData = response.data.dicomList
       })
   }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div id="app" style="margin:0px; background-color:white;">
     <el-row id="meun" style="box-shadow:0 2px 1px 1px rgb(228, 228, 228); border-top:2px solid rgb(2, 155, 98)">
@@ -6,29 +7,29 @@
         <el-menu :default-active="activeIndex2" mode="horizontal" @select="handleSelect" text-color="black"
           active-text-color="black">
           <el-menu-item class="index" index="1" style="border:0;">
-            <router-link  style=" text-decoration:none; font-size:16px" to="/index"><span class="meunItem index1" @click="toggleMeunItem($event)" > 首页</span></router-link>
+            <router-link  style=" text-decoration:none; font-size:16px" to="/index"><span class="meunItem index1"  > 首页</span></router-link>
           </el-menu-item>
           <el-menu-item class="viewer"  @click="demo1" index="4" style="border:0;">
-            <router-link style=" text-decoration:none; font-size:16px" to="/viewer"> <span class="meunItem viewer1" @click="toggleMeunItem($event)" > 在线处理平台</span></router-link>
+            <router-link style=" text-decoration:none; font-size:16px" to="/viewer"> <span class="meunItem viewer1"  > 在线处理平台</span></router-link>
           </el-menu-item>
           <el-menu-item class="course" index="3" style="border:0;">
-            <router-link  style=" text-decoration:none; font-size:16px" to="/course" > <span class="meunItem course1" @click="toggleMeunItem($event)"> 教程学习</span></router-link>
+            <router-link  style=" text-decoration:none; font-size:16px" to="/course" > <span class="meunItem course1" > 教程学习</span></router-link>
           </el-menu-item>
           <el-menu-item class="downloadFile" index="9" style="border:0;">
-            <router-link class="downloadFile2" style=" text-decoration:none; font-size:16px" to="/downloadResource"><span class="meunItem downloadFile1" @click="toggleMeunItem($event)"> 资源下载</span></router-link>
+            <router-link class="downloadFile2" style=" text-decoration:none; font-size:16px" to="/downloadResource"><span class="meunItem downloadFile1" > 资源下载</span></router-link>
           </el-menu-item>
           <el-menu-item class="talk" index="10" style="border:0;">
-            <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 社区交流</span></router-link>
+            <router-link style=" text-decoration:none; font-size:16px" to="/newClub"><span class="meunItem talk1" > 社区交流</span></router-link>
           </el-menu-item>
           <!-- <el-menu-item class="talk" index="10" style="border:0;">
-            <router-link style=" text-decoration:none; font-size:16px" to="/threeD"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 3D</span></router-link>
+            <router-link style=" text-decoration:none; font-size:16px" to="/threeD"><span class="meunItem talk1" > 3D</span></router-link>
             <a href="../static/index.html" title="100素材网" target="_blank">Welcome</a>
           </el-menu-item> -->
           <el-menu-item class="talk" index="10" style="border:0;">
             <span class="meunItem talk1" @click="jump3D"> 3D</span>
           </el-menu-item>
           <!-- <el-menu-item class="talk" index="10" style="border:0;">
-            <router-link style=" text-decoration:none; font-size:16px" to="/viewer"><span class="meunItem talk1" @click="toggleMeunItem($event)"> 新查看器</span></router-link>
+            <router-link style=" text-decoration:none; font-size:16px" to="/viewer"><span class="meunItem talk1" > 新查看器</span></router-link>
           </el-menu-item> -->
           <!-- <el-menu-item index="7" style="border:0;">
             <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容"
@@ -57,7 +58,7 @@
 <script>
 import $ from 'jquery'
 import router from './router'
-import md5 from 'js-md5'
+
 export default {
   // store,
   data () {
@@ -97,17 +98,9 @@ export default {
       // alert(111)
     },
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+
     },
     demo1 () {
-      // var _this = this 25f9e794323b453885f5181f1b624d0b
-      console.log('click')
-      // $('#meun').hide()
-      // _this._data.color = '#323232'
-      // $('menu').css('background-color', 'rgb(50, 50, 50)')
-      // if ($('#demo1').click()) {
-      //   console.log('click')
-      // }
     },
     querySearchAsync () {
 
@@ -117,39 +110,15 @@ export default {
     sessionStorage.isLogin = false
     router.push({ path: '/index' })
     $('body').css('background-color', 'white')
-    console.log(md5(`${111}545464`))
-    // if ($('#demo1').click()) {
-    //   console.log('click')
-    // }
   },
   watch: {
     $route (to) {
-      console.log(to)
-      // if (to.path.indexOf('index') != -1) {
-      //   // 路由变化后重新获取帖子列表
-      //   this.$http.get('/api/communityList').then((res) => {
-      //     if (res.data.errCode === 0) {
-      //       let getRes = res.data.data.hotList
-      //       this.postList = getRes
-      //     }
-      //   })
-      // }
       if (to.name === 'newDemo' || to.name === 'viewer') {
         $('#meun').hide()
       } else {
         $('#meun').show()
       }
       if (to.matched[0].name === 'downloadResource') {
-        // console.log('dbajd')
-        // $('.meunItem').addClass('meunItem2')
-        // $('#downloadFile').removeClass('meunItem1')
-        // $('.meunItem').removeClass('meunItem1')
-        // $('.downloadFile1').addClass('meunItem3')
-        // $('#downloadFile').addClass('meunItem')
-        // $('.downloadFile').click()
-        // $('.downloadFile1').click()
-        // $('.downloadFile2').click()
-        // var el = e.currentTarget
         $('.downloadFile1').addClass('meunItem1')
         $('.downloadFile1').removeClass('meunItem')
         $('.meunItem').removeClass('meunItem1')

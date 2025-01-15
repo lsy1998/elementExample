@@ -84,13 +84,13 @@ export default {
         var kb = byteArray.length / 1024
         var mb = kb / 1024
         var byteStr = mb > 1 ? mb.toFixed(3) + ' MB' : kb.toFixed(0) + ' KB'
-        console.log(byteStr)
+        //console.log(byteStr)
         var dataSet = dicomParser.parseDicom(byteArray/*, options */)
         var studyInstanceUid = dataSet.string('x0020000d')
-        console.log(studyInstanceUid)
+        //console.log(studyInstanceUid)
         var pixelDataElement = dataSet.elements.x7fe00010
         var pixelData = new Uint16Array(dataSet.byteArray.buffer, pixelDataElement.dataOffset, pixelDataElement.length)
-        console.log(pixelData)
+        //console.log(pixelData)
         // setTimeout(function () {
         // var dataSet
         // try {

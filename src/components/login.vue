@@ -66,7 +66,7 @@ export default {
       this.$router.push({path: '/changePassword'})
     },
     // change (e) {
-    //   console.log(this.$refs.hello.html)
+    //   //console.log(this.$refs.hello.html)
     //   // this.$refs.hello.$forceUpdate()
     // },
     resize () {
@@ -82,7 +82,7 @@ export default {
           userPassword: md5(`${this.ruleForm.userPassword}545464`)
         }
       }).then((response) => {
-        console.log(response.data)
+        debugger;
         sessionStorage.isLogin = true
         sessionStorage.userId = response.data.userId
         sessionStorage.userCount = this.ruleForm.userCount
@@ -96,15 +96,11 @@ export default {
             userId: response.data.userId
           }
         }).then((response) => {
-          console.log(response.data)
           sessionStorage.headPicUrl = response.data.userInfo.userImg
           this.$store.dispatch('commitHeadPicUrl', response.data.userInfo.userImg)
         })
 
-        console.log(sessionStorage.preRoute)
         if (sessionStorage.preRoute === null || sessionStorage.preRoute === undefined) {
-          // console.log()
-          // alert(111)
           this.$router.push({
             path: '/personalPage',
             query: {
@@ -112,11 +108,11 @@ export default {
             }
           })
         } else {
-          console.log(sessionStorage.preRoute)
+          //console.log(sessionStorage.preRoute)
           this.$router.push({path: `${sessionStorage.preRoute}`})
         }
 
-        // console.log(sessionStorage.userId)
+        // //console.log(sessionStorage.userId)
       })
     }
   },

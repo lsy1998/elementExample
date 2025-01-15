@@ -105,7 +105,7 @@
       </el-col>
     </el-row>
     <el-dialog title="上传资源" :visible.sync="dialogFormVisible">
-      <el-upload ref="upload" class="upload-demo" action="http://47.115.131.98:888/uploadResource" :on-preview="handlePreview"
+      <el-upload ref="upload" class="upload-demo" action="https://graduation-project.lishangying.site/uploadResource" :on-preview="handlePreview"
         :on-remove="handleRemove" :before-remove="beforeRemove" :on-success="uploadSuccess" :on-error='uploadError' multiple :limit="1" :on-exceed="handleExceed" :auto-upload="false"
         :on-change="checkResource" :data='uploadFileDate' accept=".zip,.rar,.tar,.7z">
         <el-button size="small" type="primary">选择文件</el-button>
@@ -165,16 +165,16 @@ export default {
   },
   methods: {
     checkResource (file) {
-      console.log('badhbahb')
+      //console.log('badhbahb')
       axios({
         method: 'post',
-        url: 'http://47.115.131.98:888/checkResource',
+        url: 'https://graduation-project.lishangying.site/checkResource',
         data: {
           fileName: file.name,
           userCount: sessionStorage.userCount
         }
       }).then((response) => {
-        // console.log(response.data)
+        // //console.log(response.data)
         if (response.data.result === 1) {
           alert('已存在同名文件')
           this.$refs.upload.clearFiles()
@@ -201,10 +201,10 @@ export default {
       router.push({path: '/personalPage/fileList'})
     },
     handleRemove (file, fileList) {
-      console.log(file, fileList)
+      //console.log(file, fileList)
     },
     handlePreview (file) {
-      console.log(file)
+      //console.log(file)
     },
     handleExceed (files, fileList) {
       this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
@@ -213,17 +213,17 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`)
     },
     beforeAvatarUpload (file) {
-      console.log(file)
+      //console.log(file)
       // const isTAR = file.type === 'application/x-tar'
       // const isZIP = file.type === 'application/x-zip-compressed'
       // const isRAR = file.type === 'application/octet-stream'
       // const is7Z = file.type === 'application/x-7z-compressed'
       // const isSupport = isTAR || isRAR || isZIP || is7Z
-      // console.log(isTAR)
-      // console.log(isZIP)
-      // console.log(isRAR)uploadFile
-      // console.log(is7Z)
-      // console.log(isSupport)
+      // //console.log(isTAR)
+      // //console.log(isZIP)
+      // //console.log(isRAR)uploadFile
+      // //console.log(is7Z)
+      // //console.log(isSupport)
       // // const isJPG = (file.type === 'x-zip-compressed' || file.type === 'application/x-tarx-tar' || file.type === 'application/octet-stream' || file.type === 'x-7z-compressed')
       // const isLt2M = file.size / 1024 / 1024 < 2
 
@@ -235,20 +235,8 @@ export default {
       // }
       // return isSupport && isLt2M
     },
-    // showPost (event) {
-    //   // alert(111)
-    //   // console.log(e.target)
-    //   var el = event.currentTarget
-    //   console.log($(el).attr('data-index'))
-    //   sessionStorage.postId = $(el).attr('data-index')
-    //   // alert('当前对象的内容：' + el.innerHTML)
-    //   // console.log(this)
-    //   router.push({ path: '/showPost' })
-    // },
+
     addInfo () {
-      // var _this = this
-      // _this._data.showPostDiv = false
-      // _this._data.showAddInfo = true
       router.push({ path: '/personalPage/addInfo' })
     },
     showPostDivM (data) {
@@ -266,15 +254,15 @@ export default {
       // formData重复的往一个值添加数据并不会被覆盖掉，可以全部接收到，可以通过formData.getAll('files')来查看所有插入的数据
       formData.append('file', files[0])
       formData.append('userId', sessionStorage.userId)
-      console.log(formData)
+      //console.log(formData)
       for (var value of formData.values()) {
-        console.log(value)
+        //console.log(value)
       }
       var url = 'https://graduation-project.lishangying.site/uploadHeadPic'
       axios.post(url, formData).then((response) => {
         this.headPicUrl = response.data.path
         this.$store.dispatch('commitHeadPicUrl', response.data.path)
-        console.log(response.data)
+        //console.log(response.data)
       })
     },
     // getAllPost () {
@@ -286,8 +274,8 @@ export default {
     //       userId: sessionStorage.userId
     //     }
     //   }).then((response) => {
-    //     console.log(response)
-    //     // console.log(response.data.post[0].postValue.replace(/\s*/g, '').replace(/<[^>]+>/g, '').replace(/↵/g, '').replace(/[\r\n]/g, ''))
+    //     //console.log(response)
+    //     // //console.log(response.data.post[0].postValue.replace(/\s*/g, '').replace(/<[^>]+>/g, '').replace(/↵/g, '').replace(/[\r\n]/g, ''))
     //     for (var i = 0; i < response.data.post.length; i++) {
     //       // var reg = /<img\s+.*?src=(?:'(.+?)'|"(.+?)")\s*.*?(?:>|\/>)/igm
     //       // var reg = <img\b[^<>]*?\bsrc[\\s\t\r\n]*=[\\s\t\r\n]*[""']?[\\s\t\r\n]*(?<imgUrl>[^\\s\t\r\n""'<>]*)[^<>]*?/?[\\s\t\r\n]*>
@@ -295,20 +283,20 @@ export default {
     //       // 匹配src属性
     //       var srcReg = /src=[\\'\\"]?([^\\'\\"]*)[\\'\\"]?/i
     //       var arr = response.data.post[i].postValue.match(imgReg)
-    //       // console.log('所有已成功匹配图片的数组：' + arr)
+    //       // //console.log('所有已成功匹配图片的数组：' + arr)
     //       if (arr != null) {
     //         for (var a = 0; a < arr.length; a++) {
     //           var src = arr[a].match(srcReg)
     //           // 获取图片地址
     //           if (src[1]) {
     //             response.data.post[i].postUrl = src[1]
-    //             console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
+    //             //console.log('已匹配的图片地址' + (a + 1) + '：' + src[1])
     //           }
 
     //           // 当然你也可以替换src属性
     //           // if (src[0]) {
     //           //   var t = src[0].replace(/src/i, 'href')
-    //           //   console.log(t)
+    //           //   //console.log(t)
     //           // }
     //         }
     //       }
@@ -326,7 +314,7 @@ export default {
   },
   mounted () {
     $('#personalPageDiv').height($(window).height() - $('#meun').height())
-    console.log(this.$store.state.baseUrl)
+    //console.log(this.$store.state.baseUrl)
     var _this = this
     _this._data.showPostDiv = true
     var wc = new Js2WordCloud(document.getElementById('wordCloudDiv'))
@@ -341,7 +329,7 @@ export default {
         userId: sessionStorage.userId
       }
     }).then((response) => {
-      console.log(response.data)
+      //console.log(response.data)
       this.headPicUrl = response.data.userInfo.userImg
       sessionStorage.headPicUrl = response.data.userInfo.userImg
       this.$store.dispatch('commitHeadPicUrl', response.data.userInfo.userImg)
@@ -366,7 +354,7 @@ export default {
       // this._data.ciyunList.push([response.data.userInfo[0].userSchool, 15])
       // this._data.ciyunList.push([response.data.userInfo[0].userCompany, 10])
       // this._data.ciyunList.push([response.data.userInfo[0].userSchool, 20])
-      // console.log(this._data.ciyunList)
+      // //console.log(this._data.ciyunList)
       wc.setOption({
         maxFontSize: 30,
         minFontSize: 10,

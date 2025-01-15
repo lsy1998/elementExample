@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleDownload (index, row) {
-      console.log(row.filePath)
+      //console.log(row.filePath)
       this.$axios({
         method: 'get',
         url: 'https://graduation-project.lishangying.site/download',
@@ -65,12 +65,12 @@ export default {
     },
     showPost (event) {
       // alert(111)
-      // console.log(e.target)
+      // //console.log(e.target)
       var el = event.currentTarget
-      console.log($(el).attr('data-index'))
+      //console.log($(el).attr('data-index'))
       sessionStorage.postId = $(el).attr('data-index')
       // alert('当前对象的内容：' + el.innerHTML)
-      // console.log(this)
+      // //console.log(this)
       router.push({ path: '/showPost' })
     }
   },
@@ -83,7 +83,7 @@ export default {
         userId: sessionStorage.userId
       }
     }).then((res) => {
-      console.log(res.data.data)
+      //console.log(res.data.data)
       this.tableData = res.data.data
     })
   }

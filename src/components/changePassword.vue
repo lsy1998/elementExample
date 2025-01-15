@@ -119,7 +119,7 @@ export default {
           'Authorization': 'APPCODE dd1193b23b4142afa88f0527ff9391e3'
         }
       }).then((response) => {
-        // console.log(response.data)
+        // //console.log(response.data)
         this.settime()
         // this.sendCode(e)
       })
@@ -140,14 +140,14 @@ export default {
       }, 1000)
     },
     change (e) {
-      console.log(this.$refs.hello.html)
+      //console.log(this.$refs.hello.html)
       // this.$refs.hello.$forceUpdate()
     },
     resize () {
       $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
     },
     changePassword () {
-      //   console.log('王者荣耀')
+      //   //console.log('王者荣耀')
       var _this = this
       axios({
         method: 'post',
@@ -157,7 +157,7 @@ export default {
           userPassword: md5(`${_this._data.userPassword}545464`)
         }
       }).then(function (response) {
-        console.log(response.data)
+        //console.log(response.data)
         if (response.data.code === 200) {
           router.push({ path: '/personalPage' })
         }

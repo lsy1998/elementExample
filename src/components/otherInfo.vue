@@ -32,7 +32,7 @@ export default {
       url: 'https://graduation-project.lishangying.site/getOtherInfo'
     }).then((res) => {
     //   alert(111)
-      console.log(res.data)
+      //console.log(res.data)
       this.articals = res.data.data
     })
   }

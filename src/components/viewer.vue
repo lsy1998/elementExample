@@ -465,7 +465,7 @@ export default {
       } else {
         var MIME_TYPE = 'image/png'
         var canvasPic = document.getElementById(`${sessionStorage.currentCanvas}`).getElementsByTagName('canvas')
-        console.log(canvasPic)
+        //console.log(canvasPic)
         var imgURL = canvasPic[0].toDataURL(MIME_TYPE)
         var dlLink = document.createElement('a')
         dlLink.download = '画布.png'
@@ -479,7 +479,7 @@ export default {
     selectElement (e) {
       switch ($(e.currentTarget).attr('data-index')) {
         case '1':
-          // console.log(1)
+          // //console.log(1)
           this.currentElement = document.getElementById('dicomImage1')
           sessionStorage.currentCanvas = 'dicomImage1'
           // sessionStorage.currentCanvas = document.getElementById('canvas1')
@@ -501,8 +501,8 @@ export default {
       }
       var el = e.currentTarget
       // this.currentElement = el
-      console.log(this.currentElement)
-      // console.log($(el).next())
+      //console.log(this.currentElement)
+      // //console.log($(el).next())
       $(el).parent().css('border', '1px solid rgb(245, 166, 35)')
       $(el).parent().siblings().css('border', '1px solid rgb(50, 50, 50)')
     },
@@ -566,7 +566,7 @@ export default {
       // let image1 = ''
       // let image2 = ''
       // let image3 = ''
-      console.log(value1)
+      //console.log(value1)
       switch (value1) {
         case '0':
           // this.showDicomList()
@@ -596,7 +596,7 @@ export default {
         case '1':
           // this.showDicomList()
 
-          console.log('1x2')
+          //console.log('1x2')
 
           this.canvasDiv3Show = false
           this.canvasDiv4Show = false
@@ -634,7 +634,7 @@ export default {
           cornerstone.resize(element1)
           break
         case '2':
-          console.log('2x2')
+          //console.log('2x2')
 
           element.style.width = width / 2 - 2 + 'px'
           element.style.height = height / 2 - 2 + 'px'
@@ -685,7 +685,7 @@ export default {
     resetViewport () {
       var element = document.getElementById('dicomImage1')
       let viewport = cornerstone.getViewport(element)
-      // console.log(viewport)
+      // //console.log(viewport)
       var colormap = cornerstone.colors.getColormap('gray')
       viewport.colormap = colormap
       cornerstone.setViewport(element, viewport)
@@ -732,30 +732,30 @@ export default {
       // var element = document.getElementById('dicomImage')
       let viewport = cornerstone.getViewport(this.element)
       if (typeof (viewport.colormap) === 'undefined') {
-        // console.log('')
+        // //console.log('')
         // alert('undefined')
       } else {
-        console.log(viewport)
-        console.log(viewport.colormap)
+        //console.log(viewport)
+        //console.log(viewport.colormap)
       }
 
       const colormapId = document.getElementById('colormaps').value
       let colormap = ''
       if (colormapId === '') {
-        console.log(1)
+        //console.log(1)
         return
       } else if (colormapId === 'custom') {
         colormap = this.getCustomLookupTable()
-        console.log(2)
+        //console.log(2)
       } else {
-        console.log(3)
+        //console.log(3)
         colormap = cornerstone.colors.getColormap(colormapId)
       }
       // var viewport1 = viewport
       viewport.colormap = colormap
-      console.log(viewport)
-      console.log(viewport.colormap)
-      console.log(viewport.colormap.getId())
+      //console.log(viewport)
+      //console.log(viewport.colormap)
+      //console.log(viewport.colormap.getId())
 
       cornerstone.setViewport(this.element, viewport)
       cornerstone.updateImage(this.element, true)
@@ -784,11 +784,11 @@ export default {
     },
     invertDicom () {
       // var element = document.getElementById('dicomImage1')
-      console.log(this.currentElement)
+      //console.log(this.currentElement)
       var element = this.currentElement
       cornerstone.enable(element)
       let viewport = cornerstone.getViewport(element)
-      console.log(viewport)
+      //console.log(viewport)
       viewport.invert = !viewport.invert
       cornerstone.setViewport(element, viewport)
     },
@@ -809,7 +809,7 @@ export default {
       $(el).parent().parent().parent().css('background-color', 'black')
       $(el).parent().parent().parent().siblings().css('background-color', 'rgb(50,50,50)')
       $(el).parent().parent().parent().siblings().children().children().children().css('background-color', 'rgb(50,50,50)')
-      console.log(filename)
+      //console.log(filename)
 
       this.$axios({
         url: 'http://47.115.131.98:888/getLIDC',
@@ -818,8 +818,8 @@ export default {
           name: filename
         }
       }).then((res) => {
-        console.log(res.data.result)
-        // console.log(res.data)
+        //console.log(res.data.result)
+        // //console.log(res.data)
         this.length1 = res.data.result.length
         for (i = 0; i < res.data.result.length - 1; i++) {
           for (j = 0; j < res.data.result.length - i - 1; j++) {
@@ -833,11 +833,11 @@ export default {
         switch (res.data.result.length) {
           case 1:
             this.serial1 = []
-            console.log(1)
+            //console.log(1)
             // this.serial1 = res.data.result[0]
             for (i = 0; i < res.data.result[0].length; i++) {
               if (res.data.result[0][i][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[0][i][0])
+                //console.log(res.data.result[0][i][0])
               } else {
                 this.serial1.push(res.data.result[0][i][0])
               }
@@ -846,24 +846,24 @@ export default {
             // this.loadDicom(el2, [])
             // this.loadDicom(el3, [])
             // this.loadDicom(el4, [])
-            console.log(this.serial1)
+            //console.log(this.serial1)
             break
           case 2:
-            console.log(2)
+            //console.log(2)
 
             this.serial1 = []
             this.serial2 = []
 
             for (j = 0; j < res.data.result[0].length; j++) {
               if (res.data.result[0][j][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[0][j][0])
+                //console.log(res.data.result[0][j][0])
               } else {
                 this.serial1.push(res.data.result[0][j][0])
               }
             }
             for (k = 0; k < res.data.result[1].length; k++) {
               if (res.data.result[1][k][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[1][k][0])
+                //console.log(res.data.result[1][k][0])
               } else {
                 this.serial2.push(res.data.result[1][k][0])
               }
@@ -872,11 +872,11 @@ export default {
             this.loadDicom(el2, this.serial2)
             // this.loadDicom(el3, [])
             // this.loadDicom(el4, [])
-            console.log(this.serial1)
-            console.log(this.serial2)
+            //console.log(this.serial1)
+            //console.log(this.serial2)
             break
           case 3:
-            console.log(3)
+            //console.log(3)
 
             this.serial1 = []
             this.serial2 = []
@@ -884,21 +884,21 @@ export default {
 
             for (i = 0; i < res.data.result[0].length; i++) {
               if (res.data.result[0][i][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[0][i][0])
+                //console.log(res.data.result[0][i][0])
               } else {
                 this.serial1.push(res.data.result[0][i][0])
               }
             }
             for (j = 0; j < res.data.result[1].length; j++) {
               if (res.data.result[1][j][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[1][j][0])
+                //console.log(res.data.result[1][j][0])
               } else {
                 this.serial2.push(res.data.result[1][j][0])
               }
             }
             for (k = 0; k < res.data.result[2].length; k++) {
               if (res.data.result[2][k][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[2][k][0])
+                //console.log(res.data.result[2][k][0])
               } else {
                 this.serial3.push(res.data.result[2][k][0])
               }
@@ -907,12 +907,12 @@ export default {
             this.loadDicom(el2, this.serial2)
             this.loadDicom(el3, this.serial3)
             // this.loadDicom(el4, [])
-            console.log(this.serial1)
-            console.log(this.serial2)
-            console.log(this.serial3)
+            //console.log(this.serial1)
+            //console.log(this.serial2)
+            //console.log(this.serial3)
             break
           case 4:
-            console.log(4)
+            //console.log(4)
 
             this.serial1 = []
             this.serial2 = []
@@ -921,28 +921,28 @@ export default {
 
             for (i = 0; i < res.data.result[0].length; i++) {
               if (res.data.result[0][i][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[0][i][0])
+                //console.log(res.data.result[0][i][0])
               } else {
                 this.serial1.push(res.data.result[0][i][0])
               }
             }
             for (j = 0; j < res.data.result[0].length; j++) {
               if (res.data.result[0][j][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[0][j][0])
+                //console.log(res.data.result[0][j][0])
               } else {
                 this.serial2.push(res.data.result[0][j][0])
               }
             }
             for (k = 0; k < res.data.result[1].length; k++) {
               if (res.data.result[1][k][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[1][k][0])
+                //console.log(res.data.result[1][k][0])
               } else {
                 this.serial3.push(res.data.result[1][k][0])
               }
             }
             for (l = 0; l < res.data.result[1].length; l++) {
               if (res.data.result[1][l][0].indexOf('xml') >= 0) {
-                console.log(res.data.result[1][l][0])
+                //console.log(res.data.result[1][l][0])
               } else {
                 this.serial3.push(res.data.result[1][l][0])
               }
@@ -951,10 +951,10 @@ export default {
             this.loadDicom(el2, this.serial2)
             this.loadDicom(el3, this.serial3)
             this.loadDicom(el4, this.serial4)
-            console.log(this.serial1)
-            console.log(this.serial2)
-            console.log(this.serial3)
-            console.log(this.serial4)
+            //console.log(this.serial1)
+            //console.log(this.serial2)
+            //console.log(this.serial3)
+            //console.log(this.serial4)
             break
           default:
             break
@@ -1014,11 +1014,11 @@ export default {
               cornerstone.displayImage(element, image)
             },
             function (err) {
-              console.log(err)
+              //console.log(err)
             }
           )
         _this._data.time = setTimeout(play, 100 * _this._data.speed)
-        console.log(_this._data.speed)
+        //console.log(_this._data.speed)
       }
       /* eslint-disable */
       // setTimeout(play, 100)
@@ -1026,34 +1026,34 @@ export default {
     },
 
     resize (newRect) {
-      console.log(newRect);
+      //console.log(newRect);
       var i = document.getElementById("dicomImage1").childNodes;
       i[9].style.height = newRect.height + "px";
       i[9].style.width = newRect.width + "px";
     },
 
     handleOpen (key, keyPath) {
-      console.log(key, keyPath);
+      //console.log(key, keyPath);
     },
 
     handleClose (key, keyPath) {
-      console.log(key, keyPath);
+      //console.log(key, keyPath);
     },
 
     activeButton (toolName) {
       const _this = this;
-      console.log(_this._data.tools.ArrowAnnotate);
+      //console.log(_this._data.tools.ArrowAnnotate);
       const tool = cornerstoneTools[`${toolName}Tool`];
       cornerstoneTools.addTool(tool);
       cornerstoneTools.setToolActive(toolName, { mouseButtonMask: 1 });
       alert(`active${toolName}`);
       const element = this.currentElement
-      console.log(element);
+      //console.log(element);
       cornerstoneTools[`setToolActive`](toolName, {
         mouseButtonMask: 1
       });
       for (let tool in _this._data.tools) {
-        console.log(tool + "---" + _this._data.tools[tool]);
+        //console.log(tool + "---" + _this._data.tools[tool]);
         if (tool === toolName) {
           _this._data.tools[tool] = "disableButton";
         }
@@ -1090,7 +1090,7 @@ export default {
           cornerstoneTools.addToolState(element, "stack", stack);
         },
         function (err) {
-          console.log(err);
+          //console.log(err);
         }
       );
       const apiTool = cornerstoneTools[`${toolName}Tool`];
@@ -1129,7 +1129,7 @@ export default {
           cornerstoneTools.addToolState(element, "stack", stack);
         },
         function (err) {
-          console.log(err);
+          //console.log(err);
         }
       );
       const apiTool = cornerstoneTools[`${toolName}Tool`];
@@ -1166,7 +1166,7 @@ export default {
       );
     }
     this.serial1 = _this._data.imageIds
-    // console.log(imageIds)
+    // //console.log(imageIds)
     const toolName = "StackScrollMouseWheel";
     const stack = {
       currentImageIdIndex: 0,
@@ -1180,7 +1180,7 @@ export default {
         cornerstoneTools.addToolState(element, "stack", stack);
       },
       function (err) {
-        console.log(err);
+        //console.log(err);
       }
     );
 
@@ -1192,7 +1192,7 @@ this.$axios({
   url: 'http://47.115.131.98:888/getLIDCList',
   method: 'get',
 }).then((res) => {
-  console.log(res.data.result)
+  //console.log(res.data.result)
   this.dicomList = res.data.result
 })
     // function doResize (width, height) {
