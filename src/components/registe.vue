@@ -117,7 +117,7 @@ export default {
       if (this.counterNum === 0) {
         $('#checkcode').removeAttr('disabled')
         $('#checkcode').html('获取验证码')
-        this.counterNum = 60
+        this.counterNum = 180
         return
       } else {
         $('#checkcode').attr('disabled', true)
@@ -147,11 +147,11 @@ export default {
           }
         })
 
-        if (response.data.success) {
-          this.$message.success('验证码已发送到您的邮箱')
+        if (response.data.code === 200) {
+          this.$message.success(response.data.msg)
           this.settime() // 开始倒计时
         } else {
-          this.$message.error(response.data.message || '验证码发送失败')
+          this.$message.error(response.data.msg || '验证码发送失败')
         }
       } catch (error) {
         console.error('发送验证码失败:', error)

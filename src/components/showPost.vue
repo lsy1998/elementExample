@@ -1,17 +1,14 @@
-
 <template style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239)">
   <div style="background-color:rgb(233, 236, 239)">
-    <el-row>
-      <el-col :span='6' style="color:rgb(233, 236, 239);">
+    <el-row type="flex" justify="center">
+      <el-col :span='4' style="color:rgb(233, 236, 239);position:relative;">
         <div @click="showDrawer"
-          style="background-color:white;color:black; height:40px; width:50px;font-size:30px;padding:10px 0 0 0;border-radius:30px;position:relative;left:215px;top:90px"
-          class="el-icon-chat-line-round"></div>
+          class="action-icon el-icon-chat-line-round"></div>
         <div @click="addSupport" id="support" data-support='false'
-          style="background-color:white;color:black; height:40px; width:50px;font-size:30px;padding:10px 0 0 0;border-radius:30px;position:relative;left:160px;top:20px"
-          class="el-icon-star-off"></div>
+          class="action-icon el-icon-star-off"></div>
         <!-- <div style="background-color:white;color:black; height:40px; width:50px;font-size:30px;padding:10px 0 0 0;border-radius:30px"></div> -->
       </el-col>
-      <el-col :span='12' style="background-color:white;margin:20px 0 0 0">
+      <el-col :span='14' style="background-color:white;margin:20px 0;">
         <h1 style="text-align: left; margin:20px; border-bottom:2px solid black;">{{title}}</h1>
         <div id="postDiv" style="overflow-y:scroll;" class="test-1">
           <div style="margin:20px;">
@@ -19,7 +16,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span='6' style="color:rgb(233, 236, 239);">happy</el-col>
+      <el-col :span='4' style="color:rgb(233, 236, 239);">happy</el-col>
     </el-row>
     <el-drawer :visible.sync="drawer" :direction="direction" :before-close="handleClose">
       <!-- <span>我来啦!</span> -->
@@ -30,7 +27,7 @@
               <el-avatar shape="square" :src="comment.headPic"></el-avatar>
             </el-col> -->
             <el-col :span='2' style="margin:0 10px 0 0">
-               <el-avatar shape="square" :src="this.$store.state.headPicUrl"></el-avatar>
+               <el-avatar shape="square" :src="this.$store.state.userInfo.headPicUrl"></el-avatar>
             </el-col>
             <el-col :span='17'>
               <el-input type="text" size='140' v-model="commentContent" placeholder="快来评论一下吧！"></el-input>
@@ -380,5 +377,43 @@ export default {
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background: #ededed;
+}
+/* 操作图标样式 */
+.action-icon {
+  background-color: white;
+  color: black;
+  height: 40px;
+  width: 40px;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 20px;
+}
+
+.action-icon:hover {
+  transform: scale(1.1);
+  background-color: rgb(2, 155, 98, 0.1);
+}
+
+/* 评论图标位置 */
+.el-icon-chat-line-round.action-icon {
+  top: 60px;
+}
+
+/* 点赞图标位置 */
+.el-icon-star-off.action-icon {
+  top: 0px;
+}
+
+/* 点赞激活状态 */
+#support[data-support='true'] {
+  color: red;
 }
 </style>

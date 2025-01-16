@@ -7,7 +7,7 @@
            brave
         </el-col>
         <el-col :span='2'>
-           <el-avatar shape="square" :size="30" :src="this.$store.state.headPicUrl"></el-avatar>
+           <el-avatar shape="square" :size="30" :src="this.$store.state.userInfo.headPicUrl"></el-avatar>
         </el-col>
         <el-col :span='12'>
           <div style="margin:7px 0 0 0">lsy</div>
@@ -20,7 +20,7 @@
            brave
         </el-col>
         <el-col :span='2'>
-           <el-avatar shape="square" :size="30" :src="this.$store.state.headPicUrl"></el-avatar>
+           <el-avatar shape="square" :size="30" :src="this.$store.state.userInfo.headPicUrl"></el-avatar>
         </el-col>
         <el-col :span='12'>
           <div style="margin:7px 0 0 0">lsy</div>
@@ -33,7 +33,7 @@
            brave
         </el-col>
         <el-col :span='2'>
-           <el-avatar shape="square" :size="30" :src="this.$store.state.headPicUrl"></el-avatar>
+           <el-avatar shape="square" :size="30" :src="this.$store.state.userInfo.headPicUrl"></el-avatar>
         </el-col>
         <el-col :span='12'>
           <div style="margin:7px 0 0 0">lsy</div>

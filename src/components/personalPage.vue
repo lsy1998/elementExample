@@ -85,18 +85,12 @@
                 @click="showFileList">我的资源
               </el-button>
             </el-row>
-            <!-- <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
-                @click="checkResource">我的
-              </el-button>
-            </el-row> -->
           </el-col>
-          <el-col :span="18" id="lsy" style="padding: 0 0;">
-            <router-view />
+          <el-col style="padding:0;" :span="18">
+            <div  class="test-1">
+              <my-post :posts="posts" :loading="loading"></my-post>
+            </div>
           </el-col>
-          <!-- <el-col :span='6'>
-                <div style="color:white;background-color:white;height:200px;color:white;">sad</div>
-          </el-col>-->
         </el-row>
       </el-col>
       <el-col :span="6">
@@ -128,18 +122,13 @@ import Js2WordCloud from 'js2wordcloud'
 import $ from 'jquery'
 import axios from 'axios'
 import router from '../router'
-// import PostSkeleton from './PostSkeleton.vue'
-// import addInfo from './addInfo'
-// import store from '../store'
+import MyPost from './myPost.vue'
+
 export default {
-  // store,
   name: 'personalPage',
-  // components: {
-  //   addInfo
-  // },
-  // components: {
-  //   PostSkeleton
-  // },
+  components: {
+    MyPost
+  },
   data () {
     return {
       uploadFileDate: {
@@ -149,7 +138,7 @@ export default {
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-      showPostDiv: true,
+      showPostDiv: false,
       showAddInfo: false,
       showHeadPic: false,
       headPicUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
@@ -170,7 +159,9 @@ export default {
         userPage: '',
         userSchool: '',
         userCount: ''
-      }
+      },
+      loading: false,
+      posts: []
     }
   },
   methods: {
@@ -273,11 +264,11 @@ export default {
     async getUserInfo () {
       try {
         const response = await axios({
-          method: 'post',
-          url: 'https://graduation-project.lishangying.site/getUserInfo',
-          data: {
-            userId: sessionStorage.userId
-          }
+      method: 'post',
+      url: 'https://graduation-project.lishangying.site/getUserInfo',
+      data: {
+        userId: sessionStorage.userId
+      }
         })
 
         const userInfo = response.data.userInfo
@@ -327,15 +318,15 @@ export default {
         $('#wordCloudDiv canvas').width(wd)
         $('#wordCloudDiv canvas').css('border-radius', '5px')
 
-        wc.setOption({
-          maxFontSize: 30,
-          minFontSize: 10,
-          backgroundColor: 'rgb(246, 246, 246)',
-          tooltip: {
-            show: true,
-            backgroundColor: 'rgba(2, 155, 98, 0.701961)'
-          },
-          list: [
+      wc.setOption({
+        maxFontSize: 30,
+        minFontSize: 10,
+        backgroundColor: 'rgb(246, 246, 246)',
+        tooltip: {
+          show: true,
+          backgroundColor: 'rgba(2, 155, 98, 0.701961)'
+        },
+        list: [
             [this.userInfo.userName || '', 20],
             [this.userInfo.userName || '', 10],
             [this.userInfo.userSchool || '', 20],
@@ -348,19 +339,43 @@ export default {
             [this.userInfo.userSchool || '', 30],
             [this.userInfo.userName || '', 30]
           ].filter(item => item[0]), // 过滤掉空值
-          color: 'rgb(2, 155, 98)'
-        })
+        color: 'rgb(2, 155, 98)'
       })
+    })
     },
     uploadPost () {
       router.push({ path: '/post' })
+    },
+    async getUserPosts() {
+      this.loading = true
+      try {
+        const response = await axios({
+          method: 'post',
+          url: 'https://graduation-project.lishangying.site/getAllPost',
+          data: {
+            userId: sessionStorage.userId
+          }
+        })
+        
+        if (response.data.code === 200) {
+          this.posts = response.data.result
+        } else {
+          this.$message.error(response.data.msg || '获取帖子失败')
+        }
+      } catch (error) {
+        console.error('获取帖子失败:', error)
+        this.$message.error('获取帖子失败')
+      } finally {
+        this.loading = false
+      }
     }
   },
   async mounted () {
     $('#personalPageDiv').height($(window).height() - $('#meun').height())
-    this._data.showPostDiv = true
+    this.showPostDiv = true
     
     await this.getUserInfo()
+    await this.getUserPosts()
     
     this.$router.push({
       path: '/personalPage/myPost',
