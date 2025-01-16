@@ -2,14 +2,23 @@
   <div style="background-color:rgb(233, 236, 239)">
     <el-row type="flex" justify="center">
       <el-col :span='4' style="color:rgb(233, 236, 239);position:relative;">
-        <div @click="showDrawer"
-          class="action-icon el-icon-chat-line-round"></div>
-        <div @click="addSupport" id="support" data-support='false'
-          class="action-icon el-icon-star-off"></div>
-        <!-- <div style="background-color:white;color:black; height:40px; width:50px;font-size:30px;padding:10px 0 0 0;border-radius:30px"></div> -->
+        <div class="action-stats">
+          <div class="action-group">
+            <div @click="showDrawer" class="action-icon el-icon-chat-line-round"></div>
+            <span class="stat-count">{{ comments.length }}</span>
+          </div>
+          <div class="action-group">
+            <div @click="addSupport" id="support" data-support='false' class="action-icon el-icon-star-off"></div>
+            <span class="stat-count">{{ supportCount }}</span>
+          </div>
+          <div class="action-group">
+            <el-avatar :size="40" :src="userImg" class="user-avatar"></el-avatar>
+            <span class="user-name">{{ userName }}</span>
+          </div>
+        </div>
       </el-col>
       <el-col :span='14' style="background-color:white;margin:20px 0;">
-        <h1 style="text-align: left; margin:20px; border-bottom:2px solid black;">{{title}}</h1>
+        <h1 style="text-align: left; margin:20px;padding:0 0 10px 0; border-bottom:2px solid #029B90;">{{title}}</h1>
         <div id="postDiv" style="overflow-y:scroll;" class="test-1">
           <div style="margin:20px;">
             <mavon-editor v-html="post" :boxShadow='false' />
@@ -142,7 +151,10 @@ export default {
       title: '',
       ReplyCommentContent: '',
       replyComment: false,
-      comments: []
+      comments: [],
+      supportCount: 0,
+      userImg: '',
+      userName: ''
     }
   },
   methods: {
@@ -194,13 +206,12 @@ export default {
           data: {
             postId: sessionStorage.postId,
             userId: sessionStorage.userId
-            // replyContent: this.commentContent
           }
         }).then((response) => {
-          //console.log(response.data)
           if (response.data.code === 200 && response.data.result === 1) {
             $('#support').css('color', 'black')
             $('#support').attr('data-support', 'false')
+            this.supportCount = Math.max(0, this.supportCount - 1)
           }
         })
       } else {
@@ -210,13 +221,12 @@ export default {
           data: {
             postId: sessionStorage.postId,
             userId: sessionStorage.userId
-            // replyContent: this.commentContent
           }
         }).then((response) => {
-          //console.log(response.data)
           if (response.data.code === 200 && response.data.result === 1) {
             $('#support').css('color', 'red')
             $('#support').attr('data-support', 'true')
+            this.supportCount++
           }
         })
       }
@@ -318,12 +328,13 @@ export default {
           postId: sessionStorage.postId
         }
       }).then((response) => {
-        //console.log(response.data)
         sessionStorage.post = response.data.post.postValue
         this.post = response.data.post.postValue
         this.title = response.data.post.postTitle
+        this.supportCount = response.data.post.supportCount || 0
+        this.userImg = response.data.post.userImg
+        this.userName = response.data.post.userName
       })
-      //   return sessionStorage.post
     }
   },
   mounted () {
@@ -360,25 +371,60 @@ export default {
 </script>
 
 <style scoped>
-/* @import "../assets/iconfont/iconfont.css"; */
 .bg {
   border: 1px solid black;
 }
+
 .test-1::-webkit-scrollbar {
   width: 2px;
   height: 1px;
 }
+
 .test-1::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   background: rgb(143, 142, 252);
 }
+
 .test-1::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background: #ededed;
 }
-/* 操作图标样式 */
+
+.action-stats {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.action-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-count {
+  color: #606266;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: rgba(2, 155, 98, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.action-group:hover .stat-count {
+  background-color: rgba(2, 155, 98, 0.2);
+  transform: scale(1.1);
+}
+
 .action-icon {
   background-color: white;
   color: black;
@@ -389,31 +435,43 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  position: absolute;
-  right: 20px;
 }
 
 .action-icon:hover {
   transform: scale(1.1);
-  background-color: rgb(2, 155, 98, 0.1);
-}
-
-/* 评论图标位置 */
-.el-icon-chat-line-round.action-icon {
-  top: 60px;
-}
-
-/* 点赞图标位置 */
-.el-icon-star-off.action-icon {
-  top: 0px;
+  background-color: rgba(2, 155, 98, 0.1);
 }
 
 /* 点赞激活状态 */
 #support[data-support='true'] {
   color: red;
+}
+
+#support[data-support='true'] + .stat-count {
+  color: red;
+  background-color: rgba(245, 108, 108, 0.1);
+}
+
+#support[data-support='true'] + .stat-count:hover {
+  background-color: rgba(245, 108, 108, 0.2);
+}
+
+.user-avatar {
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+  transform: scale(1.1);
+}
+
+.user-name {
+  color: #606266;
+  font-size: 14px;
+  margin-top: 5px;
 }
 </style>

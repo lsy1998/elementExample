@@ -88,7 +88,7 @@
           </el-col>
           <el-col style="padding:0;" :span="18">
             <div  class="test-1">
-              <my-post :posts="posts" :loading="loading"></my-post>
+              <my-post :posts="posts" :loading="loading" @refresh-posts="getUserPosts"></my-post>
             </div>
           </el-col>
         </el-row>
@@ -272,7 +272,7 @@ export default {
         })
 
         const userInfo = response.data.userInfo
-        
+
         // 更新本地数据
         this.userInfo = {
           userName: userInfo.userName,
@@ -356,7 +356,7 @@ export default {
             userId: sessionStorage.userId
           }
         })
-        
+
         if (response.data.code === 200) {
           this.posts = response.data.result
         } else {
@@ -373,10 +373,10 @@ export default {
   async mounted () {
     $('#personalPageDiv').height($(window).height() - $('#meun').height())
     this.showPostDiv = true
-    
+
     await this.getUserInfo()
     await this.getUserPosts()
-    
+
     this.$router.push({
       path: '/personalPage/myPost',
       query: {
