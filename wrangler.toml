@@ -1,0 +1,15 @@
+name = "graduation-project-vue"
+type = "webpack"
+account_id = ""
+workers_dev = true
+
+[site]
+bucket = "./dist"
+entry-point = "workers-site"
+
+[build]
+command = "npm run build"
+publish = "dist"
+
+[build.environment]
+NODE_VERSION = "16"
