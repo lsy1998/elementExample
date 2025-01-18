@@ -5,3 +5,6 @@ pages_build_output_dir = "dist"
 
 [build.environment]
 NODE_VERSION = "18"
+
+[site]
+bucket = "./dist"
