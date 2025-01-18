@@ -93,7 +93,6 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "terser-webpack-plugin": "^5.3.10",
-    "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^4.1.1",
     "util": "^0.12.5",
     "vm-browserify": "^1.1.2",
