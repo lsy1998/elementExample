@@ -24,6 +24,20 @@ require('./assets/fonteditor/icon.css')
 require('./assets/mycss.css')
 require('./assets/animinate.css')
 
+// 配置 axios
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
+axios.interceptors.request.use(
+  config => {
+    if (config.method === 'post') {
+      config.data = JSON.stringify(config.data)
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
 Vue.use(Vuex)
 Vue.use(store)
 Vue.use(Element)
