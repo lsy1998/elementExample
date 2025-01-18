@@ -1,6 +1,6 @@
 <template>
   <div id="postDiv">
-    <!-- 加载时显示骨架屏 -->
+    <!-- 加载时显示骨架屏 test-->
     <template v-if="loading">
       <post-skeleton v-for="i in 3" :key="i" />
     </template>
@@ -134,6 +134,7 @@ export default {
       })
     }
   },
+
   methods: {
     handleCommand(command) {
       if (command.type === 'delete') {
