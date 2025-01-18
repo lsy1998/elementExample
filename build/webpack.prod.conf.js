@@ -42,7 +42,16 @@ const webpackConfig = merge(baseWebpackConfig, {
         parallel: true,
         extractComments: false
       }),
-      new CssMinimizerPlugin()
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true }
+            }
+          ]
+        }
+      })
     ],
     splitChunks: {
       chunks: 'all',
