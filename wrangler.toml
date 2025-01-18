@@ -8,7 +8,7 @@ bucket = "./dist"
 entry-point = "workers-site"
 
 [build]
-command = "npm install && npm run build"
+command = "npm install --legacy-peer-deps && npm run build"
 pages_build_output_dir = "dist"
 
 [build.environment]
