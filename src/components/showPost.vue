@@ -383,7 +383,7 @@ export default {
 .test-1::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background: rgb(143, 142, 252);
+  background: #029B62;
 }
 
 .test-1::-webkit-scrollbar-track {

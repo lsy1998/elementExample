@@ -434,7 +434,8 @@ export default {
         RectangleRoi: 'activeButton',
         Brush: 'activeButton'
       },
-      strWindowFeatures: 'width=800,height=800,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true'
+      strWindowFeatures: 'width=800,height=800,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true',
+      baseUrl: window.location.origin
     }
   },
   methods: {
@@ -634,23 +635,24 @@ export default {
           cornerstone.resize(element1)
           break
         case '2':
-          //console.log('2x2')
-
           element.style.width = width / 2 - 2 + 'px'
           element.style.height = height / 2 - 2 + 'px'
           $('#canvasDiv1').height(height / 2 - 2)
           $('#canvasDiv1').width(width / 2 - 2)
+
           element1.style.width = width / 2 - 2 + 'px'
           element1.style.height = height / 2 - 2 + 'px'
           $('#canvasDiv2').height(height / 2 - 2)
           $('#canvasDiv2').width(width / 2 - 2)
+
           element2.style.width = width / 2 - 2 + 'px'
-          element2.style.height = height / 2 + 'px'
-          $('#canvasDiv3').height(height / 2)
+          element2.style.height = height / 2 - 2 + 'px'
+          $('#canvasDiv3').height(height / 2 - 2)
           $('#canvasDiv3').width(width / 2 - 2)
+
           element3.style.width = width / 2 - 2 + 'px'
-          element3.style.height = height / 2 + 'px'
-          $('#canvasDiv4').height(height / 2)
+          element3.style.height = height / 2 - 2 + 'px'
+          $('#canvasDiv4').height(height / 2 - 2)
           $('#canvasDiv4').width(width / 2 - 2)
 
           this.canvasDiv2Show = true
@@ -1112,9 +1114,7 @@ export default {
       for (var i = 1; i < 362; i++) {
         let str = i + "";
         imageIds.push(
-          "wadouri:http://localhost:8080/static/series-000001/image-000" +
-          str.padStart(3, "0") +
-          ".dcm"
+          `wadouri:${_this.baseUrl}/static/sample/000${str.padStart(3, "0")}.dcm`
         );
       }
       const toolName = "StackScrollMouseWheel";
@@ -1160,9 +1160,7 @@ export default {
     for (var i = 1; i < 236; i++) {
       let str = i + "";
       _this._data.imageIds.push(
-        "wadouri:http://localhost:8080/static/sample/000" +
-        str.padStart(3, "0") +
-        ".dcm"
+         `wadouri:${_this.baseUrl}/static/sample/000${str.padStart(3, "0")}.dcm`
       );
     }
     this.serial1 = _this._data.imageIds

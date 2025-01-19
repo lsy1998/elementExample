@@ -7,55 +7,50 @@
     <!-- 加载完成后显示帖子列表 -->
     <template v-else>
       <div v-for="post in processedPosts" @click="showPost($event)" :data-index="post.postId" :key="post.postId"
-        style="margin:50px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;"
-        :class="{ 'postHeight': post.postHeight, 'postHeight1': post.postHeight1 }">
-        <el-row style="height:100%">
-          <el-col :span="post.leftSpan" style="height:100%;">
-            <div style="width:100%;margin:10px 0 0 0; height:90%" :class="{ 'postHeight': post.postHeight }">
+        style="margin:20px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
+        <el-row style="height:100%;background-color:#F6F6F6;padding: 0 10px 10px 10px;border-radius: 5px;display:flex;">
+          <el-col :span="post.leftSpan" id="post-left" style="display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="margin:10px 0 0 0;">
               <h3 style="height:30px;float:left;margin:0; font-size:18px">
                 {{ post.postTitle }}
               </h3>
-              <p style="height:47%; clear:both; font-size:13px;margin:0;color:rgb(120, 120, 120);line-height:1.5rem"
-                :class="{ 'postContentHeight': post.postContentHeight }">
+              <p style="height:auto; max-height:100px; clear:both; font-size:13px;margin:0;color:rgb(120, 120, 120);line-height:1.5rem">
                 {{ post.postValue.substring(0, 100) }}
               </p>
-              <div style="height:20%;display:inline-block; width:100%;margin:26px 0 0 0">
-                <div class="post-stats">
-                  <span class="like-count">
-                    <i class="el-icon-star-off"></i>
-                    <span class="count">{{ post.supportCount || 0 }}</span>
-                  </span>
-                  <span class="post-date">
-                    <i class="el-icon-time"></i>
-                    {{ post.postDate.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '') }}
-                  </span>
-                  <el-dropdown trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link action-btn">
-                      <i class="el-icon-more"></i>
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :command="{type: 'edit', postId: post.postId}">
-                        <i class="el-icon-edit"></i> 编辑
-                      </el-dropdown-item>
-                      <el-dropdown-item :command="{type: 'delete', postId: post.postId}">
-                        <i class="el-icon-delete"></i> 删除
-                      </el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                  <el-avatar
-                    shape="square"
-                    :size="20"
-                    :src="post.userInfo && post.userInfo.userImg || defaultAvatar"
-                    class="post-avatar">
-                  </el-avatar>
-                </div>
-              </div>
+            </div>
+            <div class="post-stats">
+              <span class="like-count">
+                <i class="el-icon-star-off"></i>
+                <span class="count">{{ post.supportCount || 0 }}</span>
+              </span>
+              <span class="post-date">
+                <i class="el-icon-time"></i>
+                {{ post.postDate.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '') }}
+              </span>
+              <el-dropdown trigger="click" @command="handleCommand">
+                <span class="el-dropdown-link action-btn">
+                  <i class="el-icon-more"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item :command="{type: 'edit', postId: post.postId}">
+                    <i class="el-icon-edit"></i> 编辑
+                  </el-dropdown-item>
+                  <el-dropdown-item :command="{type: 'delete', postId: post.postId}">
+                    <i class="el-icon-delete"></i> 删除
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+              <el-avatar
+                shape="square"
+                :size="20"
+                :src="post.userInfo && post.userInfo.userImg || defaultAvatar"
+                class="post-avatar">
+              </el-avatar>
             </div>
           </el-col>
-          <el-col :span="post.rightSpan" style="height:100%;">
-            <div
-              style="height:80%;margin:10px 0 20px 10px;background-color:rgb(2, 155, 98);border-radius:5px;color:rgb(2, 155, 98)">
-              <img :src="post.postUrl" alt="" width="100%" height="100%" style="object-fit:cover;border-radius:5px;">
+          <el-col :span="post.rightSpan" id="post-right" v-if="post.rightSpan > 0">
+            <div class="image-container">
+              <img :src="post.postUrl" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:5px;">
             </div>
           </el-col>
         </el-row>
@@ -211,7 +206,8 @@ export default {
 @import "../assets/iconfont/iconfont.css";
 
 .postContentHeight {
-  max-height: 30%;
+  max-height: 100px;
+  margin-bottom: 20px;
 }
 
 .postHeight {
@@ -233,6 +229,8 @@ export default {
   gap: 12px;
   color: rgb(2, 155, 98);
   font-size: 14px;
+  padding: 26px 0 0 0;
+  /* margin-bottom: 20px; */
 }
 
 .like-count, .post-date, .action-btn {
@@ -325,11 +323,39 @@ export default {
 }
 
 .post-avatar {
-  margin-left: 15px;
+  /* margin-left: 0px; */
   transition: transform 0.3s ease;
 }
 
 .post-avatar:hover {
   transform: scale(1.1);
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgb(2, 155, 98);
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0 0 20px;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#post-left {
+  min-height: calc(100% - 20px);
+}
+
+#post-right {
+  display: flex;
+  align-items: flex-start;
 }
 </style>

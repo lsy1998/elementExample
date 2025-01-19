@@ -28,19 +28,33 @@
           <el-col :span="6">
             <div style="margin:50px 0 0 0;font-size:24px;text-align:left">
               {{userInfo.userName}}
-              <i @click="addInfo" style="margin:0 0 0 10px;font-size:12px">填写个人信息</i>
+              <el-tooltip content="编辑个人信息" placement="right" effect="light">
+                <i @click="addInfo" class="el-icon-edit" style="margin:0 0 0 10px;font-size:16px;cursor:pointer;color:rgb(0, 154, 97)"></i>
+              </el-tooltip>
             </div>
             <div style="margin:12px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              毕业院校：{{userInfo.userSchool}}
+              <el-tooltip content="毕业院校" placement="left" effect="light">
+                <i class="el-icon-school" style="margin-right:8px"></i>
+              </el-tooltip>
+              {{userInfo.userSchool}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              目前从事行业：{{userInfo.userJob}}
+              <el-tooltip content="目前从事行业" placement="left" effect="light">
+                <i class="el-icon-suitcase" style="margin-right:8px"></i>
+              </el-tooltip>
+              {{userInfo.userJob}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              所在公司/组织名称：{{userInfo.userCompany}}
+              <el-tooltip content="所在公司/组织名称" placement="left" effect="light">
+                <i class="el-icon-office-building" style="margin-right:8px"></i>
+              </el-tooltip>
+              {{userInfo.userCompany}}
             </div>
             <div style="margin:8px 0 0 0;font-size:14px;color:rgb(0, 154, 97);text-align:left;">
-              个人网站主页：{{userInfo.userPage}}
+              <el-tooltip content="个人网站主页" placement="left" effect="light">
+                <i class="el-icon-link" style="margin-right:8px"></i>
+              </el-tooltip>
+              <a :href="userInfo.userPage" target="_blank" style="color:rgb(0, 154, 97);text-decoration:none;cursor:pointer;">{{userInfo.userPage}}</a>
             </div>
           </el-col>
           <el-col :span="12">
@@ -60,35 +74,40 @@
       </el-col>
       <el-col :span="12">
         <el-row>
-          <el-col :span="6" style="height:200px;">
+          <el-col :span="6" style="height:200px;position: relative;right: 4px;">
             <!-- <el-row>
               <el-button style="margin:50px 0 0 0;width:60%;background-color:rgb(2, 155, 98);color:white;">我的主页
               </el-button>
             </el-row> -->
-            <el-row style="margin:50px 0 0 0;">
+            <el-row style="margin:40px 0 0 0;">
               <el-button @click="showMyPost"
-                style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;">我的帖子
+                style="width:160px;background-color:rgb(2, 155, 98);color:white;" >
+                <i class="el-icon-document"></i> 我的帖子
               </el-button>
             </el-row>
             <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
-                @click="uploadPost">发布帖子
+              <el-button style="margin:10px 0 0 0px;width:160px;background-color:rgb(2, 155, 98);color:white;"
+                @click="uploadPost">
+                <i class="el-icon-edit-outline"></i> 发布帖子
               </el-button>
             </el-row>
             <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
-                @click="dialogFormVisible = true">上传资源
+              <el-button style="margin:10px 0 0 0px;width:160px;background-color:rgb(2, 155, 98);color:white;"
+                @click="dialogFormVisible = true">
+                <i class="el-icon-upload2"></i> 上传资源
               </el-button>
             </el-row>
             <el-row>
-              <el-button style="margin:10px 0 0 0px;width:60%;background-color:rgb(2, 155, 98);color:white;"
-                @click="showFileList">我的资源
+              <el-button style="margin:10px 0 0 0px;width:160px;background-color:rgb(2, 155, 98);color:white;"
+                @click="showFileList">
+                <i class="el-icon-folder-opened"></i> 我的资源
               </el-button>
             </el-row>
           </el-col>
-          <el-col style="padding:0;" :span="18">
+          <el-col style="padding:20px 0 0 0;" :span="18">
             <div  class="test-1">
-              <my-post :posts="posts" :loading="loading" @refresh-posts="getUserPosts"></my-post>
+              <router-view v-if="$route.path !== '/personalPage/myPost'"></router-view>
+              <my-post v-else :posts="posts" :loading="loading" @refresh-posts="getUserPosts"></my-post>
             </div>
           </el-col>
         </el-row>

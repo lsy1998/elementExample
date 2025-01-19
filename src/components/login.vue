@@ -30,7 +30,7 @@
             style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
             @click="login">登录</el-button>
           <!-- 注册链接 -->
-          <div style="margin:10px 0 0 55px;">
+          <div style="margin:10px 0 0 0px;">
             <router-link to="/registe" style="color:white;text-decoration:none;">
               还没有账号？立即注册
             </router-link>
@@ -82,7 +82,7 @@ export default {
     async login() {
       try {
         await this.$refs.ruleForm.validate()
-        
+
         const response = await this.$axios({
         method: 'post',
         url: 'https://graduation-project.lishangying.site/login',

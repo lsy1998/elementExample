@@ -24,7 +24,7 @@
         <el-row>
           <el-col :span='4'>
             <el-button @click="currentView = 'hot'"
-              style="margin:50px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">
+              style="margin:30px 0 0 0;width:100%;background-color:rgb(2, 155, 98);color:white;">
               热门帖子
             </el-button>
             <el-button @click="currentView = 'recent'"
@@ -34,7 +34,7 @@
             <div style="height:900px;"></div>
           </el-col>
           <el-col :span='16'>
-            <div style="margin:-20px 50px 50px 50px;" class="test-1">
+            <div style="margin:30px 50px 50px 50px;" class="test-1">
               <my-post :posts="posts" :loading="loading"></my-post>
             </div>
           </el-col>
