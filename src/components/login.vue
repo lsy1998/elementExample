@@ -84,40 +84,48 @@ export default {
         await this.$refs.ruleForm.validate()
 
         const response = await this.$axios({
-        method: 'post',
-        url: 'https://graduation-project.lishangying.site/login',
-        data: {
-          userCount: this.ruleForm.userCount,
-          userPassword: md5(`${this.ruleForm.userPassword}545464`)
-        }
+          method: 'post',
+          url: 'https://graduation-project.lishangying.site/login',
+          data: {
+            userCount: this.ruleForm.userCount,
+            userPassword: md5(`${this.ruleForm.userPassword}545464`)
+          }
         })
 
         if (response.data.code === 200) {
-          // 保存用户信息
-          const userInfo = response.data.userInfo; // 获取用户信息
-          sessionStorage.userId = userInfo.userId;
-          sessionStorage.userCount = userInfo.userCount;
-          sessionStorage.headPicUrl = userInfo.userImg || '';
+          // 获取完整的用户信息
+          const userInfo = response.data.userInfo
 
-          // 更新 Vuex store
+          // 更新 Vuex store，存储所有用户信息
           this.$store.commit('SET_USER_INFO', {
             userId: userInfo.userId,
             userCount: userInfo.userCount,
+            userName: userInfo.userName,
+            userSchool: userInfo.userSchool,
+            userJob: userInfo.userJob,
+            userCompany: userInfo.userCompany,
+            userPage: userInfo.userPage,
             headPicUrl: userInfo.userImg
-          });
-          this.$store.commit('SET_LOGIN_STATE', true);
+          })
 
-          this.$message.success('登录成功');
-          router.push('/personalPage');
+          // 设置登录状态
+          this.$store.commit('SET_LOGIN_STATE', true)
+
+          // 只在 sessionStorage 中存储必要的信息
+          sessionStorage.isLogin = 'true'
+          sessionStorage.userId = userInfo.userId
+
+          this.$message.success('登录成功')
+          this.$router.push(`/personalPage/${userInfo.userId}/myPost`)
         } else {
-          this.$message.error(response.data.msg || '登录失败');
+          this.$message.error(response.data.msg || '登录失败')
         }
       } catch (error) {
         if (error.message) {
-          this.$message.error(error.message);
+          this.$message.error(error.message)
         } else {
-          console.error('登录失败:', error);
-          this.$message.error('登录失败，请稍后重试');
+          console.error('登录失败:', error)
+          this.$message.error('登录失败，请稍后重试')
         }
       }
     }

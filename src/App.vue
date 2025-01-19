@@ -98,12 +98,11 @@ export default {
     // },
     toPersonalPage () {
       if (sessionStorage.isLogin !== 'true') {
-        alert('请先登录！')
+        this.$message.error('请先登录！')
         this.$router.push({path: '/login'})
       } else {
-        this.$router.push({path: '/personalPage'})
+        this.$router.push(`/personalPage/${sessionStorage.userId}/myPost`)
       }
-      // alert(111)
     },
     handleSelect (key, keyPath) {
 
@@ -118,84 +117,87 @@ export default {
         this.$store.dispatch('logout')
         this.$router.push('/login')
       } else if (command === 'personal') {
-        this.$router.push('/personalPage')
+        this.$router.push(`/personalPage/${sessionStorage.userId}/myPost`)
       }
     }
   },
-  mounted () {
+  async mounted () {
     // 页面刷新时恢复登录状态
-    if (sessionStorage.isLogin === 'true') {
-      this.$store.dispatch('login', {
-        userId: sessionStorage.userId,
-        userCount: sessionStorage.userCount,
-        headPicUrl: sessionStorage.headPicUrl
-      })
+    if (sessionStorage.isLogin === 'true' && sessionStorage.userId) {
+      try {
+        const response = await this.$axios({
+          url: 'https://graduation-project.lishangying.site/getUserInfo',
+          method: 'post',
+          data: {
+            userId: sessionStorage.userId
+          }
+        })
+
+        if (response.data.code === 200) {
+          const userInfo = response.data.userInfo
+          // 更新 Vuex store
+          this.$store.commit('SET_USER_INFO', {
+            userId: userInfo.userId,
+            userCount: userInfo.userCount,
+            userName: userInfo.userName,
+            userSchool: userInfo.userSchool,
+            userJob: userInfo.userJob,
+            userCompany: userInfo.userCompany,
+            userPage: userInfo.userPage,
+            headPicUrl: userInfo.userImg
+          })
+          this.$store.commit('SET_LOGIN_STATE', true)
+        }
+      } catch (error) {
+        console.error('恢复用户信息失败:', error)
+      }
     }
-    console.log('Mounted - Login status:', this.isLogin)
-    console.log('sessionStorage.isLogin:', sessionStorage.isLogin)
-    router.push({ path: '/index' })
+
+    // 只有在根路径时才跳转到主页
+    if (this.$route.path === '/') {
+      this.$router.push('/index')
+    }
+
     $('body').css('background-color', 'white')
   },
   watch: {
-    $route (to) {
+    $route(to) {
       if (to.name === 'newDemo' || to.name === 'viewer') {
         $('#meun').hide()
       } else {
         $('#meun').show()
       }
-      if (to.matched[0].name === 'downloadResource') {
+
+      // 使用可选链操作符，避免访问未定义的属性
+      if (to.matched?.[0]?.name === 'downloadResource') {
         $('.downloadFile1').addClass('meunItem1')
         $('.downloadFile1').removeClass('meunItem')
         $('.meunItem').removeClass('meunItem1')
         $('.downloadFile1').addClass('meunItem')
       }
-      if (to.matched[0].name === 'index') {
+      if (to.matched?.[0]?.name === 'index') {
         $('.index1').addClass('meunItem1')
         $('.index1').removeClass('meunItem')
         $('.meunItem').removeClass('meunItem1')
         $('.index1').addClass('meunItem')
-        // $('#index').addClass('meunItem1')
-        // $('#index').removeClass('meunItem')
-        // $('.meunItem').removeClass('meunItem1')
-        // $('.meunItem').addClass('meunItem2')
-        // $('#index').addClass('meunItem')
-        // $('.index').click()
       }
-      if (to.matched[0].name === 'newClub') {
+      if (to.matched?.[0]?.name === 'newClub') {
         $('.talk1').addClass('meunItem1')
         $('.talk1').removeClass('meunItem')
         $('.meunItem').removeClass('meunItem1')
         $('.talk1').addClass('meunItem')
-        // $('#talk').addClass('meunItem1')
-        // $('#talk').removeClass('meunItem')
-        // $('.meunItem').removeClass('meunItem1')
-        // $('.meunItem').addClass('meunItem2')
-        // $('#talk').addClass('meunItem')
-        // $('.talk').click()
       }
-      if (to.matched[0].name === 'newDemo') {
+      if (to.matched?.[0]?.name === 'newDemo') {
         $('.viewer1').addClass('meunItem1')
         $('.viewer1').removeClass('meunItem')
         $('.meunItem').removeClass('meunItem1')
         $('.viewer1').addClass('meunItem')
-        // $('#viewer').addClass('meunItem1')
-        // $('#viewer').removeClass('meunItem')
-        // $('.meunItem').removeClass('meunItem1')
-        // $('.meunItem').addClass('meunItem2')
-        // $('#viewer').addClass('meunItem')
-        // $('.viewer').click()
       }
-      if (to.matched[0].name === 'course') {
+      if (to.matched?.[0]?.name === 'course') {
         $('.course1').addClass('meunItem1')
         $('.course1').removeClass('meunItem')
         $('.meunItem').removeClass('meunItem1')
         $('.course1').addClass('meunItem')
-        // $('#course').addClass('meunItem1')
-        // $('#course').removeClass('meunItem')
-        // $('.meunItem').removeClass('meunItem1')
-        // $('.meunItem').addClass('meunItem2')
-        // $('#course').addClass('meunItem')
-        // $('.course').click()
       }
     },
     'sessionStorage.isLogin': {

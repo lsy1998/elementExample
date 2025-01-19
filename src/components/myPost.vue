@@ -195,8 +195,9 @@ export default {
         return
       }
       const el = event.currentTarget
-      sessionStorage.postId = $(el).attr('data-index')
-      router.push({ path: '/showPost' })
+      const postId = $(el).attr('data-index')
+      sessionStorage.postId = postId
+      router.push({ path: `/showPost/${postId}` })
     }
   }
 }

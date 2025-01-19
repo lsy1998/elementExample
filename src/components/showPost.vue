@@ -166,10 +166,7 @@ export default {
       // this.replyComment = true
     },
     addReplyComment (event) {
-      // alert(111)
       var el = event.currentTarget
-      //console.log($(el).attr('data-replyId'))
-      //console.log(this.ReplyCommentContent)
       this.$axios({
         url: 'https://graduation-project.lishangying.site/replyComment',
         method: 'post',
@@ -180,18 +177,15 @@ export default {
           userName: sessionStorage.userName,
           beReplyedUserId: $(el).attr('data-beReplyedUserId'),
           beReplyedUserName: $(el).attr('data-beReplyedUserName'),
-          postId: sessionStorage.postId
+          postId: this.$route.params.postId
         }
       }).then((res) => {
-        //console.log(res)
         if (res.data.result === 1) {
           $(el).parent().prev().children('#replyCommentContent').val('')
           $(el).parent().parent().hide()
           this.getComment()
         }
       })
-
-      // this.replyComment = false
     },
     cancleReplyComment (event) {
       // alert(111)
@@ -204,7 +198,7 @@ export default {
           method: 'post',
           url: 'https://graduation-project.lishangying.site/cancleSupport',
           data: {
-            postId: sessionStorage.postId,
+            postId: this.$route.params.postId,
             userId: sessionStorage.userId
           }
         }).then((response) => {
@@ -219,7 +213,7 @@ export default {
           method: 'post',
           url: 'https://graduation-project.lishangying.site/addSupport',
           data: {
-            postId: sessionStorage.postId,
+            postId: this.$route.params.postId,
             userId: sessionStorage.userId
           }
         }).then((response) => {
@@ -232,22 +226,24 @@ export default {
       }
     },
     checkSupport () {
+      if (!sessionStorage.userId) {
+        return
+      }
       this.$axios({
         method: 'post',
         url: 'https://graduation-project.lishangying.site/checkSupport',
         data: {
-          postId: sessionStorage.postId,
-          userId: sessionStorage.userId
-          // replyContent: this.commentContent
+          postId: this.$route.params.postId,
+          userId: sessionStorage.userId,
+          type: 'post'  // 添加必要的参数
         }
       }).then((response) => {
-        //console.log(response.data)
         if (response.data.code === 200 && response.data.result === 1) {
           $('#support').css('color', 'red')
           $('#support').attr('data-support', 'true')
-          // this.commentContent = ''
-          // this.getComment()
         }
+      }).catch(error => {
+        console.error('检查点赞状态失败:', error)
       })
     },
     GMTToStr (time) {
@@ -265,30 +261,11 @@ export default {
         method: 'post',
         url: 'https://graduation-project.lishangying.site/getComment',
         data: {
-          postId: sessionStorage.postId
-          // userId: sessionStorage.userId,
-          // replyContent: this.commentContent
+          postId: this.$route.params.postId
         }
       }).then((response) => {
-        //console.log(response.data.result)
         if (response.data.code === 200) {
-          // var replys = this.comments
-          for (var i = 0; i < response.data.result.length; i++) {
-            for (var z = 0; z < response.data.result[i].reply.length; z++) {
-              response.data.result[i].reply[z].date = this.GMTToStr(response.data.result[i].reply[z].date)
-            }
-            response.data.result[i].replyDate = this.GMTToStr(response.data.result[i].replyDate)
-            //console.log(response.data.result[i].replyDate)
-          }
-          var temp = []
-          // alert(temp.length)
-          for (var j = response.data.result.length - 1; j >= 0; j--) {
-            temp.push(response.data.result[j])
-            // response.data.result[response.data.result.length - i].replyDate = this.GMTToStr(response.data.result[i].replyDate)
-            // //console.log(response.data.result[i].replyDate)
-          }
-          // //console.log(temp)
-          this.comments = temp
+          this.comments = response.data.comments
         }
       })
     },
@@ -297,13 +274,12 @@ export default {
         method: 'post',
         url: 'https://graduation-project.lishangying.site/addComment',
         data: {
-          postId: sessionStorage.postId,
+          postId: this.$route.params.postId,
           userId: sessionStorage.userId,
-          replyContent: this.commentContent
+          commentContent: this.commentContent
         }
       }).then((response) => {
-        //console.log(response.data)
-        if (response.data.code === 200) {
+        if (response.data.code === 200 && response.data.result === 1) {
           this.commentContent = ''
           this.getComment()
         }
@@ -338,34 +314,33 @@ export default {
     }
   },
   mounted () {
+    // 从路由参数中获取帖子 ID
+    const postId = this.$route.params.postId
+    sessionStorage.postId = postId
+
+    // 获取帖子内容
     this.$axios({
       method: 'post',
-      url: 'https://graduation-project.lishangying.site/getUserInfo',
+      url: 'https://graduation-project.lishangying.site/getPost',
       data: {
-        userId: sessionStorage.userId
+        postId: postId
       }
     }).then((response) => {
-      sessionStorage.userName = response.data.userInfo.userName
+      if (response.data.code === 200) {
+        this.post = response.data.post.postValue
+        this.title = response.data.post.postTitle
+        this.supportCount = response.data.post.supportCount || 0
+        this.userImg = response.data.post.userImg || this.squareUrl
+        this.userName = response.data.post.userName
+        this.getComment()
+        this.checkSupport()
+
+        // 设置帖子内容区域的高度
+        this.$nextTick(() => {
+          $('#postDiv').height($(window).height() - $('#meun').height() - 100)
+        })
+      }
     })
-    this.headPic = sessionStorage.headPicUrl
-    this.checkSupport()
-    this.getPost()
-    $('#postDiv').height($(window).height() - $('#meun').height() - 100)
-    this.getComment()
-    // $('#commentDiv').height($(window).height() - $('#meun').height() - 900)
-    // this.$axios({
-    //   method: 'post',
-    //   url: 'https://graduation-project.lishangying.site/getPost',
-    //   data: {
-    //     userId: sessionStorage.userId
-    //   }
-    // }).then(function (response) {
-    //   //console.log(response.data)
-    //   this.post = response.data.post[0].postValue
-    //   // sessionStorage.userId = response.data.userId
-    //   // router.push({ path: '/personalPage' })
-    //   // //console.log(sessionStorage.userId)
-    // })
   }
 }
 </script>

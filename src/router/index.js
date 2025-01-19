@@ -231,7 +231,7 @@ export default new Router({
       component: createPost
     },
     {
-      path: '/personalPage',
+      path: '/personalPage/:userId?',
       name: 'personalPage',
       component: personalPage,
       children: [
@@ -268,7 +268,7 @@ export default new Router({
       component: marked
     },
     {
-      path: '/showPost',
+      path: '/showPost/:postId',
       name: 'showPost',
       component: showPost
     },

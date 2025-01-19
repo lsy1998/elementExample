@@ -75,7 +75,6 @@ export default {
     }
   },
   mounted () {
-    alert(111)
     axios({
       method: 'post',
       url: 'https://graduation-project.lishangying.site/getFileList',
