@@ -1,5 +1,5 @@
 <template>
-  <div id="personalPageDiv">
+  <div id="personalPageDiv" style="margin:70px 0 0 0">
     <el-row>
       <el-col :span="6">
         <div style="color:white;">bfbcbc</div>

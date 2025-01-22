@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row style="margin: 10px 0 0 0">
+    <el-row style="margin: 70px 0 0 0">
       <el-col :span="4">
         <div style="color:white;">bfbcbc</div>
       </el-col>
