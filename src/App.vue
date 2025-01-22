@@ -240,6 +240,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  min-height: 100vh;
 }
 .el-carousel__item h3 {
   color: #475669;
@@ -265,5 +266,20 @@ export default {
 
 .el-dropdown {
   cursor: pointer;
+}
+
+#meun {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 1px 1px rgb(228, 228, 228);
+  border-top: 2px solid rgb(2, 155, 98);
+}
+
+.router-view-container {
+  padding-top: 60px;
 }
 </style>

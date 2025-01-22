@@ -1,7 +1,8 @@
 <template>
-  <div @resize="resize" id='registeDiv'>
+  <div id='registeDiv' class="page-container">
     <div class="register-container">
       <div class="left-section">
+        <div class="animated-bg"></div>
         <div class="welcome-content">
           <div class="brand-logo">
             <i class="el-icon-connection"></i>
@@ -193,13 +194,8 @@ export default {
         this.$message.error('注册失败，请重试')
       }
     },
-
-    resize() {
-      $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
-    }
   },
   mounted() {
-    $('#registeDiv').height($(window).height() - $('#meun').height() - 100)
   }
 }
 </script>
@@ -210,79 +206,150 @@ export default {
   display: none;
 }
 
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f7fa;
+  overflow-y: hidden;
+}
+
 .register-container {
   display: flex;
-  width: 1000px;
-  margin: 100px auto;
+  width: 900px;
+  height: 454px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   overflow: hidden;
   background: white;
+  margin: 0 auto;
 }
 
 .left-section {
-  flex: 0.8;
+  flex: 0.7;
   background: linear-gradient(135deg, #029B62 0%, #029B90 100%);
-  padding: 40px;
+  padding: 30px;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+}
+
+.animated-bg {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    #029B62,
+    #029B90,
+    #02B062,
+    #029B78
+  );
+  animation: gradient 15s ease infinite;
+  transform-origin: center center;
+  z-index: 1;
+  opacity: 0.8;
 }
 
 .welcome-content {
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .brand-logo {
-  font-size: 4em;
-  margin-bottom: 30px;
+  font-size: 3.5em;
+  margin-bottom: 25px;
   animation: float 3s ease-in-out infinite;
+  position: relative;
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+.brand-logo::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.5;
+  }
 }
 
 .welcome-content h1 {
-  font-size: 3em;
-  margin-bottom: 50px;
+  font-size: 2.5em;
+  margin-bottom: 40px;
   font-weight: 300;
 }
 
 .feature-icons {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin: 40px 0;
+  gap: 20px;
+  margin: 30px 0;
 }
 
 .icon-item {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8em;
+  font-size: 1.5em;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.icon-item:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.2);
+.icon-item::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.icon-item:hover::before {
+  transform: scale(2);
+}
+
+.icon-item i {
+  position: relative;
+  z-index: 1;
 }
 
 .login-link {
   position: absolute;
-  bottom: 40px;
   left: 0;
   right: 0;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .login-text {
@@ -298,25 +365,25 @@ export default {
 }
 
 .right-section {
-  flex: 1.2;
-  padding: 60px;
+  flex: 1;
+  padding: 40px;
 }
 
 .register-form {
-  max-width: 380px;
+  max-width: 320px;
   margin: 0 auto;
 }
 
 .form-title {
   text-align: center;
   color: #029B62;
-  margin-bottom: 40px;
-  font-size: 2em;
+  margin-bottom: 30px;
+  font-size: 1.8em;
   font-weight: 300;
 }
 
 .el-form-item {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .el-input {
@@ -333,7 +400,7 @@ export default {
   color: white;
   border: none;
   border-radius: 8px;
-  height: 40px;
+  height: 36px;
   transition: all 0.3s ease;
 }
 
@@ -349,7 +416,7 @@ export default {
   width: 100%;
   background-color: #029B62;
   border: none;
-  height: 40px;
+  height: 36px;
   font-size: 1.1em;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -361,12 +428,30 @@ export default {
 }
 
 .verification-code {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 /* 添加响应式悬浮效果 */
 .el-input__inner:focus {
   border-color: #029B62;
   box-shadow: 0 0 0 2px rgba(2, 155, 98, 0.1);
+}
+
+@keyframes gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 </style>
