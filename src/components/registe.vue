@@ -1,54 +1,65 @@
 <template>
   <div @resize="resize" id='registeDiv'>
-    <div style="width:1000px;height:530px;margin:100px auto;">
-      <div style="width:590px;height:530px;display:inline-block;">
-        <img style="display:inline-block;vertical-align:top;margin:0px 0 0 0;height:100%"
-          src="../assets/image/a08ef81d577c4642f5faa9bb3055a4da_2_3_art.png" alt="">
+    <div class="register-container">
+      <div class="left-section">
+        <div class="welcome-content">
+          <div class="brand-logo">
+            <i class="el-icon-connection"></i>
+          </div>
+          <h1>Hello!</h1>
+          <div class="feature-icons">
+            <div class="icon-item">
+              <i class="el-icon-edit"></i>
+            </div>
+            <div class="icon-item">
+              <i class="el-icon-share"></i>
+            </div>
+            <div class="icon-item">
+              <i class="el-icon-reading"></i>
+            </div>
+          </div>
+          <div class="login-link">
+            已有账号？ <router-link to="/login" class="login-text">登录</router-link>
+          </div>
+        </div>
       </div>
-      <div style="width:405px;display:inline-block;height:530px;vertical-align:top;background:#52A0FD;background:-webkit-linear-gradient(left,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);background:linear-gradient(to right,#52A0FD 0%,#00e2fa 80%,#00e2fa 100%);position:relative;right:10px;">
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
-          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="userCount">
+      <div class="right-section">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="register-form">
+          <h2 class="form-title">注册账号</h2>
+          <el-form-item prop="userCount">
             <el-tooltip class="item" effect="dark" content="请输入有效的邮箱地址" placement="right-end">
-              <el-input clearable v-model="ruleForm.userCount" ref='hello' type="email" placeholder="请输入邮箱"
-                style="margin:110px 0 0 0px; width:300px;">
+              <el-input clearable v-model="ruleForm.userCount" ref='hello' type="email" placeholder="请输入邮箱">
                 <i slot="prefix" class="el-input__icon el-icon-message"></i>
               </el-input>
             </el-tooltip>
           </el-form-item>
-          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="userPassword">
+          <el-form-item prop="userPassword">
             <el-tooltip effect="dark" content="请输入您的密码" placement="right-end">
-              <el-input show-password v-model="ruleForm.userPassword" type="password" placeholder="请输入密码"
-                style="margin:30px 0 0 0px;width:300px;">
+              <el-input show-password v-model="ruleForm.userPassword" type="password" placeholder="请输入密码">
                 <i slot="prefix" class="el-input__icon el-icon-lock"></i>
               </el-input>
             </el-tooltip>
           </el-form-item>
-          <el-form-item style="width:150px;margin:0 0 0 55px;" prop="checkUserPassword">
+          <el-form-item prop="checkUserPassword">
             <el-tooltip class="item" effect="dark" content="请确认您的密码" placement="right-end">
-              <el-input show-password v-model="ruleForm.checkUserPassword" type="password"
-                placeholder="请再次输入密码" style="margin:30px 0 0 0px;width:300px;">
+              <el-input show-password v-model="ruleForm.checkUserPassword" type="password" placeholder="请再次输入密码">
                 <i slot="prefix" class="el-input__icon el-icon-lock"></i>
               </el-input>
             </el-tooltip>
           </el-form-item>
-          <el-row style="margin:30px 0 0 0">
-            <el-col :span='11'>
-              <el-form-item style="width:150px;margin:0 0 0 55px;" prop="checkNum">
-                <el-input v-model="ruleForm.checkNum" placeholder="请输入验证码"
-                  style="margin:0px 0 0 0px;width:160px;"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span='13'>
-              <el-button id="checkcode" 
-                style="margin:0 0 0 5px;background-color:rgb(19, 130, 255);color:white;border:none;" 
-                @click="getCheckNum">
-                获取验证码
-              </el-button>
-            </el-col>
-          </el-row>
-          <el-button
-            style="margin:30px 0 0 5px;width:300px; background-color:rgb(19, 130, 2142);border:none;color:white;"
-            @click="registe">注册</el-button>
+          <el-form-item prop="checkNum" class="verification-code">
+            <el-row :gutter="10">
+              <el-col :span="14">
+                <el-input v-model="ruleForm.checkNum" placeholder="请输入验证码"></el-input>
+              </el-col>
+              <el-col :span="10">
+                <el-button id="checkcode" @click="getCheckNum">获取验证码</el-button>
+              </el-col>
+            </el-row>
+          </el-form-item>
+          <el-form-item>
+            <el-button class="register-btn" type="primary" @click="registe">注册</el-button>
+          </el-form-item>
         </el-form>
       </div>
     </div>
@@ -163,7 +174,7 @@ export default {
     async registe() {
       try {
         await this.$refs.ruleForm.validate()
-        
+
         const response = await this.$axios.post('https://graduation-project.lishangying.site/register', {
           userCount: this.ruleForm.userCount,
           userPassword: md5(`${this.ruleForm.userPassword}545464`),
@@ -197,5 +208,165 @@ export default {
 ::-ms-clear,
 ::-ms-reveal {
   display: none;
+}
+
+.register-container {
+  display: flex;
+  width: 1000px;
+  margin: 100px auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+}
+
+.left-section {
+  flex: 0.8;
+  background: linear-gradient(135deg, #029B62 0%, #029B90 100%);
+  padding: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.welcome-content {
+  text-align: center;
+}
+
+.brand-logo {
+  font-size: 4em;
+  margin-bottom: 30px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.welcome-content h1 {
+  font-size: 3em;
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.feature-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.icon-item {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8em;
+  transition: all 0.3s ease;
+}
+
+.icon-item:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.login-link {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  font-size: 1.1em;
+}
+
+.login-text {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+.login-text:hover {
+  opacity: 0.8;
+}
+
+.right-section {
+  flex: 1.2;
+  padding: 60px;
+}
+
+.register-form {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.form-title {
+  text-align: center;
+  color: #029B62;
+  margin-bottom: 40px;
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.el-form-item {
+  margin-bottom: 25px;
+}
+
+.el-input {
+  margin-bottom: 0;
+}
+
+.el-input__inner {
+  border-radius: 8px;
+}
+
+#checkcode {
+  width: 100%;
+  background-color: #029B62;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+#checkcode:hover {
+  background-color: #028B52;
+}
+
+#checkcode:disabled {
+  background-color: #909399;
+}
+
+.register-btn {
+  width: 100%;
+  background-color: #029B62;
+  border: none;
+  height: 40px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #028B52;
+  transform: translateY(-2px);
+}
+
+.verification-code {
+  margin-bottom: 30px;
+}
+
+/* 添加响应式悬浮效果 */
+.el-input__inner:focus {
+  border-color: #029B62;
+  box-shadow: 0 0 0 2px rgba(2, 155, 98, 0.1);
 }
 </style>
