@@ -1,7 +1,7 @@
 
 <template>
 <div style="overflow:hidden">
-<div>
+<div style="margin:60px 0 0 0">
    <div style="height:30px;"></div>
   <div style="width:100%;height:600px;background-color:black;filter: blur(5px); transform: scale(1.1);">
 <img class="card" height="600px" src="~@/assets/image/bgc.png" >

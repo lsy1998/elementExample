@@ -59,7 +59,7 @@
       </el-col>
       <el-col :span="4" style="color:white;">sas</el-col>
     </el-row>
-    <router-view style="margin:70px 0 0 0"/>
+    <router-view/>
   </div>
 </template>
 <script>
