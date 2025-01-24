@@ -1,4 +1,4 @@
-<template style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239)">
+<template style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239);margin:70px 0 0 0;">
   <div style="background-color:rgb(233, 236, 239)">
     <el-row type="flex" justify="center">
       <el-col :span='4' style="color:rgb(233, 236, 239);position:relative;">

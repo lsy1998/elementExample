@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown" style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239)">
+  <div class="markdown" style="color:rgb(233, 236, 239); background-color:rgb(233, 236, 239);margin:70px 0 0 0;">
     <el-row>
       <el-col :span="4" style="">555</el-col>
       <el-col :span="16" style="background-color:white; margin:20px 0 0 0">
