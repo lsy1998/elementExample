@@ -397,18 +397,56 @@ export default {
     },
     uploadHeadPic(e) {
       const files = e.target.files
+      if (!files || !files[0]) {
+        this.$message.warning('请选择要上传的头像')
+        return
+      }
+
+      const file = files[0]
+      // 检查文件类型
+      if (!file.type.startsWith('image/')) {
+        this.$message.error('请上传图片文件')
+        return
+      }
+
+      // 检查文件大小（限制为2MB）
+      if (file.size > 2 * 1024 * 1024) {
+        this.$message.error('图片大小不能超过2MB')
+        return
+      }
+
       const formData = new FormData()
-      formData.append('file', files[0])
+      formData.append('file', file)
       formData.append('userId', this.$store.state.userInfo.userId)
 
-      axios.post('https://graduation-project.lishangying.site/uploadHeadPic', formData)
-        .then((response) => {
+      // 使用 axios 发送请求，设置正确的请求头
+      this.$axios({
+        url: 'https://graduation-project.lishangying.site/uploadHeadPic',
+        method: 'post',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        if (response.data.code === 200) {
           // 更新 Vuex store 中的头像
           this.$store.commit('SET_USER_INFO', {
             ...this.$store.state.userInfo,
-            headPicUrl: response.data.path
+            headPicUrl: response.data.headPicUrl
           })
-        })
+          // 更新本地显示的头像
+          this.userInfo.headPicUrl = response.data.headPicUrl
+          this.$message.success('头像上传成功')
+        } else {
+          this.$message.error(response.data.msg || '头像上传失败')
+        }
+      }).catch(error => {
+        console.error('头像上传失败:', error)
+        this.$message.error('头像上传失败，请稍后重试')
+      })
+
+      // 清空文件输入框，允许重复选择同一文件
+      e.target.value = ''
     },
     updateWordCloud() {
       // 确保 DOM 元素已经加载
